@@ -102,7 +102,7 @@
 <meta property="og:description" content="写在前面（可以不读）  在写这个系列教程之前我仔细考虑了一下，我要不要写。因为这个common lisp语言我也不会。但是我却觉得自己还是要写这个教程。原因很简单，小的时候你或许也有没有看完的电影，想去却一直没有机会去过的地方，一直很喜欢一个玩具，好不容易存到钱买的时候却被别人买走了。那是一种遗憾，我们未完成的，我们不曾得到的事物，我们内心中总是觉得是美好的。于是感叹要是当时如何如何就好了。当时我">
 <meta property="og:image" content="http://yoursite.com/images/s31.png">
 <meta property="og:image" content="http://yoursite.com/images/s32.png">
-<meta property="og:updated_time" content="2017-06-23T14:34:55.000Z">
+<meta property="og:updated_time" content="2017-06-23T14:37:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Common-Lisp教程（1）">
 <meta name="twitter:description" content="写在前面（可以不读）  在写这个系列教程之前我仔细考虑了一下，我要不要写。因为这个common lisp语言我也不会。但是我却觉得自己还是要写这个教程。原因很简单，小的时候你或许也有没有看完的电影，想去却一直没有机会去过的地方，一直很喜欢一个玩具，好不容易存到钱买的时候却被别人买走了。那是一种遗憾，我们未完成的，我们不曾得到的事物，我们内心中总是觉得是美好的。于是感叹要是当时如何如何就好了。当时我">
@@ -351,7 +351,7 @@
 <p>实际上任何语言几乎只要你想都可以这样开发。但是lisp这样的成本很低，甚至这也是它的核心思想。即交互式开发。至于这样有什么好处我现在还不得而知。</p>
 </blockquote>
 <p>  好了现在我们要来体验REPL了。输入<code>(+ 1 1)</code>我们会看到返回了<code>2</code>。相信聪明的读者已经看懂这段代码了。括号里东西组成了一个lisp列表。其中lisp对列表求值时会将第一个元素视为函数的名字。<code>+</code>便是这个函数的名字。注意这里<code>+</code>真的是函数名，不是什么保留字，在lisp中没有什么是保留字。后面两元素便是这个函数的的实参了。<br>  现在我们要写holle world了。先将buffer切换到test.lisp文件中写下下面的函数。  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">(defun hello-world ()</div><div class="line">  (format t &quot;holle world!&quot;))</div></pre></td></tr></table></figure>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">(<span class="name">defun</span> hello-world ()</div><div class="line">  (<span class="name">format</span> <span class="literal">t</span> <span class="string">"holle world!"</span>))</div></pre></td></tr></table></figure>
 <p> 这里简单的解释一下defun是一个定义函数的写法，现在我们可以定义一个叫做hello-world的函数了。而format是一个打印的函数。一般情况下函数有一个输入一个输出还有一个副作用。比如我们以删除文件的函数为例。文档的地址为他的输入（有点也可以没有输入），t或者nil（lisp中的真和假）是他的输出。删除文件是他的副作用。也就是说无论如何lisp表达式是会返回值的。format这个函数中打印内容是他的副作用并不是他的返回值，他的放回值一遍为nil。<br> 那么我们现在如何运行这个函数呢？将光标移到函数体内部。使用快捷键<code>C-c C-c</code>现在你将会看到REPL中打印了一些东西。<code>;compiling (DEFUN HELLO-WORLD ...)</code>证明这里函数编译完毕了。现在试试调用这个函数。  </p>
 <p> <code>hello-world</code>  </p>
 <p>  结果进入了debug模式，还提醒这个值没有绑定（unbond)。这是怎么回事呢？如图：  </p>
