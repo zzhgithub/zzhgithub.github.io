@@ -256,6 +256,157 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/28/Common-Lisp教程（1）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="周子豪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黄油香蕉君的主页">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/02/28/Common-Lisp教程（1）/" itemprop="url">Common-Lisp教程（1）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-28T21:10:48+08:00">
+                2017-02-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/28/Common-Lisp教程（1）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/02/28/Common-Lisp教程（1）/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="写在前面（可以不读）"><a href="#写在前面（可以不读）" class="headerlink" title="写在前面（可以不读）"></a>写在前面（可以不读）</h1><p>  在写这个系列教程之前我仔细考虑了一下，我要不要写。因为这个common lisp语言我也不会。但是我却觉得自己还是要写这个教程。原因很简单，小的时候你或许也有没有看完的电影，想去却一直没有机会去过的地方，一直很喜欢一个玩具，好不容易存到钱买的时候却被别人买走了。那是一种遗憾，我们未完成的，我们不曾得到的事物，我们内心中总是觉得是美好的。于是感叹要是当时如何如何就好了。当时我要是学common lisp就好了？哈哈。这当然没有，只不过我觉的学好这门语言是我必须做的事。不能每一件事当我们回首的时候都是遗憾吧。<br>  我开始写博客了，并不是要怎样。我是想让我博客的读者明白什么。因为我知道了有人可能读我的文字，于是我知道我有特殊的责任。这个教程非做不可。  </p>
+<h1 id="安装commom-lisp的开发环境"><a href="#安装commom-lisp的开发环境" class="headerlink" title="安装commom lisp的开发环境"></a>安装commom lisp的开发环境</h1><p>  本教程介绍的是在mac下的Slime开发环境。在spacemacs中使用的common lisp 的layer。即emacs+sbcl的组合。还有一些默认的配置。sbcl使用homebrew安装即可。  </p>
+<blockquote>
+<p>这个过程并不是很难，使用Spc-h-Spc,输入common-lisp就可以查看文档。虽然是英文的但是说明的很详细。</p>
+</blockquote>
+<h1 id="spacemacs中的一些超级常用快捷键"><a href="#spacemacs中的一些超级常用快捷键" class="headerlink" title="spacemacs中的一些超级常用快捷键"></a>spacemacs中的一些超级常用快捷键</h1><ol>
+<li>在lisp文件中<code>SPC m s i</code> 打开一个REPL。REPL是什么一会还有解释。</li>
+<li>在lisp文件中使用<code>C-c C-c</code>可以将一个表达式加载到REPL中。</li>
+<li><code>SPC m c C</code> 编译文件并且加载到REPL中。</li>
+</ol>
+<h1 id="写第一个holle-world程序"><a href="#写第一个holle-world程序" class="headerlink" title="写第一个holle world程序"></a>写第一个holle world程序</h1><h2 id="打开一个REPL"><a href="#打开一个REPL" class="headerlink" title="打开一个REPL"></a>打开一个REPL</h2><p>  一旦你成功的安装了common lisp的开发环境，你就可以按我说的一步一步的做。首先在你的工作目录新建一个扩展名为lisp的文件，如<code>test.lisp</code>。进入文件。然后使用快捷键<code>SPC m s i</code>打开一个REPL。你可能看到如下的画面。  </p>
+<p><img src="/images/s31.png" alt="打开的REPL"></p>
+<p> 现在解释一下什么是REPL。他是（read-eval-print loop）读-求值-打印 循环的缩写。也就是说这个REPL会像我们熟悉的python或者matlab的命令行一样，我们输入然后在获取计算输入的值的一个循环。这在lisp中是个很重要的概念。这样我们就可以实现交互式的编程。我们可以一边写功能一边讲funcation编译测试函数的行为是否正确。不像有些语言只有写好后才能知道写的对错。</p>
+<blockquote>
+<p>实际上任何语言几乎只要你想都可以这样开发。但是lisp这样的成本很低，甚至这也是它的核心思想。即交互式开发。至于这样有什么好处我现在还不得而知。</p>
+</blockquote>
+<p>  好了现在我们要来体验REPL了。输入<code>(+ 1 1)</code>我们会看到返回了<code>2</code>。相信聪明的读者已经看懂这段代码了。括号里东西组成了一个lisp列表。其中lisp对列表求值时会将第一个元素视为函数的名字。<code>+</code>便是这个函数的名字。注意这里<code>+</code>真的是函数名，不是什么保留字，在lisp中没有什么是保留字。后面两元素便是这个函数的的实参了。<br>  现在我们要写holle world了。先将buffer切换到test.lisp文件中写下下面的函数。  </p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">(<span class="name">defun</span> hello-world ()</div><div class="line">  (<span class="name">format</span> <span class="literal">t</span> <span class="string">"holle world!"</span>))</div></pre></td></tr></table></figure>
+<p> 这里简单的解释一下defun是一个定义函数的写法，现在我们可以定义一个叫做hello-world的函数了。而format是一个打印的函数。一般情况下函数有一个输入一个输出还有一个副作用。比如我们以删除文件的函数为例。文档的地址为他的输入（有点也可以没有输入），t或者nil（lisp中的真和假）是他的输出。删除文件是他的副作用。也就是说无论如何lisp表达式是会返回值的。format这个函数中打印内容是他的副作用并不是他的返回值，他的放回值一遍为nil。<br> 那么我们现在如何运行这个函数呢？将光标移到函数体内部。使用快捷键<code>C-c C-c</code>现在你将会看到REPL中打印了一些东西。<code>;compiling (DEFUN HELLO-WORLD ...)</code>证明这里函数编译完毕了。现在试试调用这个函数。  </p>
+<p> <code>hello-world</code>  </p>
+<p>  结果进入了debug模式，还提醒这个值没有绑定（unbond)。这是怎么回事呢？如图：  </p>
+<p><img src="/images/s32.png" alt="进入了debug"></p>
+<p>原来在REPL中调用函数必须使用列表调用，虽然名字是一样的，但是直接键入<code>hello-world</code>lisp解释器会默认寻找一个叫做hello-world的变量而不是调用这个函数。于是我们应该这样调用。  </p>
+<p>  <code>(hello-world)</code>  </p>
+<p>  于是乎我们看到了正常的输出。这就是lisp的hello world程序了。</p>
+<h1 id="写在后面"><a href="#写在后面" class="headerlink" title="写在后面"></a>写在后面</h1><p>  不好意思，这个不像是教学，更像是我的学习笔记。很多地方没有解释清楚。比如函数定义和变量什么的。但是作为第一个holle-wrold程序足够了。我接下来回整理接下来的章节安排。这个系列可能跟新的很慢，希望可以有好的进度安排。<br>  jekyll中似乎对lisp的语法高亮支持不好。我将在以后解决这个问题。</p>
+<blockquote>
+<p>我将一直的迷惑与无知，我是黄油香蕉君，再见。</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/28/中阶黑魔法emacs教程/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -890,7 +1041,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
