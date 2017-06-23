@@ -381,6 +381,281 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/13/Common-Lisp教程（2）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="周子豪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黄油香蕉君的主页">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/03/13/Common-Lisp教程（2）/" itemprop="url">Common-Lisp教程（2）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-13T09:27:48+08:00">
+                2017-03-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/13/Common-Lisp教程（2）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/03/13/Common-Lisp教程（2）/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>  在lisp中有这许多迷人的特性，要弄清他们还真的不是很容易。我都不确定自己到最后可不可以真正的弄清楚。所以暂时将最简单和浅显的内容整理出来。</p>
+<h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><h2 id="函数的定义"><a href="#函数的定义" class="headerlink" title="函数的定义"></a>函数的定义</h2><blockquote>
+<p>(defun [函数名] ()[形参表]<br> “函数说明”<br>()[函数体])</p>
+</blockquote>
+<p>  这有几点要说明。首先这里面对形参表是指它前面一个括号里面的列表(list)，当然也可以为空形参有多种形式一会介绍。函数说明可以不写，但是出于规范，我还是建议你写上函数的说明文档，函数说明可以通过某种方法得到。函数体可以使是一个合法的S-表达式。当函数被调用的时候。lisp将对这表达式求值并返回。<br>  实例:<br><figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">(<span class="name">defun</span> add-two (<span class="name">x</span>)</div><div class="line">  <span class="string">"add two to x"</span></div><div class="line">  (<span class="name">+</span> x <span class="number">2</span>))</div><div class="line"><span class="comment">;; (add-two 1) =&gt; 3</span></div></pre></td></tr></table></figure></p>
+<h2 id="函数的形参"><a href="#函数的形参" class="headerlink" title="函数的形参"></a>函数的形参</h2><h3 id="amp-key关键字形参"><a href="#amp-key关键字形参" class="headerlink" title="&amp;key关键字形参"></a><code>&amp;key</code>关键字形参</h3><p>  关键字形参使用<code>&amp;key</code>作为关键字。默认的在<code>&amp;key</code>后都视为关键字实参。与正常参数的不同关键字形参在赋实参时，需要像字典一样进行赋值。</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">(<span class="name">defun</span> say-love (<span class="name">&amp;key</span> he her (<span class="name">say</span> <span class="literal">nil</span> say-p))</div><div class="line">  <span class="string">"a funcation to make he say love to her"</span></div><div class="line">  '(he (if say-p (if say 'is 'not) 'not) say love to her))</div><div class="line"><span class="comment">;; (say-love :he banana :her hyacinth :say t)</span></div></pre></td></tr></table></figure>
+<p>  我们可以看到在这里可以对关键字形参设置一个默认值，如果没有传值的情况下，该变量就会是这个值。而也可以使用一个x-p来接受是否传了这个值。正如上面的代码一样如果传了值say-p就是t，没有传的情况下就是nil。</p>
+<blockquote>
+<p>在lisp中 <code>t</code> 表示逻辑真。 <code>nil</code> 表示逻辑假。</p>
+</blockquote>
+<h3 id="amp-optional-可选形参"><a href="#amp-optional-可选形参" class="headerlink" title="&amp;optional 可选形参"></a><code>&amp;optional</code> 可选形参</h3><p>  可选形参表示参数是可选性的，如果不传值lisp并不会向你报错。当然你可以给他们附一个缺省值，默认情况下会是nil。</p>
+<h3 id="amp-rest-可变长参数"><a href="#amp-rest-可变长参数" class="headerlink" title="&amp;rest 可变长参数"></a><code>&amp;rest</code> 可变长参数</h3><p>  在编程的过程中，我们可能有不确定参数个数的情况。关于这个关键字。官方有这样的解释:</p>
+<blockquote>
+<p>如果我们在函数的形参列表里的最后一个变量前，插入 &amp;rest 符号，那么当这个函数被调用时，这个变量会被设成一个带有剩余参数的列表<br>  以下是一个实现了funcall的例子。</p>
+</blockquote>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">(<span class="name">defun</span> our-funcall (<span class="name">fn</span> <span class="symbol">&amp;rest</span> args)</div><div class="line">(<span class="name">apply</span> fn args))</div></pre></td></tr></table></figure>
+<h2 id="定义匿名函数"><a href="#定义匿名函数" class="headerlink" title="定义匿名函数"></a>定义匿名函数</h2><p>  相信使用过其他语言的匿名函数对非常熟悉了，他在闭包中有很大的作用。这里匿名函数使用关键字<code>lambda</code>。这里的形式和函数的定义相似，就是把defun改成lambda不加函数说明就好了。其他是一样的。匿名函数没有那么多的参数列表类型。这正好与匿名函数的应用场景有关。<br>  那么如何得到匿名函数呢？有一个语法糖。使用<code>#&#39;</code>即可。如下:</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(<span class="name">remove-if-not</span> #'(lambda (x) (= (mod x <span class="number">2</span>))))</div></pre></td></tr></table></figure>
+<h1 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h1><p>  我快疯了。我看了两个教程。发现两个教程的风格,完全不一样。一个是《实用Common Lisp编程》这个注重实践。不像一般教课书，一板一眼。一开始在我还没有了解语言的全部基本语法的情况下，带我写了一个简单的数据库。实用很多实用的函数还要宏的概念。让你你开始就看到了lisp的实力。<br>  但是这本书不适合喜欢节奏的没有时间的宝宝们。如果你有热情，你还有时间可以一周内学完这本书的实例的话。我建议你使用这本书。<br>  但是如果你没有时间，喜欢有章节的学习。忘了的时候还可以查询的话。我推荐你官方教程的翻译。<a href="http://acl.readthedocs.io/en/latest/index.html" target="_blank" rel="external">传送门</a>这个可能翻墙小伙伴们，学习科学上网吧。<br>  看完这个教程你可能踌躇满志，想用lisp写点什么，突然不知道它可以写点什么。这时《使用Common Lisp编程》就成了最佳的选择。书中有进行垃圾处理的程序和一个音乐管理器。这都是不错很酷的尝试。<br>  我教程的更新速度将更加慢了。因为我已经为你找到了，更好的学习路线。如果有机会我将，在以后的文章中写自己用Common Lisp做的有趣的事。<br>  那个时候来到了。一定很快乐吧:)</p>
+<blockquote>
+<p>我将一直的迷惑与无知，我是黄油香蕉君，再见。</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/12/拾遗录6那些花儿/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="周子豪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黄油香蕉君的主页">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/03/12/拾遗录6那些花儿/" itemprop="url">拾遗录6那些花儿</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-12T09:27:48+08:00">
+                2017-03-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/12/拾遗录6那些花儿/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/03/12/拾遗录6那些花儿/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="玉兰三首"><a href="#玉兰三首" class="headerlink" title="玉兰三首"></a>玉兰三首</h1><h2 id="诗"><a href="#诗" class="headerlink" title="诗"></a>诗</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">      玉兰  </div><div class="line">素素白玉兰，幽幽香倾园。  </div><div class="line">飒飒凉风起，美娥停房前。  </div><div class="line">  </div><div class="line">笑笑昔时情，泪泪今不理。  </div><div class="line">碌碌相思苦，恨君不成语。  </div><div class="line">  </div><div class="line">淋淋一夜雨，纷纷花离枝。  </div><div class="line">容颜何易老，春风伴雨时。</div></pre></td></tr></table></figure>
+<h2 id="解"><a href="#解" class="headerlink" title="解"></a>解</h2><p>  在重庆玉兰是一种很常见的植物。在我母校重邮的校园中就有许多。她们大致在春季一开学的时候便会开花。都是长在树上的，不过有一种长在很高的树上。就在二教。想要碰到，只有去二楼，在打开窗子伸手出去。不过我是没有真的去二楼打开窗子伸手。倒不是觉得危险什么的，是没有这样的兴致。<br>  我是很喜欢花花草草什么的，但是自己养不活，也懒的打理。从大庆一来到重庆，最使我感叹的就是这座城市的植物。那些花式我在北方不曾见过的。春天有白玉林，广玉兰，到了4月又有樱花，秋冬之时还有桂花的花香。而这首玉兰是我在大学时的练习诗。即是写物诗并无什么意义。<br>  可以看出我在诗中使用叠词，希望制造出一些不一样的语言节奏。第一首可以看出来在努力写花，我也写的很认真，还使用了拟人的手法。但是第二首就突然开始写花以外的事了。无非又是毫无新意的痴男怨女。不读也罢~而其中诗句也有前人词汇之影子。“碌碌相思苦，恨君不成语”不知道有多少人写过。真心苦于自己文思闭塞，关键的时候写不出好诗句来。到了第三首又开始写花写人。以花之命运来写人的命运。问什么“容易何易老”现在想想真是一个无聊的问题。我不是回答过了吗~我觉得回答这个问题是我全诗的关键所在。<br>  容颜易老。花颜易老。那是以花喻人，还是以人喻花？我想了很久这里的写法，觉得都不是。易老的不是人和花，是万物。“易老”是自然的规律。即便你是婷婷盛开清风徐来，还是香气宜人婀娜婉转，结局都是“易老”。此问如此观之便是无意义的。我们常常把易老的锅甩给一个确定的事物。是别人，是误会，是分离，是欲望，是时间。其实都可以不是。我们或许努力着，憧憬着。然后不经意间就发现了。哈哈~言过，什么“易老”之因或许一开始就不是我这样一个20多岁人应该考虑的话题。真惊叹于自己曾经格调有些低了。</p>
+<blockquote>
+<p>这里最后一句曾经修改过几次。我本子上记得是“容颜何易老，相恋负心时”。后来觉得格调太低。前一句其实就是答案，于是私下改为了“容颜何易老，一夜雨淋淋”。想想又觉得重复了。于是改为了上文中的内容。</p>
+</blockquote>
+<h1 id="残语几句"><a href="#残语几句" class="headerlink" title="残语几句"></a>残语几句</h1><h2 id="诗-1"><a href="#诗-1" class="headerlink" title="诗"></a>诗</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">      残语几句  </div><div class="line">一年一年又一年，分离相视已无言。  </div><div class="line">春风春雨春花尽，春思春愁春不眠。</div></pre></td></tr></table></figure>
+<h2 id="解-1"><a href="#解-1" class="headerlink" title="解"></a>解</h2><p>  本诗成于大四期间。具体时日不记得了。反正你可以看出来我写的就一个“春”。说白了就是残语几句，太直白了。这就是我后来的风格变化写诗越来越直白。越来越不喜欢使用典故与一些谐音表达自己的情感。往往是爆发似的吼叫，诗中宁静不在。但是还是有写悲伤气氛。至于原因嘛。我也不知道。或许是我自己的问题吧~</p>
+<h1 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h1><p>  本来没啥好说的。我以为自己的拾遗过程会很有趣。想想自己当初的想法，会不自觉的发笑。这样也是寻见了一件趣事。可惜不是这样的。为什么我写的诗都是不开心的诗。我以前就这个多愁善感吗？这和我的外貌可是极度的不符啊。这样只会别人笑我，我自己是笑不出来吧。以至于我发现有些诗，我连读不不想重读。回忆起写的时候的感觉，很不是滋味。于是有的诗没有整理到拾遗录中。我也知道这些东西也不会有谁愿意来看的。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/04/拾遗录5秋风中的少女/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1380,298 +1655,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/27/《暗时间》一本没有读应该马上读的书/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="周子豪">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黄油香蕉君的主页">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/02/27/《暗时间》一本没有读应该马上读的书/" itemprop="url">《暗时间》一本没有读应该马上读的书</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-27T13:47:48+08:00">
-                2017-02-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/02/27/《暗时间》一本没有读应该马上读的书/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/02/27/《暗时间》一本没有读应该马上读的书/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>  记得我在上大一的时候我们的班学姐向我推荐过这个本书。但是当时我没有看，后来要毕业的时候在同学的书架上发现了，并假借过来。从此发现人类历史中还有这么优秀的思想。如今每次重这本书的内容都会更正我近来的一些误区。接下来我将简单的介绍一下，·我·在书中得到的一些知识。<br>  如果你已经工作了，相信这本书可以让你工作之余的生活更加的有意思。如果你已经结婚有孩子，每天承受着我不曾想象到的生活的压力，我相信你依然可以会爱上这本书的内容，丰富的阅历会使你看到的比我更多。如果你刚刚高中毕业，还没有踏入或者刚刚踏入大学的校园，那么太好了！这本书仿佛就是给你们准备的。你现在完全可以关了我的博客马上去买一本，或者向你的学长借一本。如果你学过编程或者你将要学编程，这个本书对你来说更加的适合。</p>
-<blockquote>
-<p> 我甚至觉得所有的理工科的院校都应该把这本书最为大学的一门课程来学。</p>
-</blockquote>
-<h1 id="我更新的知识"><a href="#我更新的知识" class="headerlink" title="我更新的知识"></a>我更新的知识</h1><h2 id="投入的真正计算方法："><a href="#投入的真正计算方法：" class="headerlink" title="投入的真正计算方法："></a>投入的真正计算方法：</h2><p>  我曾经以为时间就是我的投入。当别人问我学了多久的画画？学了多久编程时。我们往往回答一个时间长度，比如我学了三年编程了，学了五年画画，唱了十年的歌了。其实这样的回答是没有实际意义的,别人在正真在问你你对某件事物的投入。（当然大部分人这样问其实是在寒暄）可是你自己不能当真。我学了三年编程，也写不出一个网上交易系统。但是我上铺的哥们怎么一个月就搞定了呢？有了这样的心里落差是因为我们搞错了一个东西。那就是投入的计算过程。<br>  原来错误的公式是这样的:<code>投入 = 时间</code>于是我们就有了，我“投入”三年，上铺的哥们“投入”一个月。于是得出我的投入比他多的结论。但是我的效果比他差很多，于是又得出了我不适合编程或者我很笨的结论，不然就是得出了我上铺的哥们是个天才的结论，这样安慰自己。<br>  现在我们修正一下公式。<br>  <em><code>投入 = 时间 X 效率</code></em><br>  现在谜底揭开了，我学习编程的时间好像是三年，但是三年中我并没有在真正的每天都在学。好吧就算现在我和他都是用一个月的时间，可能我还是没有他学的好。很简单，我学的时候并没有投入全部的注意力，于是在一些概念上模棱两可。不光是编程，在大学中所有的课程都是如此，可能我去听了一学期的《信号系统》课，也没有上铺的哥们玩了一学期，最后复习一周加上答疑的效果好。  </p>
-<blockquote>
-<p>我不是告诉大家要逃课，而是说如果你不知道自己上课在做什么。没有集中注意力去学习，效率为零甚至听着就可以睡着，还不如专门找一个时间自学呢。我是知识本位主义者，一切形式都是纸老虎。</p>
-<p><em>注意</em> ：答疑真的很重要。交流你不知道的知识点，哪怕是有一点似懂非懂的部分。老师人都很好，当你表现出强大的求知欲，他们不会因为你不上他课就不给你答疑。这样考试也变成了检验你学习成果的有意义的过程，不再是没什么意思的程序了。成绩下来了，不要傻傻的问别人的分数，参考意义不大，没考好就要反思这段时间学习的投入，看看问题是什么。时间太少？还是效率太低？无论哪种都有解决的原因。</p>
-</blockquote>
-<h2 id="学习好英语很重要（外语）"><a href="#学习好英语很重要（外语）" class="headerlink" title="学习好英语很重要（外语）"></a>学习好英语很重要（外语）</h2><p>  我在大学的时候打过辩论赛：是否要取消义务教育中的英语。其中有一个观点是：以后从事的职业中用不到英语，所以浪费了很多时间。呜呼，哀哉。现在很多人也这样以为的吗？不是这样的。<br>  首先这种看似实用主义的想法在社会上大行其道，其实在逻辑上是经不起推敲的。我最TMD讨厌的就是某些学长学姐，告诉新来的学弟学妹们，什么上大学学不到什么东西，就是来学生组织给进入社会做一个缓冲什么的。虽然我也在同届的人面前互相自嘲过，但是从来没有毒害过<code>孩子们</code>！大学生，一旦上了大学就应该以学者自居，这个自居不是要天天说出来，而是不动声色的做出来。理论上进了大学，什么都要学的，无论文理。也别听他们说“大不了自学”，如果你经历了四年的自学，当然可以拿这句来自嘲，但是别还什么都没有学就把这个句挂在嘴边，甚是可笑。<br>  闲话少序，回到正题。所谓知识有两个特性。  </p>
-<ol>
-<li>看似无关的知识，存在内在联系。</li>
-<li>知识分两类：领域知识，和元知识。</li>
-</ol>
-<blockquote>
-<p>有关这个内容书中解释的更好，更加的详细。我不过是二道贩子，强烈建议去看书。</p>
-</blockquote>
-<p>  我们现在一个一个看。第一个大家都有感触。比如我们现在使用的很广泛的CDMA编码技术的发明就是这样。首先赞叹一下这个位被称为CDMA之母的杰出女性,海蒂·拉玛。你一定以为她会像居里夫人一样是个科学家出身，或者是一信息学编码学的天才。都不是！她是一个有名的好莱坞艳星。而且以出演烂片出名。（这个太过了，细心的读者可以自己验证）一次在和他丈夫弹钢琴中她发现了这个算法。（当然有一个懂通信的丈夫也很重要lol。）CDMA的核心思想很简单，你不需要读通信专业也不需要啃《信号系统》我在这里就可以说明白。<br>  比如我不懂钢琴，也对音乐一窍不通。我上铺的哥们和他的女朋友都受过良好的古典音乐教育。一天我们三个在琴房聊天。女的问我上铺的哥们，他生日想要什么礼物。他二话不说，弹了一首李斯特的《钟》。他女友就知道了，他想要一块闹钟或者表之类的。于是又问他（她）们下次去哪里约会。我上铺的哥们又一言不发的弹了一曲奥立维尔.图森的《海边的星空》。于是他女朋友笑了，知道下次要去海边。我哥们很自然的问起了她女友的生日。她让我上铺的哥们挪挪位置，弹奏了一曲肖邦的《冬日》……在一旁不懂音乐的我是懵逼的。他（她）们在干啥呢？这就是CMDA的原理，加长原来的编码。这里可能有点夸张，比如“钟”一个字被变成了一首曲子这么长。这样有两个好处。一是安全，不懂音乐的我就什么也听不懂，只觉得这是美妙的音乐，完全不知道里面的信息。还有一个好处是如果弹错也知道这个是什么曲子。而且旋律越长这种效果越好。  </p>
-<blockquote>
-<p>这里的解释方法的创意不是我本人，这种解释方法的原作者已经不记得了。本人盗用创意，进行编造。致谢、致歉。</p>
-</blockquote>
-<p>  看吧知识存在的形式，不只是知识的表面。谁知道英语中蕴含怎样的知识呢，所以学习其他看似无用的知识也是一样。不光如此，我们来第二点。就是领域知识和元知识。这个概念我其实没有理的很清晰。（即没有特定的公式判断是A还是B）举个不太恰当的例子。我们知道神话中（圣经还是希腊神话？请知道的同学告诉我一下），人类在诞生之后使用的是一种语言。于是人类想要超越神，大家聚集起来想建立通天的“巴别塔”。神知道了，使用瘟疫与天灾都没有效果。人类的塔继续向天上建来。后来神扰乱了人类的语言。人类不使用一样的语言，不再团结，“巴别塔”也建设不起来了。<br>  这里语言就是元知识，而比如建筑学，工程学之类的就成了领域知识。元知识看似没有直接的作用，但是可以帮助我们更好的获得领域知识。比如心理学，脑科学，记忆学等。所以这里我有点分不清数学属于什么类别。我更愿意定义为工具知识。但是这个又是另外一种分类方法了。</p>
-<blockquote>
-<p>这里有一个很实际的问题，所有知识看似都有用,如何选择呢？人的时间是有限的。我们不光要学习，也要享受生活。必要的情况下还要挣钱，恋爱，考虑未来和家人。那么这个时候你就要好好思考，你是真的在你说的这些事情上投入了吗？还是这些事你也没有做好，你只不过给自己找个借口呢？ 但是如果你真真遇到了类似选择上的烦恼，我这次真的什么也帮不到你，很遗憾我没有这方面的知识。</p>
-</blockquote>
-<h2 id="文理双修"><a href="#文理双修" class="headerlink" title="文理双修"></a>文理双修</h2><p>  很大一部分原因我在上文中已经介绍了。这里不再赘述。</p>
-<h2 id="教是最好的学"><a href="#教是最好的学" class="headerlink" title="教是最好的学"></a>教是最好的学</h2><p>  你会在书中看到这句的原话的。而且很好理解。而且我已经有了切身体会，高中那会要不是我暗恋的女生经常来找我问题，我估计我连大学都考不上:P<br>  但是自己口才不好，也没有人问我题啊。怎么办呢？到了大学后寝室的哥们大多都在打游戏，平时讨论的也是游戏，只有上铺的哥们在看书，但是我说什么他都懂。难道我要找打游戏的哥们自讨没趣吗？首先我要说打游戏真的很爽，千万不要在他们玩的时候找他们，相信考试之前他们自然会来找你。（或你上铺）如果你是一个女同学，完全可以在约会的时候给你男朋友讲一讲你最近学的内容，或者解题的过程心得什么的。其实最好的方法是写blog，或者做教程视频。如果你坚持下来会发现是一段很神奇的经历。（我没有做过视频，可能是我以后的计划之一）</p>
-<h1 id="写在后面"><a href="#写在后面" class="headerlink" title="写在后面"></a>写在后面</h1><p>  总之，《暗时间》这是一本没看，就应该马上来看的书。这本书可以说是拯救了人类。至少拯救过我。我上面写的内容大都在书中有了介绍，但是本质还是我读书的心得。是二手的。书中内容比这些要精辟的多。怎么样,是不是已经有了阅读的欲望呢？</p>
-<blockquote>
-<p>这本书有点美中不足的地方，其中很多使用了程序的比喻，程序员或者理工科学生很容易懂，但是文科同学不一定有兴趣阅读。很遗憾。这本书的知识范畴超越的文理，但是阅读的兴趣也是在阅读中很重要的因素。说了这么多，如果屏幕前的你都没有尝试一下。我会很遗憾的:(</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/26/拾遗录1234合集/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="周子豪">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黄油香蕉君的主页">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/02/26/拾遗录1234合集/" itemprop="url">拾遗录1234合集</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-26T22:04:48+08:00">
-                2017-02-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/02/26/拾遗录1234合集/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/02/26/拾遗录1234合集/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="（写在前面）"><a href="#（写在前面）" class="headerlink" title="（写在前面）"></a>（写在前面）</h1><p>如果你不是很无聊现在走还来的及。<br>如果你没有什么事做，正好想读点什么。那么我建议你看看名著之类的。比如豆瓣上有许多有用的书单。<br>你就这么无聊吗？还要继续读下去？<br>…………<br>那们好吧。来看看我要写些什么。<br>我准备整理我以前的时候写过的文字。于是我起名为“拾遗录”。或许你认识我。那么你讲很容易理解我接下来的描述。如果你陌生的朋友，那么我就好好和你说一下了。我喜欢写写诗歌，文章什么的。特别是在上初中高中大学那一会。我那天翻了翻之前自己写的文字，自己都吓了一跳。我怎么是这么矫情的一个人。<br>注意！我在初中时是这样一个形象，不爱洗头，还有一脸青春痘。平日还有点猥琐。（别人是这么说的）但是我写的文字却异常的没有这种气息。气质不是由内而外的吗？现在想想真觉得是一件有趣的事。于是我决定将我以前的文字整理一下。简单的介绍一下当时的写作背景和一些心情。还有如今我对里面一些事物的看法。这个拾遗的过程一定很有趣。一定是充满了尴尬而又温馨的过程。于是我大致的理了一下我的文字都有什么。<br>一个精美的本子用来写古体诗的（还有点日记）。一个竖开的笔记本写现代诗的。一个小本写散文杂记的（不幸已经遗失了）。还有一部小说，和一些小说的片段。<br>于是乎。这成了一个巨大的工程。如果你很好奇的想看，虽然可能性很小，我会稳定的输出。比如一周一到两篇之类的。<br>…………<br>所以还是很无聊对吧。现在走还来得及。<br>如果你发现我写的是你有关的事，或者你知道是什么事。请千万淡定。别说出来。<br>还有欢迎评论。：)  </p>
-<h1 id="拾遗录（一）"><a href="#拾遗录（一）" class="headerlink" title="拾遗录（一）"></a>拾遗录（一）</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">    相见欢    无题  </div><div class="line"></div><div class="line">本是兰芳幽月，会娇眸。可怜独酌空杯，万事休。  </div><div class="line">拾朝花，落眉愁，西风破，吹散多少佳人鬓凤头。</div></pre></td></tr></table></figure>
-<p>  本来是“兰芳幽月”的画好月圆之时，可能会和倾心的女孩有见面的机会。后来可能什么原因没有见到，于是独酌空杯，觉得什么都没有意思。我还深深的记得我写着首词的时候，还是初中。根本还没有喝过酒。时间大概就是初二初三的样子。当时暗恋一个女生。但是真的记不清是发生什么事了。<br>  可能就是一开始就傻傻的以为在学校之外有了可以见面的机会。结果竹篮打水一场空。我不知道，读者有没有这样的时候。一次见不到面什么的，就觉得“万事休”。可能是青春期情绪波动比较大吧。于是作业也不写了，电视也不看了，这也觉的无聊，那也觉得无趣。现在来看看我当时写的诗都是有点无事强说愁的感觉。实际情况是：我当时喜欢的人，初中四年和我说过不超过十句话。可能是那个时间段自己看的书啊，文章啊，都是这种伤秋悲春的。于是有了下面的“拾朝花”，与眉头紧锁。<br>  结果少年还是无法排遣内心的苦闷，不觉已经西风大作，却还想到她头发被吹起来的样子。这里“西风破”肯定不是什么西风了，就是瞎写的随便一个什么风，反正我是分不清东西南北的。而且我当时还嘴硬，竟然问多少，好像有多少我担心似得。还不就是一个人。记得当时的她坐在我前面，我每天上课的时候就看到她的马尾辫。偶尔侧过头，被风吹起来，一缕鬓角随风轻动。<br>  我生造出“鬓凤头”就是想描述这个情景。但是总的来说，诗里的“本来”可能就是自己的想象。但是我为啥用“词”这种形式来写呢？真的不记得了。说是词，但是根本没有关心平仄转韵的规律。可能“词”不过我抒情的载体。诗中没有那句直接写我喜欢别人，这比较像我曾经的风格。不过这个风格在后来的诗中越来越不明显了。可能是成长中，少了矜持的品质吧。不过现在想想，当时这首诗不过是折磨自己的低吟吧。<br>  呵呵（苦笑）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">      虞美人 无题  </div><div class="line">梅花点水芙蓉开，伊上镜妆台，胭脂柳眉雪凝面，难道哀烨何处惨相见。  </div><div class="line">高山流水知音断，彩蝶良梦散，调琴也得泪两案，匆匆无缘却把玉折半。</div></pre></td></tr></table></figure>
-<p>  要说上一首，还是有故事的诗，这首就是真的是瞎写了。其实也是我的想象。有点像闺怨词。上阙前三句什么的，大致写女子自己一个开开心心的打扮好自己姣好的容颜。什么“梅花”、“芙蓉”、“胭脂”这些意象都是写女子美丽容貌和品格的。额。好吧。这样分析有点像我们做了好久的语文的诗词鉴赏题，哈哈哈。其实就是美丽的女子化完妆，打扮了一下。之后第四句我又生造了一个词“哀烨”。读者估计猜的出来，这是一个拟声词。说女子内心难受想哭却哭不出，哽咽又叹气的声音。哈哈。当时我真是有意思啊。这是一种什么声音啊？估计我没听过是纯想象的。<br>  后面的就很好理解了。就像高山流水的知音不在了，梁祝的彩蝶也不能双飞。自己一个人拨弄琴弦，想想昨日种种，今日只有自己一个人。“守着窗儿，独自怎生的黑”。在案边不禁暗自流泪。只能感慨上天定下的人和人之间的缘分是有限的，只是我和你相处的时日太短，一切都太快了，来不及闪躲，只能安慰自己“匆匆无缘”了。可见她是绝望的，但是却又是有希望的。一块玉，变成两半，你一半我一半。<br>  真想象不出，初中生写这样的诗句做什么。可能是那个年纪，发觉爱情悲剧的必然性，和在对悲剧中挣扎女性的思考。可能向往那样的情感，也可能暗示自己求不得的心态。甚至可能就是哪次我和倾心的女生什么东西正好被分了两部分，正好有我一份有她一份，然后我意淫写出来的精神胜利诗。<br>  这首诗一样没有说什么喜欢啊之类的。不过我当时把那个人的名字藏在了诗里。也算我比较大胆吧！<br>  to：读者，元宵快乐  </p>
-<h1 id="拾遗录-二-在最后的时间献给情人节"><a href="#拾遗录-二-在最后的时间献给情人节" class="headerlink" title="拾遗录(二)在最后的时间献给情人节"></a>拾遗录(二)在最后的时间献给情人节</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">    苏幕遮 无题  </div><div class="line">龙香烬,烧粉语,青鸟快书,醉恨相思雨.庭外咋然故里曲,枉然幽怅,苦忆鸳鸯侣.  </div><div class="line">子规栖,丁香月,熏衣正浓,冥冥若相许.香兰谢娘桥边落,红字帖得,各自心中喜.</div></pre></td></tr></table></figure>
-<p>  似乎从这首词开始,我便尝试使用各种意象和典故.所以解释起来可能有点麻烦。因为其中使用的典故出处我自己都已经忘记了，不过我会努力还原我词中的思想.<br>  这仍然是我的想象诗,似乎在那个年纪我总是充满了各种各样的幻想,也许这就是所谓的中二吧。上阙描写的是一对情侣分开后在家中为对方写情书的情境。这里可能大家不太理解,既然是情侣,是互相喜欢的人，为什么还要写情书呢?平日里你侬我侬的已经够了,写情书做什么呢?这里请读者原谅我,原因是当时我以为情侣之间才会写哪种风花雪月的话，情人之间如何交流都是靠我凭空的想象。所以不免诗词中闹了笑话。便写出了这么一对肉麻的情侣。今天正好是情人节，我们不妨来看看。<br>  烧了一晚上的香,都快烧完了,不知道烧了多少张我写的”粉语”,我觉得对你有千言万语,可是落到纸上却不知道怎么去下笔。写这个也觉得不对,写那个也觉得不好,哎呀！有没有一只可以通天的神鸟帮我问问,写什么才能让她开心。<br>  “青鸟”古时认为的神鸟,可以和天通信,又是古时皇帝祈雨的神兽,这里我显然是认为它也可以帮我问问别人的心意。不知道你有没有这样的时候，想写点什么但是就是不知道怎么下笔。从而有了希望知道读你文字的人怎么想的心理。此处即是我笔下情侣的矫情又是我当时的真实感受。有的时候苦苦想了一个晚上,结果一看,还不是那么几句.“我想你”云云。就在这时下起了雨来。”醉恨相思雨”也可做”最恨相似语”。明明觉得有许多话诉说,结果到头来还是那么几句。愁自己真是没用。<br>  夜尽天明,外面人们开始了一天的活动,响起了故里的音乐。顿时积攒了一夜的疲惫涌上手来，笔也握不住了,索性瘫在椅子上,独自哀声叹气,开始想想我们在一起开心的时候了。<br>  上阙痛苦但是痛苦中却带着甜蜜,下阙两个人各自带着写好的信在相约的地点见面了。<br>  鸟儿都睡了,一切安静恬谧。月光伴着花香。我们彼此都确定了这份缘天生注定，于是感叹这是”冥冥若相许”。但是见面的时间并不长,怎么见得呢?继续往下看。这里我用了一个电影式的描写手法。镜头一转，香兰花的花瓣从树上落下,缓缓飘过谢娘桥。(此处有典,已经忘了)此时两个人短暂的相聚已经结束了。结果如何呢？收到了情书,在各种心中都很开心。<br>  这里我写的肯定不是现代的爱情。因为这对情侣,明明已经互相喜欢确定心意,却还小心翼翼。而且似乎是地下恋情还偷偷摸摸的,还在晚上幽会。幽会就幽会吧，结果匆匆相间又匆匆离别,只留下书信就分开了。可能是年龄小,也可能是父母家里不同意。现在在来看”红字帖”可不可能是暗示求婚呢?”喜”字似乎也表明我曾经想这样写过。这是我写这类情情爱爱的诗词的时候,少有的快乐的结尾。说不定诗中世界那对情侣有一个好的结局。<br>  哈哈看来这样的诗,真适合在情人节“拾遗”呢。那祝今日的有情男女”红字帖得,各自心中喜”。  </p>
-<h1 id="拾遗录-三-仙剑诗两首"><a href="#拾遗录-三-仙剑诗两首" class="headerlink" title="拾遗录(三)仙剑诗两首"></a>拾遗录(三)仙剑诗两首</h1><p>  我在高中的时候玩过一款电子游戏,仙剑奇侠传。相信不少人都玩过。当时每周周一到周四上学玩不上电脑,周天又得明天早起。于是都是周五和周六的晚上偷偷的在楼上玩。好几次看剧情打boss结果一回过神就早上3点了。所以第二天也就下午1点起床了。这是我的一个毛病，我曾经看某材料说明人一天最佳睡眠是8个小时(现在想想睡那么久干嘛~~)于是就会放心的睡了。<br>  游戏剧情很好,可惜是悲剧。我记得我玩到中途的时候电脑坏了,无奈重新安装系统,游戏的存档都没有了。后来我又重新玩了一遍,一直打到结局。结果后悔我玩到结局了。<br>  诗写的很烂,一个词,一个长诗,不想解说了.看看得了(玩过的小伙伴可以说说这是仙剑几的故事)。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">      蝶恋花 无题  </div><div class="line">青眉秀目多情郎,若羁若癫,懵懂尘世间,那知生死天注定,相守碑旁忆当年.  </div><div class="line">玲珑娇柔多舛女,心生问道,寥寥命已牵,亡前与君痴言语,只羡鸳鸯不羡仙.</div></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">     剑仙启梦录  </div><div class="line">青鸾峰上痴情郎, 悲目白雪守碑旁, 多少风尘叹事中,  </div><div class="line">只原一遇溪洞中, 玩伴好似旧相识, 茫茫凄凄求仙路,  </div><div class="line">太平村中引人厌, 无奈漂泊野外中, 无意誓言终生定,  </div><div class="line">好若相许冥冥间, 柳家有女深闺中, 心事浮沉心无主,  </div><div class="line">本为恩人报情意, 随着命动昆仑颠, 昆仑仙山琼露多,  </div><div class="line">一拜师叔紫英落, 平日放荡无人懂, 侠义人世正与恶,  </div><div class="line">月剑同鸣日剑出, 玄妙逍遥识故人, 义结金兰破俗定,  </div><div class="line">从此为兄劳奔波, 终得三宝故人出, 阴差阳错苦自责,  </div><div class="line">梦柳离花羞涩语, 语过之后人辞去, 从此不见花颜开,  </div><div class="line">只因人妖两不和, 为得红颜登天梯, 斩龙入境取影枝,  </div><div class="line">先入天楼取天弓, 后如幻冥明月中, 相逢时日不相依,  </div><div class="line">可怜浮华自恨生, 人妖何必残相对, 今世做人明为妖,  </div><div class="line">然后匆匆惨相别, 自梦幻合柳梦璃, 多少情仇剑影中,  </div><div class="line">不如重归山上时, 回梦仙游少年行, 多少情仇多少痛,  </div><div class="line">可怜相逢时日短, 无奈离人以做古, 生时憾然相许愿,  </div><div class="line">此生尽欢死无憾, 此生与汝永相伴, 青鸾峰上又来风,  </div><div class="line">相聚已是千年迟, 曾经欢笑不剩在, 只当人生幻梦间。</div></pre></td></tr></table></figure>
-<p>  祝读者,晚安好梦.</p>
-<h1 id="拾遗录-四-模仿的练习诗"><a href="#拾遗录-四-模仿的练习诗" class="headerlink" title="拾遗录(四)模仿的练习诗"></a>拾遗录(四)模仿的练习诗</h1><p>  <em>(下面两段可以不读)</em><br>  首先这个是高中写的不是我现在写的。其次我在整理的时候发现我的诗竟然大部分写情爱这类的，这使我很苦恼。我都都惊讶于当初都写的些什么玩意儿,好在不是所有的诗和文章写的都是写男女之情的。其实就算是有,也不是特定发了什么事为了谁才写的。虽然因为遇见了什么事才写的诗占我写古体诗的比例还不小。<br>  我本意也不是先整理古体诗然后再整理现代诗小说什么的。而是我现在身在重庆上班,现代诗的小册子和小说都放在了家中。无奈只能整理写过的古体诗。其实古体诗不是我偏爱的题材，受我个人能力所限制,诗中的形象往往重复而不贴近生活。不贴近生活就很难有打动人心的诗句。所以大部分诗是古体的抒情诗,而且往往又是以女性的视角写的闺怨题材。这就有点无事强说愁的嫌疑。（我又不是女的又没有闺怨）而后期由于我对诗词的喜爱，还时不时的写了一些练习的诗词,刻意的使用一些手法和修辞,或者模仿一种意境和语言风格。<br>  当时高中的一个假期在家看红楼梦电视剧,对林黛玉这个角色很有感。记得那是87版的第30几集(这个真的想不起来了).宝玉在外险些遇险,被救回来后开心的去潇湘馆找林妹妹,可是这个时候林妹妹已经不在了。看到林妹妹走的时候并没有哭。宝玉兴高采烈的喊这林妹妹的名字,突然发现她不在了,于是宝玉眼神都呆了,他环顾四周一切陈设安好如初只是人不在了……他又说了一遍“林~妹~妹~” 画面停止了,响起了片尾曲.突然泪就不争气的落下来,怎么也控制不住了…….<br>  后来又连续的哭了三集。<br>  说这些是和这首诗有点关系,黛玉有葬花,于是我写了一首弄花.如今读起发现狗屁不通！名字都没有取好，花岂是能把玩的。意境很弱,词语堆砌的有很多。画面跳脱,我的语文老师要是看到了还不得笑脱了(就是嘲笑到要晕过去,这个也是我自己造的词).  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">         弄花吟  </div><div class="line">春来醒水百花显, 英飞纷纷斗香艳.  </div><div class="line">一朵开似胜一朵, 当年花魁已不见.  </div><div class="line">为何风过馨已无, 为何椮椮无人读.  </div><div class="line">只见年年水向前, 忘却蒙蒙向少年,  </div><div class="line">独采花苞藏花瓣, 自伤别离一两面,  </div><div class="line">无端春雨绵绵飞, 静坐花亭往事追,  </div><div class="line">追忆不成两行泪, 才下花语诗已醉,  </div><div class="line">轻拦一筐去梦乡, 风化雪月在边疆,  </div><div class="line">多少今丝妄楼兰, 倚柱桃落断黄粱,  </div><div class="line">百芳易赏不宜葬, 葬伊销得故人神,  </div><div class="line">回眸忘川春雨细, 梦醒时分念一人.</div></pre></td></tr></table></figure>
-<p>  椮椮(sen)这里的用法是错的。我忘了是谁在那里用过,不过意思似乎不对,不用查字典了！这里我错了。你可一理解成”惨惨”二字。</p>
-<p>  古人用意相:香草美人, 是政治诗。是写怀才不遇。我写香草美人就是为了写美人。哈哈哈哈…….<br>  肤浅至此不敢多言.</p>
-<blockquote>
-<p>博客转到这里 没有人可以评论了。我估计也没多少人看了吧。哈哈哈~~如此甚好。</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1721,7 +1704,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

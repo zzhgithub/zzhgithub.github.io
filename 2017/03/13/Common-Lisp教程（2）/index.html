@@ -93,20 +93,17 @@
 
 
 
-<meta name="description" content="写在前面（可以不读）  在写这个系列教程之前我仔细考虑了一下，我要不要写。因为这个common lisp语言我也不会。但是我却觉得自己还是要写这个教程。原因很简单，小的时候你或许也有没有看完的电影，想去却一直没有机会去过的地方，一直很喜欢一个玩具，好不容易存到钱买的时候却被别人买走了。那是一种遗憾，我们未完成的，我们不曾得到的事物，我们内心中总是觉得是美好的。于是感叹要是当时如何如何就好了。当时我">
+<meta name="description" content="前言  在lisp中有这许多迷人的特性，要弄清他们还真的不是很容易。我都不确定自己到最后可不可以真正的弄清楚。所以暂时将最简单和浅显的内容整理出来。 函数函数的定义 (defun [函数名] ()[形参表] “函数说明”()[函数体])    这有几点要说明。首先这里面对形参表是指它前面一个括号里面的列表(list)，当然也可以为空形参有多种形式一会介绍。函数说明可以不写，但是出于规范，我还是建议">
 <meta name="keywords" content="lisp">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Common-Lisp教程（1）">
-<meta property="og:url" content="http://yoursite.com/2017/02/28/Common-Lisp教程（1）/index.html">
+<meta property="og:title" content="Common-Lisp教程（2）">
+<meta property="og:url" content="http://yoursite.com/2017/03/13/Common-Lisp教程（2）/index.html">
 <meta property="og:site_name" content="黄油香蕉君的主页">
-<meta property="og:description" content="写在前面（可以不读）  在写这个系列教程之前我仔细考虑了一下，我要不要写。因为这个common lisp语言我也不会。但是我却觉得自己还是要写这个教程。原因很简单，小的时候你或许也有没有看完的电影，想去却一直没有机会去过的地方，一直很喜欢一个玩具，好不容易存到钱买的时候却被别人买走了。那是一种遗憾，我们未完成的，我们不曾得到的事物，我们内心中总是觉得是美好的。于是感叹要是当时如何如何就好了。当时我">
-<meta property="og:image" content="http://yoursite.com/images/s31.png">
-<meta property="og:image" content="http://yoursite.com/images/s32.png">
-<meta property="og:updated_time" content="2017-06-23T14:37:23.000Z">
+<meta property="og:description" content="前言  在lisp中有这许多迷人的特性，要弄清他们还真的不是很容易。我都不确定自己到最后可不可以真正的弄清楚。所以暂时将最简单和浅显的内容整理出来。 函数函数的定义 (defun [函数名] ()[形参表] “函数说明”()[函数体])    这有几点要说明。首先这里面对形参表是指它前面一个括号里面的列表(list)，当然也可以为空形参有多种形式一会介绍。函数说明可以不写，但是出于规范，我还是建议">
+<meta property="og:updated_time" content="2017-06-23T16:14:32.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Common-Lisp教程（1）">
-<meta name="twitter:description" content="写在前面（可以不读）  在写这个系列教程之前我仔细考虑了一下，我要不要写。因为这个common lisp语言我也不会。但是我却觉得自己还是要写这个教程。原因很简单，小的时候你或许也有没有看完的电影，想去却一直没有机会去过的地方，一直很喜欢一个玩具，好不容易存到钱买的时候却被别人买走了。那是一种遗憾，我们未完成的，我们不曾得到的事物，我们内心中总是觉得是美好的。于是感叹要是当时如何如何就好了。当时我">
-<meta name="twitter:image" content="http://yoursite.com/images/s31.png">
+<meta name="twitter:title" content="Common-Lisp教程（2）">
+<meta name="twitter:description" content="前言  在lisp中有这许多迷人的特性，要弄清他们还真的不是很容易。我都不确定自己到最后可不可以真正的弄清楚。所以暂时将最简单和浅显的内容整理出来。 函数函数的定义 (defun [函数名] ()[形参表] “函数说明”()[函数体])    这有几点要说明。首先这里面对形参表是指它前面一个括号里面的列表(list)，当然也可以为空形参有多种形式一会介绍。函数说明可以不写，但是出于规范，我还是建议">
 
 
 
@@ -134,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/02/28/Common-Lisp教程（1）/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/03/13/Common-Lisp教程（2）/"/>
 
 
 
 
 
-  <title>Common-Lisp教程（1） | 黄油香蕉君的主页</title>
+  <title>Common-Lisp教程（2） | 黄油香蕉君的主页</title>
   
 
 
@@ -259,7 +256,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/28/Common-Lisp教程（1）/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/13/Common-Lisp教程（2）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="周子豪">
@@ -276,7 +273,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Common-Lisp教程（1）</h1>
+          <h1 class="post-title" itemprop="name headline">Common-Lisp教程（2）</h1>
         
 
         <div class="post-meta">
@@ -288,8 +285,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-28T21:10:48+08:00">
-                2017-02-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-13T09:27:48+08:00">
+                2017-03-13
               </time>
             
 
@@ -307,9 +304,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/02/28/Common-Lisp教程（1）/#comments" itemprop="discussionUrl">
+                <a href="/2017/03/13/Common-Lisp教程（2）/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/02/28/Common-Lisp教程（1）/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/03/13/Common-Lisp教程（2）/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -334,32 +331,26 @@
       
 
       
-        <h1 id="写在前面（可以不读）"><a href="#写在前面（可以不读）" class="headerlink" title="写在前面（可以不读）"></a>写在前面（可以不读）</h1><p>  在写这个系列教程之前我仔细考虑了一下，我要不要写。因为这个common lisp语言我也不会。但是我却觉得自己还是要写这个教程。原因很简单，小的时候你或许也有没有看完的电影，想去却一直没有机会去过的地方，一直很喜欢一个玩具，好不容易存到钱买的时候却被别人买走了。那是一种遗憾，我们未完成的，我们不曾得到的事物，我们内心中总是觉得是美好的。于是感叹要是当时如何如何就好了。当时我要是学common lisp就好了？哈哈。这当然没有，只不过我觉的学好这门语言是我必须做的事。不能每一件事当我们回首的时候都是遗憾吧。<br>  我开始写博客了，并不是要怎样。我是想让我博客的读者明白什么。因为我知道了有人可能读我的文字，于是我知道我有特殊的责任。这个教程非做不可。  </p>
-<h1 id="安装commom-lisp的开发环境"><a href="#安装commom-lisp的开发环境" class="headerlink" title="安装commom lisp的开发环境"></a>安装commom lisp的开发环境</h1><p>  本教程介绍的是在mac下的Slime开发环境。在spacemacs中使用的common lisp 的layer。即emacs+sbcl的组合。还有一些默认的配置。sbcl使用homebrew安装即可。  </p>
-<blockquote>
-<p>这个过程并不是很难，使用Spc-h-Spc,输入common-lisp就可以查看文档。虽然是英文的但是说明的很详细。</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>  在lisp中有这许多迷人的特性，要弄清他们还真的不是很容易。我都不确定自己到最后可不可以真正的弄清楚。所以暂时将最简单和浅显的内容整理出来。</p>
+<h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><h2 id="函数的定义"><a href="#函数的定义" class="headerlink" title="函数的定义"></a>函数的定义</h2><blockquote>
+<p>(defun [函数名] ()[形参表]<br> “函数说明”<br>()[函数体])</p>
 </blockquote>
-<h1 id="spacemacs中的一些超级常用快捷键"><a href="#spacemacs中的一些超级常用快捷键" class="headerlink" title="spacemacs中的一些超级常用快捷键"></a>spacemacs中的一些超级常用快捷键</h1><ol>
-<li>在lisp文件中<code>SPC m s i</code> 打开一个REPL。REPL是什么一会还有解释。</li>
-<li>在lisp文件中使用<code>C-c C-c</code>可以将一个表达式加载到REPL中。</li>
-<li><code>SPC m c C</code> 编译文件并且加载到REPL中。</li>
-</ol>
-<h1 id="写第一个holle-world程序"><a href="#写第一个holle-world程序" class="headerlink" title="写第一个holle world程序"></a>写第一个holle world程序</h1><h2 id="打开一个REPL"><a href="#打开一个REPL" class="headerlink" title="打开一个REPL"></a>打开一个REPL</h2><p>  一旦你成功的安装了common lisp的开发环境，你就可以按我说的一步一步的做。首先在你的工作目录新建一个扩展名为lisp的文件，如<code>test.lisp</code>。进入文件。然后使用快捷键<code>SPC m s i</code>打开一个REPL。你可能看到如下的画面。  </p>
-<p><img src="/images/s31.png" alt="打开的REPL"></p>
-<p> 现在解释一下什么是REPL。他是（read-eval-print loop）读-求值-打印 循环的缩写。也就是说这个REPL会像我们熟悉的python或者matlab的命令行一样，我们输入然后在获取计算输入的值的一个循环。这在lisp中是个很重要的概念。这样我们就可以实现交互式的编程。我们可以一边写功能一边讲funcation编译测试函数的行为是否正确。不像有些语言只有写好后才能知道写的对错。</p>
+<p>  这有几点要说明。首先这里面对形参表是指它前面一个括号里面的列表(list)，当然也可以为空形参有多种形式一会介绍。函数说明可以不写，但是出于规范，我还是建议你写上函数的说明文档，函数说明可以通过某种方法得到。函数体可以使是一个合法的S-表达式。当函数被调用的时候。lisp将对这表达式求值并返回。<br>  实例:<br><figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">(<span class="name">defun</span> add-two (<span class="name">x</span>)</div><div class="line">  <span class="string">"add two to x"</span></div><div class="line">  (<span class="name">+</span> x <span class="number">2</span>))</div><div class="line"><span class="comment">;; (add-two 1) =&gt; 3</span></div></pre></td></tr></table></figure></p>
+<h2 id="函数的形参"><a href="#函数的形参" class="headerlink" title="函数的形参"></a>函数的形参</h2><h3 id="amp-key关键字形参"><a href="#amp-key关键字形参" class="headerlink" title="&amp;key关键字形参"></a><code>&amp;key</code>关键字形参</h3><p>  关键字形参使用<code>&amp;key</code>作为关键字。默认的在<code>&amp;key</code>后都视为关键字实参。与正常参数的不同关键字形参在赋实参时，需要像字典一样进行赋值。</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">(<span class="name">defun</span> say-love (<span class="name">&amp;key</span> he her (<span class="name">say</span> <span class="literal">nil</span> say-p))</div><div class="line">  <span class="string">"a funcation to make he say love to her"</span></div><div class="line">  '(he (if say-p (if say 'is 'not) 'not) say love to her))</div><div class="line"><span class="comment">;; (say-love :he banana :her hyacinth :say t)</span></div></pre></td></tr></table></figure>
+<p>  我们可以看到在这里可以对关键字形参设置一个默认值，如果没有传值的情况下，该变量就会是这个值。而也可以使用一个x-p来接受是否传了这个值。正如上面的代码一样如果传了值say-p就是t，没有传的情况下就是nil。</p>
 <blockquote>
-<p>实际上任何语言几乎只要你想都可以这样开发。但是lisp这样的成本很低，甚至这也是它的核心思想。即交互式开发。至于这样有什么好处我现在还不得而知。</p>
+<p>在lisp中 <code>t</code> 表示逻辑真。 <code>nil</code> 表示逻辑假。</p>
 </blockquote>
-<p>  好了现在我们要来体验REPL了。输入<code>(+ 1 1)</code>我们会看到返回了<code>2</code>。相信聪明的读者已经看懂这段代码了。括号里东西组成了一个lisp列表。其中lisp对列表求值时会将第一个元素视为函数的名字。<code>+</code>便是这个函数的名字。注意这里<code>+</code>真的是函数名，不是什么保留字，在lisp中没有什么是保留字。后面两元素便是这个函数的的实参了。<br>  现在我们要写holle world了。先将buffer切换到test.lisp文件中写下下面的函数。  </p>
-<figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">(<span class="name">defun</span> hello-world ()</div><div class="line">  (<span class="name">format</span> <span class="literal">t</span> <span class="string">"holle world!"</span>))</div></pre></td></tr></table></figure>
-<p> 这里简单的解释一下defun是一个定义函数的写法，现在我们可以定义一个叫做hello-world的函数了。而format是一个打印的函数。一般情况下函数有一个输入一个输出还有一个副作用。比如我们以删除文件的函数为例。文档的地址为他的输入（有点也可以没有输入），t或者nil（lisp中的真和假）是他的输出。删除文件是他的副作用。也就是说无论如何lisp表达式是会返回值的。format这个函数中打印内容是他的副作用并不是他的返回值，他的放回值一遍为nil。<br> 那么我们现在如何运行这个函数呢？将光标移到函数体内部。使用快捷键<code>C-c C-c</code>现在你将会看到REPL中打印了一些东西。<code>;compiling (DEFUN HELLO-WORLD ...)</code>证明这里函数编译完毕了。现在试试调用这个函数。  </p>
-<p> <code>hello-world</code>  </p>
-<p>  结果进入了debug模式，还提醒这个值没有绑定（unbond)。这是怎么回事呢？如图：  </p>
-<p><img src="/images/s32.png" alt="进入了debug"></p>
-<p>原来在REPL中调用函数必须使用列表调用，虽然名字是一样的，但是直接键入<code>hello-world</code>lisp解释器会默认寻找一个叫做hello-world的变量而不是调用这个函数。于是我们应该这样调用。  </p>
-<p>  <code>(hello-world)</code>  </p>
-<p>  于是乎我们看到了正常的输出。这就是lisp的hello world程序了。</p>
-<h1 id="写在后面"><a href="#写在后面" class="headerlink" title="写在后面"></a>写在后面</h1><p>  不好意思，这个不像是教学，更像是我的学习笔记。很多地方没有解释清楚。比如函数定义和变量什么的。但是作为第一个holle-wrold程序足够了。我接下来回整理接下来的章节安排。这个系列可能跟新的很慢，希望可以有好的进度安排。<br>  jekyll中似乎对lisp的语法高亮支持不好。我将在以后解决这个问题。</p>
+<h3 id="amp-optional-可选形参"><a href="#amp-optional-可选形参" class="headerlink" title="&amp;optional 可选形参"></a><code>&amp;optional</code> 可选形参</h3><p>  可选形参表示参数是可选性的，如果不传值lisp并不会向你报错。当然你可以给他们附一个缺省值，默认情况下会是nil。</p>
+<h3 id="amp-rest-可变长参数"><a href="#amp-rest-可变长参数" class="headerlink" title="&amp;rest 可变长参数"></a><code>&amp;rest</code> 可变长参数</h3><p>  在编程的过程中，我们可能有不确定参数个数的情况。关于这个关键字。官方有这样的解释:</p>
+<blockquote>
+<p>如果我们在函数的形参列表里的最后一个变量前，插入 &amp;rest 符号，那么当这个函数被调用时，这个变量会被设成一个带有剩余参数的列表<br>  以下是一个实现了funcall的例子。</p>
+</blockquote>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">(<span class="name">defun</span> our-funcall (<span class="name">fn</span> <span class="symbol">&amp;rest</span> args)</div><div class="line">(<span class="name">apply</span> fn args))</div></pre></td></tr></table></figure>
+<h2 id="定义匿名函数"><a href="#定义匿名函数" class="headerlink" title="定义匿名函数"></a>定义匿名函数</h2><p>  相信使用过其他语言的匿名函数对非常熟悉了，他在闭包中有很大的作用。这里匿名函数使用关键字<code>lambda</code>。这里的形式和函数的定义相似，就是把defun改成lambda不加函数说明就好了。其他是一样的。匿名函数没有那么多的参数列表类型。这正好与匿名函数的应用场景有关。<br>  那么如何得到匿名函数呢？有一个语法糖。使用<code>#&#39;</code>即可。如下:</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(<span class="name">remove-if-not</span> #'(lambda (x) (= (mod x <span class="number">2</span>))))</div></pre></td></tr></table></figure>
+<h1 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h1><p>  我快疯了。我看了两个教程。发现两个教程的风格,完全不一样。一个是《实用Common Lisp编程》这个注重实践。不像一般教课书，一板一眼。一开始在我还没有了解语言的全部基本语法的情况下，带我写了一个简单的数据库。实用很多实用的函数还要宏的概念。让你你开始就看到了lisp的实力。<br>  但是这本书不适合喜欢节奏的没有时间的宝宝们。如果你有热情，你还有时间可以一周内学完这本书的实例的话。我建议你使用这本书。<br>  但是如果你没有时间，喜欢有章节的学习。忘了的时候还可以查询的话。我推荐你官方教程的翻译。<a href="http://acl.readthedocs.io/en/latest/index.html" target="_blank" rel="external">传送门</a>这个可能翻墙小伙伴们，学习科学上网吧。<br>  看完这个教程你可能踌躇满志，想用lisp写点什么，突然不知道它可以写点什么。这时《使用Common Lisp编程》就成了最佳的选择。书中有进行垃圾处理的程序和一个音乐管理器。这都是不错很酷的尝试。<br>  我教程的更新速度将更加慢了。因为我已经为你找到了，更好的学习路线。如果有机会我将，在以后的文章中写自己用Common Lisp做的有趣的事。<br>  那个时候来到了。一定很快乐吧:)</p>
 <blockquote>
 <p>我将一直的迷惑与无知，我是黄油香蕉君，再见。</p>
 </blockquote>
@@ -405,8 +396,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/28/中阶黑魔法emacs教程/" rel="next" title="中阶黑魔法emacs教程">
-                <i class="fa fa-chevron-left"></i> 中阶黑魔法emacs教程
+              <a href="/2017/03/12/拾遗录6那些花儿/" rel="next" title="拾遗录6那些花儿">
+                <i class="fa fa-chevron-left"></i> 拾遗录6那些花儿
               </a>
             
           </div>
@@ -415,8 +406,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/03/02/spacemacs下的magit指南/" rel="prev" title="spacemacs下的magit指南">
-                spacemacs下的magit指南 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/06/23/新的开始/" rel="prev" title="新的开始">
+                新的开始 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -566,7 +557,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#写在前面（可以不读）"><span class="nav-number">1.</span> <span class="nav-text">写在前面（可以不读）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装commom-lisp的开发环境"><span class="nav-number">2.</span> <span class="nav-text">安装commom lisp的开发环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#spacemacs中的一些超级常用快捷键"><span class="nav-number">3.</span> <span class="nav-text">spacemacs中的一些超级常用快捷键</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#写第一个holle-world程序"><span class="nav-number">4.</span> <span class="nav-text">写第一个holle world程序</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#打开一个REPL"><span class="nav-number">4.1.</span> <span class="nav-text">打开一个REPL</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#写在后面"><span class="nav-number">5.</span> <span class="nav-text">写在后面</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#函数"><span class="nav-number">2.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#函数的定义"><span class="nav-number">2.1.</span> <span class="nav-text">函数的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数的形参"><span class="nav-number">2.2.</span> <span class="nav-text">函数的形参</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#amp-key关键字形参"><span class="nav-number">2.2.1.</span> <span class="nav-text">&key关键字形参</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#amp-optional-可选形参"><span class="nav-number">2.2.2.</span> <span class="nav-text">&optional 可选形参</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#amp-rest-可变长参数"><span class="nav-number">2.2.3.</span> <span class="nav-text">&rest 可变长参数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定义匿名函数"><span class="nav-number">2.3.</span> <span class="nav-text">定义匿名函数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#写在最后"><span class="nav-number">3.</span> <span class="nav-text">写在最后</span></a></li></ol></div>
             
 
           </div>
@@ -709,9 +700,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2017/02/28/Common-Lisp教程（1）/';
-          this.page.identifier = '2017/02/28/Common-Lisp教程（1）/';
-          this.page.title = 'Common-Lisp教程（1）';
+          this.page.url = 'http://yoursite.com/2017/03/13/Common-Lisp教程（2）/';
+          this.page.identifier = '2017/03/13/Common-Lisp教程（2）/';
+          this.page.title = 'Common-Lisp教程（2）';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://zzhgithub-github-io.disqus.com/embed.js';
