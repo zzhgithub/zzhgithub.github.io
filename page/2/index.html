@@ -256,6 +256,153 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/02/《高数》书里的鬼故事/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="周子豪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黄油香蕉君的主页">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/03/02/《高数》书里的鬼故事/" itemprop="url">《高数》书里的鬼故事</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-02T16:16:48+08:00">
+                2017-03-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/02/《高数》书里的鬼故事/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/03/02/《高数》书里的鬼故事/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>  高等数学书里有的时候给了证明过程，但是却没有给原因。就好像解题方法自己飞出来一样。如鬼故事一般。  </p>
+<h1 id="数列收敛唯一性的证明"><a href="#数列收敛唯一性的证明" class="headerlink" title="数列收敛唯一性的证明"></a>数列收敛唯一性的证明</h1><p>  我们都记得在学习高等数学的时候有关于数列极限唯一性的证明。即一个数列只能收敛与一个数。在证明过程中使用反证法：<br>  假设一个数列同时收敛于<code>a</code>和<code>b</code>然后构造了一个<code>ε=(b-a)/2</code>.<br>  然后你会发现你可以轻松的证明出了定理.但是为什么呢?我也是百思不得其解.为什么要这样构造<code>ε</code>呢?</p>
+<h1 id="让们我重头解决问题"><a href="#让们我重头解决问题" class="headerlink" title="让们我重头解决问题"></a>让们我重头解决问题</h1><p>  首先回顾一下数列的极限(收敛)定理是什么样的:</p>
+<blockquote>
+<p>设 <code>{Xn}</code> 为一个数列,如果存在常数 <code>a</code> ,对于任意的的正数 <code>ε</code> (无论他多么的小),总存在正数 <code>N</code> ,使得当 <code>n&gt;N</code> 时,不等式 <code>|Xn-a|&lt;ε</code> 都成立.</p>
+</blockquote>
+<p>  那么我们不妨先假设其收敛与M和N看看最直观的会发生什么.由于<code>a</code>和<code>b</code>肯定不一样不妨令<code>a&gt;b</code>;  </p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">n&gt;N1时,|Xn-a|&lt;ε1 总成立.  </div><div class="line">n&gt;N2时,|Xn-b|&lt;ε2 总成立.</div></pre></td></tr></table></figure>
+<p>  这是你能要分类讨论了!当<code>Xn-a&gt;0</code>的情况或<code>Xn-a&lt;0</code>的情况.会得出一下两个式子.  </p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Xn-a &lt; ε1;  </div><div class="line">a-Xn &lt; ε1;</div></pre></td></tr></table></figure>
+<p>  这是在收敛与<code>a</code>的时候就是两种收敛于<code>b</code>的时候又是两种,排列组合就是4种情况要去讨论,简直就是噩梦. 难道就没有办法了吗?<br>  要是这两个式子都成立就好了.等等! [1]<br>  这时 我们要注意了!!!在定义中<code>ε</code>是一个正数也就是说这两个式子总是成立:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Xn-a&gt;0时:  </div><div class="line">Xn-a &lt; ε1;成立;由原不等式直接得到.  </div><div class="line">a-Xn &lt; ε1;也成立,因为a-Xn&lt;0一定小于一个正数ε.</div></pre></td></tr></table></figure>
+<p>  那么反过来呢?我们来看看:  </p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Xn-a&lt;0时:</div><div class="line">a-Xn &lt; ε1;成立由原来的不等式直接得到</div><div class="line">Xn-a &lt; ε2;成立.小于零的数一定比大于零的数小</div></pre></td></tr></table></figure>
+<p> 那么我也不用分什么情况了.每个式子都变成两个式子就行了.于是我们得到:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Xn-a &lt; ε1;</div><div class="line">a-Xn &lt; ε1;</div><div class="line">Xn-b &lt; ε2;</div><div class="line">b-Xn &lt; ε2;</div><div class="line"></div><div class="line">整理一下=&gt;</div><div class="line">Xn &lt; ε1+a;(1)</div><div class="line">xn &gt; a-ε1;(2)</div><div class="line">Xn &lt; ε2+b;(3)</div><div class="line">Xn &gt; b-ε2;(4)</div></pre></td></tr></table></figure>
+<p>  我们始终记得我们要用反证法.那么我们就需要找到矛盾.看看(1),(4)是不是一下就有了灵感.  </p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ε1+a = b-ε2</div><div class="line">=&gt;</div><div class="line">ε1+ε2 = b-a;</div></pre></td></tr></table></figure>
+<p>  看看!看看!这里就明白了书中的策略.他令<code>ε1=ε2=ε</code>于是计算出<code>ε=(b-a)/2</code>的!<br>  其实这里只需要满足这个式子就可以了不一定要什么<code>ε1=ε2</code>我觉得书中的写法反而不利于我们理解.<br>  其实细心的你一定也发现了这个式子不具备普世性.试试这个式子!</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ε1+a &gt;= b-ε2</div></pre></td></tr></table></figure>
+<p>  这才是最终的解题关键!读者不妨试试令<code>ε = (b-a)/16</code>一样可以证明得出.这就交给你们自己去完成吧.</p>
+<h1 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h1><p>  在最初复习<code>高数</code>的时候我在看这段证明时怎么也想不出来!于是卡在这里。我先是奇特于为什么<code>ε</code>要那样的赋值。于是认真的跟着步骤计算了一遍怎么也得不到其中的结果。我思考如果我证明的话我会怎么办.于是才有了这篇文章。<br>  细心的读者可能注意到了[1]处我其实最想的是构造一个<code>Xn&gt; 什么</code>的式子。这样我可以轻易的生产出矛盾。发现当<code>Xn-a&lt;0</code>时可以做到后,开始思考其他情况下怎么证明,于是才有了后面的简化情况讨论。</p>
+<blockquote>
+<p>我将一直的迷惑与无知，我是黄油香蕉君，再见。</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/02/Vim操作小结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1321,7 +1468,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1334,7 +1481,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
