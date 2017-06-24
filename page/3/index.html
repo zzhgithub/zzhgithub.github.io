@@ -256,6 +256,164 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/02/在emacs中进行文件管理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="周子豪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黄油香蕉君的主页">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/03/02/在emacs中进行文件管理/" itemprop="url">在emacs中进行文件管理</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-02T16:38:48+08:00">
+                2017-03-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/02/在emacs中进行文件管理/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/03/02/在emacs中进行文件管理/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>  放弃命令行。和我使用emacs吧。打开emacs让我们体验一波。</p>
+<blockquote>
+<p>再次强烈建议读者使用emacs+spacemacs的组合。</p>
+</blockquote>
+<h1 id="进入Dired模式"><a href="#进入Dired模式" class="headerlink" title="进入Dired模式"></a>进入Dired模式</h1><ul>
+<li>使用快捷键 <code>C-x D</code></li>
+</ul>
+<h1 id="刷新当前目录"><a href="#刷新当前目录" class="headerlink" title="刷新当前目录"></a>刷新当前目录</h1><ul>
+<li>在Dired中 <code>g</code> 就可以了。</li>
+</ul>
+<h1 id="选择文件"><a href="#选择文件" class="headerlink" title="选择文件"></a>选择文件</h1><p>  在dired模式下，如果你要一次性操作多个文件和目录，那么你要先标记 <code>mark</code> 那些问价和目录。<br>  然后再使用快捷键 对这些文件进行操作。  </p>
+<h2 id="常见mark命令"><a href="#常见mark命令" class="headerlink" title="常见mark命令"></a>常见mark命令</h2><ul>
+<li><code>m</code> 标记当前光标所在的目录。  </li>
+<li><code>u</code> 取消当前光标所在文件目录的标记  </li>
+<li><code>U</code> 取消所有的标记  </li>
+<li><code>d</code> 对要删除的文件和目录进行特殊标记，打上flag  </li>
+<li><code>t</code> 反选所有的标记</li>
+</ul>
+<h1 id="常见文件操作"><a href="#常见文件操作" class="headerlink" title="常见文件操作"></a>常见文件操作</h1><ul>
+<li><code>+</code> 创建一个目录</li>
+<li><code>C</code> (大写)拷贝文件</li>
+<li><code>R</code> 重命名文件，或者说移动文件</li>
+<li><code>D</code> 删除文件</li>
+<li><code>x</code> 删除那些打了flag的文件</li>
+<li><code>Z</code> 使用gzip压缩解压缩文件</li>
+</ul>
+<h1 id="使用书签"><a href="#使用书签" class="headerlink" title="使用书签"></a>使用书签</h1><ul>
+<li><code>C-x r m</code> 添加书签</li>
+<li><code>C-x r l</code> 查看标签列表</li>
+</ul>
+<h1 id="想直接编辑文件的名称啥的怎么办？"><a href="#想直接编辑文件的名称啥的怎么办？" class="headerlink" title="想直接编辑文件的名称啥的怎么办？"></a>想直接编辑文件的名称啥的怎么办？</h1><p>  <code>C-x C-q</code> 然后可以编辑了 编辑完再来 <code>C-c C-c</code> 就完成了。<br>  我的天 非常方便<br>  <code>C-c C-k</code> 可以取消这次编辑</p>
+<h1 id="跨文件夹操作"><a href="#跨文件夹操作" class="headerlink" title="跨文件夹操作"></a>跨文件夹操作</h1><p>  在文件夹中按 <code>i</code> 就可以了<br>  <code>$</code> 可以实现折叠和打开  </p>
+<h1 id="写在后面"><a href="#写在后面" class="headerlink" title="写在后面"></a>写在后面</h1><p>  今天施工把以前的博客移植过来了一些。有些是自己没有写完的坑。看来要慢慢的填了。我写文章有一个特点就是如果已经有别人很好的教程我是懒得抄的。于是你可以看到许多的传送门。哈哈你可以叫我传送门法师了。:p</p>
+<blockquote>
+<p>我将一直的迷惑与无知，我是黄油香蕉君，再见。</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/02/《高数》书里的鬼故事/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1468,7 +1626,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-count">29</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
