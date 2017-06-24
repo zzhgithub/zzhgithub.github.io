@@ -381,6 +381,146 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/02/node黑魔法使用js打开终端并运行命令/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="周子豪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黄油香蕉君的主页">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/02/node黑魔法使用js打开终端并运行命令/" itemprop="url">node黑魔法使用js打开终端并运行命令</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-02T14:31:43+08:00">
+                2017-05-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/02/node黑魔法使用js打开终端并运行命令/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/05/02/node黑魔法使用js打开终端并运行命令/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="OverView"><a href="#OverView" class="headerlink" title="OverView"></a>OverView</h1><p>  在编程的魔法世界中，有许多的黑魔法，其中最黑的几种肯定有js了。特别是接触到了nodejs和npm后。顿时觉得无所不能，拥有了触及全世界的力量。在这篇文章中，你将看到使用js打开一个终端并且让他运行指定的命令的方法。</p>
+<h1 id="预备知识"><a href="#预备知识" class="headerlink" title="预备知识"></a>预备知识</h1><h2 id="node-运行终端命令"><a href="#node-运行终端命令" class="headerlink" title="node 运行终端命令"></a>node 运行终端命令</h2><p>  使用一个叫做<code>shelljs</code>的命令就可以了。送上<a href="https://www.npmjs.com/package/shelljs" target="_blank" rel="external">传送门</a>。请翻墙！</p>
+<h2 id="OSX-中的open命令"><a href="#OSX-中的open命令" class="headerlink" title="OSX 中的open命令"></a>OSX 中的open命令</h2><p>  使用这个命令可以打开一个应用。比如打开一个叫做Abc的应用。（没有这个应用的）使用<code>$ open -a Abc</code>就可以了。</p>
+<blockquote>
+<p>通过这些预备知识几乎就可完成这项任务了。你想到了吗。不看下面。自己试试 :)</p>
+</blockquote>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>  在js中有一些可以运行命令行的方法。但是似乎没有那种可以打开一个终端，然后让打开的终端运行一组命令的方法。我有向别人请教，如何实现。不过反馈中更多是建议我写一个假终端，这个思路也很酷。不过我不相信有js做不到的事。</p>
+<ul>
+<li>使用shelljs运行生成一个shell命令行文件使用 <code>echo &gt;&gt; run.sh \#/bin/sh code</code>就可以。</li>
+<li>同样使用shelljs 运行一个命令 给刚才的文件加上运行权限</li>
+<li>使用shelljs运行open命令用终端打开这个文件。</li>
+<li>（optional）结束时删除。</li>
+</ul>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><p>  比如我们现在要想写一个查询本地docker下运行容器，并用按钮打开的应用。要求是在容易列表的没一项有进入容器的按钮可以打开新命令行进入到容器里面。下面是一部分代码。  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> shell = <span class="built_in">require</span>(<span class="string">'shelljs'</span>);<span class="comment">//这里要下载shell插件</span></div><div class="line"></div><div class="line"><span class="built_in">module</span>.export = &#123;</div><div class="line">   <span class="attr">open</span>:<span class="function"><span class="keyword">function</span>(<span class="params">name</span>)</span>&#123;</div><div class="line">       <span class="comment">//生成run.sh脚本</span></div><div class="line">       <span class="keyword">var</span> comd = <span class="string">'echo &gt;&gt; run.sh \#/bin/sh docker start '</span>+name+<span class="string">'\n docker attach '</span>+name;</div><div class="line">       shell.exrc(comd,&#123;<span class="attr">silent</span>:<span class="literal">true</span>&#125;);</div><div class="line">       <span class="comment">//给脚本增加运行权限</span></div><div class="line">       shell.exec(<span class="string">'chmod +x run.sh'</span>,&#123;<span class="attr">silent</span>:<span class="literal">true</span>&#125;);</div><div class="line">       <span class="comment">//打开运行</span></div><div class="line">       shell.exec(<span class="string">'open -a Terminal run.sh'</span>);</div><div class="line">   &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">//其他代码省略</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>我将一直的无知与迷惑，我是黄油香蕉君，再见。</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/01/使用spacemacs订阅新闻组/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1429,141 +1569,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/31/中阶黑魔法教程-使用PlantUML画关系图/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="周子豪">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黄油香蕉君的主页">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/31/中阶黑魔法教程-使用PlantUML画关系图/" itemprop="url">中阶黑魔法教程-使用PlantUML画关系图</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-31T02:21:48+08:00">
-                2017-03-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/03/31/中阶黑魔法教程-使用PlantUML画关系图/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/03/31/中阶黑魔法教程-使用PlantUML画关系图/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="OverView"><a href="#OverView" class="headerlink" title="OverView"></a>OverView</h1><p>  当我们使用linux的时间越来越长，就会发现使用鼠标和gui是多么的不安全。作为一名程序员，我们把所有的过程都演进成了编程。比如使用latex对文学进行编程，那么关系图呢？是否也可以使用编程个代码的方式使用呢？我不断的寻找，终于找到了答案，使用<code>PlantMUL</code>。<br>  本文将介绍在emacs下安装使用plantuml的教程。并实现一个plantuml的hello-world程序。之后介绍有关使用plantuml写类间关系图的简单教程。</p>
-<h1 id="预备知识"><a href="#预备知识" class="headerlink" title="预备知识"></a>预备知识</h1><h2 id="什么是-plantUML？"><a href="#什么是-plantUML？" class="headerlink" title="什么是 plantUML？"></a>什么是 plantUML？</h2><p>  请百度大兄弟。先送上<a href="http://plantuml.com/" target="_blank" rel="external">官方网站</a>。所谓的plantuml是一种画图的脚本语言。这个官方网站是中文的，足以保证你自学了。有许多编辑器可以使用plantuml插件的。但是本文将要介绍eamcs下的插件安装和使用。其他平台请自行百度谷歌吧。<br>  在使用这个教程之前你需要做的是:</p>
-<ol>
-<li>安装emacs 使用spacemacs的配置。几乎我所有的教程都是依据这个配置进行的。在我之前的博客中有这个教程。</li>
-<li>安装JDK。这个真心也是不难的。（windows用户可能要考虑配置环境变量）</li>
-</ol>
-<h2 id="安装-spacemacs中的plantuml-layer"><a href="#安装-spacemacs中的plantuml-layer" class="headerlink" title="安装 spacemacs中的plantuml layer"></a>安装 spacemacs中的plantuml layer</h2><p>  使用emacs中spacemacs配置的 plantUML layer。这个在之前博客中有类似的介绍。使用快捷键<code>SPC-h-SPC</code>打开帮助。键入plantuml就可以看到安装教程了。就是在在<code>.spacemace</code>的配置文件中加上plantuml然后重启就可以了。哈哈，现在是不行的。因为plantuml要依赖一个的jar包。这个就是要配置jdk的原因。<br>  下载plantuml.jar后。如果是mac的用户放到<code>~</code>目录下就可以了，这里的路径是默认的。其他平台的用户请自行百度。（QVQ 对不起）</p>
-<h1 id="第一个holle-world-程序"><a href="#第一个holle-world-程序" class="headerlink" title="第一个holle-world 程序"></a>第一个holle-world 程序</h1><p>  现在让我们来感受一下这个plantuml的强大吧。首先我们要记住plantuml文件的扩展名是<code>.pum</code>。好的先建立一个叫做test.pum的文件。写入一下内容。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">@startuml</div><div class="line">A -&gt; B : loving</div><div class="line">B -&gt; C : kind of loving</div><div class="line">C --&gt; A : no one knows</div><div class="line">@enduml</div></pre></td></tr></table></figure></p>
-<p>  这里有两个快捷键。使用<code>SPC-m-c-o</code>可以设置生成图片的输出格式。现在先设置成png格式。然后使用<code>C-c C-c</code>就可以生成图片了。如下图所示。<br>  <img src="/images/s51.png" alt="三角恋关系图"><br>  现在使用另存为就可是保存使用这张图片了。</p>
-<h1 id="使用PlantUML画类关系图"><a href="#使用PlantUML画类关系图" class="headerlink" title="使用PlantUML画类关系图"></a>使用PlantUML画类关系图</h1><p>  非常遗憾我发现官方网站上的文档已经很全面了。所以我就实在是不想做这个无用功了。虽然他们的排版不一定比我写的漂亮。但是就知识的本质而言我再写一遍是没有意义的。谢谢你的理解。</p>
-<blockquote>
-<p>我将一直的无知与迷惑，我是黄油香蕉君，再见。</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1613,7 +1618,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-count">27</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1626,7 +1631,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
