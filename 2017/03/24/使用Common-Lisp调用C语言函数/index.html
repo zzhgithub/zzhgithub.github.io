@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="随笔," />
+  <meta name="keywords" content="lisp,cffi," />
 
 
 
@@ -93,19 +93,17 @@
 
 
 
-<meta name="description" content="新的开始我决定使用hexo开始新的博客整理。虽然可以开始很大的工作是整理以前的博客进行很多的迁移。 测试测试图片 测试公式$$ e^{it} = cost + sinit $$ 测试代码1234#include &amp;lt;stdio.h&amp;gt;void main()&amp;#123;    print(&quot;Hello Wrold!&quot;);&amp;#125;">
-<meta name="keywords" content="随笔">
+<meta name="description" content="前言  我们知道在emacs实现中使用的lisp和c语言。这个设计使得emacs成了一件不折不扣的艺术品。这样的好处是将两种语言的长处发挥到了极致。当然其中还有一些设计哲学要去学习。不过我们先看看在common lisp中调用到c语言的函数。 我的环境 MacOS SLIME （emacs + spacemacs 配置） mac自带的gcc quicklisp   以上这些的教程都可以在我之前的博">
+<meta name="keywords" content="lisp,cffi">
 <meta property="og:type" content="article">
-<meta property="og:title" content="新的开始">
-<meta property="og:url" content="http://yoursite.com/2017/06/23/新的开始/index.html">
+<meta property="og:title" content="使用Common-Lisp调用C语言函数">
+<meta property="og:url" content="http://yoursite.com/2017/03/24/使用Common-Lisp调用C语言函数/index.html">
 <meta property="og:site_name" content="黄油香蕉君的主页">
-<meta property="og:description" content="新的开始我决定使用hexo开始新的博客整理。虽然可以开始很大的工作是整理以前的博客进行很多的迁移。 测试测试图片 测试公式$$ e^{it} = cost + sinit $$ 测试代码1234#include &amp;lt;stdio.h&amp;gt;void main()&amp;#123;    print(&quot;Hello Wrold!&quot;);&amp;#125;">
-<meta property="og:image" content="http://yoursite.com/images/gril.png">
-<meta property="og:updated_time" content="2017-06-23T08:16:17.000Z">
+<meta property="og:description" content="前言  我们知道在emacs实现中使用的lisp和c语言。这个设计使得emacs成了一件不折不扣的艺术品。这样的好处是将两种语言的长处发挥到了极致。当然其中还有一些设计哲学要去学习。不过我们先看看在common lisp中调用到c语言的函数。 我的环境 MacOS SLIME （emacs + spacemacs 配置） mac自带的gcc quicklisp   以上这些的教程都可以在我之前的博">
+<meta property="og:updated_time" content="2017-06-24T05:07:36.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="新的开始">
-<meta name="twitter:description" content="新的开始我决定使用hexo开始新的博客整理。虽然可以开始很大的工作是整理以前的博客进行很多的迁移。 测试测试图片 测试公式$$ e^{it} = cost + sinit $$ 测试代码1234#include &amp;lt;stdio.h&amp;gt;void main()&amp;#123;    print(&quot;Hello Wrold!&quot;);&amp;#125;">
-<meta name="twitter:image" content="http://yoursite.com/images/gril.png">
+<meta name="twitter:title" content="使用Common-Lisp调用C语言函数">
+<meta name="twitter:description" content="前言  我们知道在emacs实现中使用的lisp和c语言。这个设计使得emacs成了一件不折不扣的艺术品。这样的好处是将两种语言的长处发挥到了极致。当然其中还有一些设计哲学要去学习。不过我们先看看在common lisp中调用到c语言的函数。 我的环境 MacOS SLIME （emacs + spacemacs 配置） mac自带的gcc quicklisp   以上这些的教程都可以在我之前的博">
 
 
 
@@ -133,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/06/23/新的开始/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/03/24/使用Common-Lisp调用C语言函数/"/>
 
 
 
 
 
-  <title>新的开始 | 黄油香蕉君的主页</title>
+  <title>使用Common-Lisp调用C语言函数 | 黄油香蕉君的主页</title>
   
 
 
@@ -258,7 +256,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/23/新的开始/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/24/使用Common-Lisp调用C语言函数/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="周子豪">
@@ -275,7 +273,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">新的开始</h1>
+          <h1 class="post-title" itemprop="name headline">使用Common-Lisp调用C语言函数</h1>
         
 
         <div class="post-meta">
@@ -287,8 +285,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-23T13:45:29+08:00">
-                2017-06-23
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-24T17:27:48+08:00">
+                2017-03-24
               </time>
             
 
@@ -306,9 +304,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/06/23/新的开始/#comments" itemprop="discussionUrl">
+                <a href="/2017/03/24/使用Common-Lisp调用C语言函数/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/06/23/新的开始/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/03/24/使用Common-Lisp调用C语言函数/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -333,10 +331,29 @@
       
 
       
-        <h1 id="新的开始"><a href="#新的开始" class="headerlink" title="新的开始"></a>新的开始</h1><p>我决定使用hexo开始新的博客整理。虽然可以开始很大的工作是整理以前的博客进行很多的迁移。</p>
-<h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><h2 id="测试图片"><a href="#测试图片" class="headerlink" title="测试图片"></a>测试图片</h2><p><img src="/images/gril.png" alt="gril"></p>
-<h2 id="测试公式"><a href="#测试公式" class="headerlink" title="测试公式"></a>测试公式</h2><p>$$ e^{it} = cost + sinit $$</p>
-<h2 id="测试代码"><a href="#测试代码" class="headerlink" title="测试代码"></a>测试代码</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    print(<span class="string">"Hello Wrold!"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>  我们知道在emacs实现中使用的lisp和c语言。这个设计使得emacs成了一件不折不扣的艺术品。这样的好处是将两种语言的长处发挥到了极致。当然其中还有一些设计哲学要去学习。不过我们先看看在common lisp中调用到c语言的函数。</p>
+<h1 id="我的环境"><a href="#我的环境" class="headerlink" title="我的环境"></a>我的环境</h1><ul>
+<li>MacOS</li>
+<li>SLIME （emacs + spacemacs 配置）</li>
+<li>mac自带的gcc</li>
+<li>quicklisp</li>
+</ul>
+<blockquote>
+<p>以上这些的教程都可以在我之前的博客中找到，我就不写传送门了。</p>
+</blockquote>
+<h1 id="准备过程（其中可能有方法论）"><a href="#准备过程（其中可能有方法论）" class="headerlink" title="准备过程（其中可能有方法论）"></a>准备过程（其中可能有方法论）</h1><p>  接触这个问题的过程是从我希望使用common lisp写出GUI来开始的。那么我有什么路可以走呢？自己写一个图像化接口几乎是不可能的。其实如果哪天我疯了或许会开始这样的一个项目:P 那么现在有一条路可以走，就是调用已经有的跨平台图像化接口。第一个想到的竟然是openGL，额。尴尬的是OpenGL来做这个活并是很开心。而且在我面前还有一个重要的问题，那就是怎么用CL调用到C语言实现的文件。（动态和静态链接库）<br>  于是我百度谷歌使用CL调用C语言函数，结果有一个人问：用cffi和ffi那个好？额。这个是什么呢？结果一查我发现这个是<code>Common Foreign Function Interface</code>的缩写。外部函数接口。这个不就是我想要的吗？简单的看一下英文这个不就有C的支持吗~于是信息若狂，的打开了文档。这里有<a href="https://common-lisp.net/project/cffi/manual/cffi-manual.html" target="_blank" rel="external">传送门</a><br>  所以让我们写一个小的demo来调用，自己使用c写的一个测试方法吧。</p>
+<h1 id="完成c文件"><a href="#完成c文件" class="headerlink" title="完成c文件"></a>完成c文件</h1><p>  新建一个项目。建立一个叫做<code>testlib.c</code>的文件。现在我们就定义一个简单的函数吧。如下:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> MIX 100</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">test_fn</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">  <span class="keyword">return</span> MIX;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>  要记住我们是没有办法直接使用c语言的源码的。我们需要先编译了才可以了。运行下面的命令就可以生成必要的文件了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ gcc -c testlib.c</div><div class="line"><span class="comment"># 这将生成 .o 文件 然后我们要的是 .so 文件</span></div><div class="line">$ gcc -shared -fPIC -o testlib.so testlib.o</div></pre></td></tr></table></figure>
+<h1 id="使用common-lisp-来调用这个文件"><a href="#使用common-lisp-来调用这个文件" class="headerlink" title="使用common lisp 来调用这个文件"></a>使用common lisp 来调用这个文件</h1><p>  现在在同级的目录下建立一个叫做<code>test.lisp</code>的文件。文件里的内容如下:</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">;; test cffi</span></div><div class="line">(<span class="name">ql</span><span class="symbol">:quickload</span> <span class="string">"cffi"</span>)</div><div class="line"></div><div class="line">(<span class="name">cffi</span><span class="symbol">:define-foreign-library</span> testlib</div><div class="line">  (<span class="symbol">:unix</span> <span class="string">"testlib.so"</span>)</div><div class="line">  (<span class="name">t</span> (<span class="symbol">:default</span> <span class="string">"testlib"</span>)))</div><div class="line"></div><div class="line">(<span class="name">cffi</span><span class="symbol">:use-foreign-library</span> testlib)</div><div class="line">(<span class="name">cffi</span><span class="symbol">:defctype</span> back-max <span class="symbol">:int</span>)</div><div class="line">(<span class="name">cffi</span><span class="symbol">:defcfun</span> <span class="string">"test_fn"</span> back-max</div><div class="line">  (<span class="name">x</span> <span class="symbol">:int</span>))</div></pre></td></tr></table></figure>
+<p>  简单的介绍一下这些代码在做什么。<code>define-foreign-library</code>是在定义一个C语言的库。这个方法用来指定库的位置和在不同环境中的位置。然后<code>use-foreign-library</code>加载这个库。现在直接调用时调用不到的。我们需要定义这个c中的函数到lisp中，同样要定义好入参和出参的值。<br>  现在<code>SPC-m-&#39;</code>打开一个REPL，然后逐条的对上面的语句使用<code>C-c C-c</code>。如果没有错的话现在就可以调用这个函数了。<br>  我们在REPL中输入<code>(test_fn 1)</code>就可以看到返回了我们在c中定义好的100了。</p>
+<h1 id="Learn-More"><a href="#Learn-More" class="headerlink" title="Learn More"></a>Learn More</h1><p>  现在就可以写我们自己的c语言的函数，然后使用lisp优雅的调用他们。但是单单是我上面的介绍肯定远远不够。我们还需要在必要的时候阅读上面传送门中的文档才行的</p>
+<h1 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h1><p>  我本来是想在这个过程中使用lisp调用有名的gtk。虽然我现在还是不了解那是个啥。安装也没有成功。但是并不影响我在成功调用到c语言时的激动。相信我可以使用CL的这个功能在以后带来更加精彩的应用。谢谢读者们。</p>
+<blockquote>
+<p>我将一直的迷惑与无知，我是黄油香蕉君，再见。</p>
+</blockquote>
+
       
     </div>
 
@@ -365,7 +382,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/随笔/" rel="tag"># 随笔</a>
+            <a href="/tags/lisp/" rel="tag"># lisp</a>
+          
+            <a href="/tags/cffi/" rel="tag"># cffi</a>
           
         </div>
       
@@ -378,8 +397,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/24/拾遗录8/" rel="next" title="拾遗录8">
-                <i class="fa fa-chevron-left"></i> 拾遗录8
+              <a href="/2017/03/18/拾遗录7/" rel="next" title="拾遗录7">
+                <i class="fa fa-chevron-left"></i> 拾遗录7
               </a>
             
           </div>
@@ -387,6 +406,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/24/拾遗录8/" rel="prev" title="拾遗录8">
+                拾遗录8 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -535,7 +558,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#新的开始"><span class="nav-number">1.</span> <span class="nav-text">新的开始</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#测试"><span class="nav-number">2.</span> <span class="nav-text">测试</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#测试图片"><span class="nav-number">2.1.</span> <span class="nav-text">测试图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试公式"><span class="nav-number">2.2.</span> <span class="nav-text">测试公式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试代码"><span class="nav-number">2.3.</span> <span class="nav-text">测试代码</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#我的环境"><span class="nav-number">2.</span> <span class="nav-text">我的环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#准备过程（其中可能有方法论）"><span class="nav-number">3.</span> <span class="nav-text">准备过程（其中可能有方法论）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#完成c文件"><span class="nav-number">4.</span> <span class="nav-text">完成c文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用common-lisp-来调用这个文件"><span class="nav-number">5.</span> <span class="nav-text">使用common lisp 来调用这个文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Learn-More"><span class="nav-number">6.</span> <span class="nav-text">Learn More</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#写在最后"><span class="nav-number">7.</span> <span class="nav-text">写在最后</span></a></li></ol></div>
             
 
           </div>
@@ -678,9 +701,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2017/06/23/新的开始/';
-          this.page.identifier = '2017/06/23/新的开始/';
-          this.page.title = '新的开始';
+          this.page.url = 'http://yoursite.com/2017/03/24/使用Common-Lisp调用C语言函数/';
+          this.page.identifier = '2017/03/24/使用Common-Lisp调用C语言函数/';
+          this.page.title = '使用Common-Lisp调用C语言函数';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://zzhgithub-github-io.disqus.com/embed.js';
