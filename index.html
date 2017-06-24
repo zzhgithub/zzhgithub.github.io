@@ -381,6 +381,137 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/01/使用spacemacs订阅新闻组/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="周子豪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黄油香蕉君的主页">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/01/使用spacemacs订阅新闻组/" itemprop="url">使用spacemacs订阅新闻组</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-01T14:20:43+08:00">
+                2017-05-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/01/使用spacemacs订阅新闻组/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/05/01/使用spacemacs订阅新闻组/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="OverView"><a href="#OverView" class="headerlink" title="OverView"></a>OverView</h1><p>  本教程针对于spacemacs用户书写。看吧，如果你和我都在emacs阵营，真的会推荐给你很多好玩的东西。接下来你将看到如果配置使用spacemacs中的一个插件来获取新闻组。</p>
+<h1 id="开始配置"><a href="#开始配置" class="headerlink" title="开始配置"></a>开始配置</h1><p>  进入<code>spacemacs</code>然后使用快捷键<code>SPC-h-SPC</code>后键入我们要使用的layer的名字，叫做<code>elfeed</code>。如果你英文足够好，现在可以自己完成一切了。<br>  如果你不会不要担心。很简单只需要两部。<br>  1.在你的配置文件的layer中写好配置像是下面这样  </p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">(<span class="name">elfeed</span> <span class="symbol">:variables</span></div><div class="line">           elfeed-feeds '((<span class="string">"https://emacs-china.org/latest.rss"</span> emacs)</div><div class="line">                          (<span class="string">"http://zzhcoding.coding.me/atom.xml"</span> zhouzihao)</div><div class="line">                          (<span class="string">"https://www.zhihu.com/rss"</span> 知乎)</div><div class="line">                          (<span class="string">"http://songshuhui.net/feed"</span> 松鼠科学会)</div><div class="line">                          (<span class="string">"http://www.geekpark.net/rss"</span> 极客公园)</div><div class="line">                          (<span class="string">"http://feed.cnblogs.com/blog/u/62514/rss"</span> 个体博客)</div><div class="line">                          ))</div></pre></td></tr></table></figure>
+<p>  2.你可以清楚的看到我都订阅了一些什么。现在重新启动emacs 然后使用快捷键<code>SPC-a-f</code>就可以看到一个什么都没有的界面。使用快捷键<code>gr</code>更新就可以开始的阅读了。<br>  <img src="/images/elfeed.png" alt="结果图"></p>
+<h1 id="新的问题"><a href="#新的问题" class="headerlink" title="新的问题"></a>新的问题</h1><p>  现在的问题就是怎么才能找到好玩的，有用的rss了。这个问题相信一定难不到大家，使用百度谷歌都可以。说实话这种看新闻的方式有一定复古，但是比起广告多起的app这个真的算的上是天堂了。<br>  (现在发现使用这个layer读取新闻的时候存在突然卡顿的现象，所以这个不是最佳的解决方案，一旦发现了我一定会在第一时间共享粗来的。)</p>
+<h1 id="问题解决补充"><a href="#问题解决补充" class="headerlink" title="问题解决补充"></a>问题解决补充</h1><p>  卡顿的问题可能是由于在加载图片时造成的。这里在论坛中的大神建议关闭图片加载。这会对eww加载图片有所影响。不过好在我使用的是3wm插件来浏览网页。所以问题不大。配置代码如下:<br><figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(<span class="name">setq</span> shr-inhibit-images <span class="literal">t</span>)</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>我将一直的无知与迷惑，我是黄油香蕉君，再见。</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/01/使用js导出Excel文档/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1433,134 +1564,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/24/拾遗录8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="周子豪">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黄油香蕉君的主页">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/24/拾遗录8/" itemprop="url">拾遗录8</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-24T19:27:48+08:00">
-                2017-03-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/03/24/拾遗录8/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/03/24/拾遗录8/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>  我知道我们都要乐观，开开心心的过每一天。可以伤心，但是别陷在里面。我希望读到这里的你，可以开心点。哈哈哈哈。不然你也不会读到我写的东西了。</p>
-<h1 id="节奏欢快的情诗"><a href="#节奏欢快的情诗" class="headerlink" title="节奏欢快的情诗"></a>节奏欢快的情诗</h1><h2 id="诗"><a href="#诗" class="headerlink" title="诗"></a>诗</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">       淡淡的幽殇</div><div class="line"></div><div class="line">是谁触动了我————淡淡的幽殇</div><div class="line">是谁抹开了我，灰蒙的印象</div><div class="line">像是谁许下的期望</div><div class="line">又像是谁感叹 那无常 而又悠长的月光</div><div class="line"></div><div class="line">是谁触到了我————淡淡的幽殇</div><div class="line">是谁写下过的，“永远不忘”</div><div class="line">像是雨后的蝶，落向海棠</div><div class="line">又好似那一圈一圈的年轮 述说着的流浪</div><div class="line"></div><div class="line">是谁触及了我————淡淡的幽殇</div><div class="line">是谁倾慕着，可爱的女郎</div><div class="line">在某个地方 亦或某个方向</div><div class="line">也找不出来 同样优雅 而又快活的新娘</div><div class="line"></div><div class="line">是谁触摸着我————淡淡的幽殇</div><div class="line">是谁领着无期的思念 等待着成长</div><div class="line">是曾经 不该的 【1】</div><div class="line">还是别的什么？我不曾发现 爱的星光</div></pre></td></tr></table></figure>
-<h2 id="解"><a href="#解" class="headerlink" title="解"></a>解</h2><p>  这是一首有旋律感的诗，创作与高中时代。没有什么特别的创作原因，这首诗我自己很喜欢。虽然诗的名字是“淡淡的幽殇”，但是整个诗读下来不会觉得低沉，反而是充满了一种生命力。在上大学的时候才听过一首钢琴曲叫做《快乐还是悲伤》英文名叫做《the soul》灵魂，估计译者是听到了曲中旋律中的矛盾，在快乐的上扬旋律中暗带着悲伤，于是这样命名。我的诗是正好相反的，悲伤中暗带着快乐。喜欢一个人是痛苦的，但是却也是快乐的。我们在恋爱中品尝着种种悲伤，以为那就是爱情的模样，却常常忘了它快乐的一面。<br>  我至今坚信一切的一切都是真的。所以下一次谈到过去读者和我都笑出来吧QvQ</p>
-<blockquote>
-<p>[1] 这里是没有写完的部分。在第一次写完的情况下空出来的。补过很多的词。<code>童年</code> <code>年少</code> <code>等待</code> <code>勇气</code> <code>自尊</code> 等等。这些词我都尝试过，最后都觉得不好，于是就空了下了。读者可以自己填一个词，那一定是一首属于你自己的诗了。</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1610,7 +1613,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-count">26</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
