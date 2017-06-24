@@ -1,0 +1,989 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="redis," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="OverView正文。  小贴士：这里将对正文中的某些词汇进行解释。 扩展： 这里是作者建议的内容，和编程方面的延伸。可以跳过阅读。  示例：这里是帮助读者理解而写的示例。 注意 提示读者需要注意的事项。  理论篇什么是Redis？[1]   REmote DIctionary Server(Redis) 是一个由SalvatoreSanfilippo写的key-value(键值对)存储系统。">
+<meta name="keywords" content="redis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis教程">
+<meta property="og:url" content="http://yoursite.com/2017/05/08/Redis教程/index.html">
+<meta property="og:site_name" content="黄油香蕉君的主页">
+<meta property="og:description" content="OverView正文。  小贴士：这里将对正文中的某些词汇进行解释。 扩展： 这里是作者建议的内容，和编程方面的延伸。可以跳过阅读。  示例：这里是帮助读者理解而写的示例。 注意 提示读者需要注意的事项。  理论篇什么是Redis？[1]   REmote DIctionary Server(Redis) 是一个由SalvatoreSanfilippo写的key-value(键值对)存储系统。">
+<meta property="og:image" content="https://coding.net/u/zzhcoding/p/RedisCnGuide/git/raw/master/img/runstart.png">
+<meta property="og:image" content="https://coding.net/u/zzhcoding/p/RedisCnGuide/git/raw/master/img/createc.png">
+<meta property="og:image" content="https://coding.net/u/zzhcoding/p/RedisCnGuide/git/raw/master/img/cc.png">
+<meta property="og:image" content="https://coding.net/u/zzhcoding/p/RedisCnGuide/git/raw/master/img/addkey.png">
+<meta property="og:image" content="https://coding.net/u/zzhcoding/p/RedisCnGuide/git/raw/master/img/handle.png">
+<meta property="og:updated_time" content="2017-06-24T15:10:38.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Redis教程">
+<meta name="twitter:description" content="OverView正文。  小贴士：这里将对正文中的某些词汇进行解释。 扩展： 这里是作者建议的内容，和编程方面的延伸。可以跳过阅读。  示例：这里是帮助读者理解而写的示例。 注意 提示读者需要注意的事项。  理论篇什么是Redis？[1]   REmote DIctionary Server(Redis) 是一个由SalvatoreSanfilippo写的key-value(键值对)存储系统。">
+<meta name="twitter:image" content="https://coding.net/u/zzhcoding/p/RedisCnGuide/git/raw/master/img/runstart.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/05/08/Redis教程/"/>
+
+
+
+
+
+  <title>Redis教程 | 黄油香蕉君的主页</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">黄油香蕉君的主页</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">矫情的程序员</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/08/Redis教程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="周子豪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黄油香蕉君的主页">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Redis教程</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-08T23:05:17+08:00">
+                2017-05-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/08/Redis教程/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/05/08/Redis教程/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="OverView"><a href="#OverView" class="headerlink" title="OverView"></a>OverView</h1><p>正文。</p>
+<blockquote>
+<p>小贴士：这里将对正文中的某些词汇进行解释。</p>
+<p>扩展： 这里是作者建议的内容，和编程方面的延伸。可以跳过阅读。</p>
+</blockquote>
+<pre><code>示例：这里是帮助读者理解而写的示例。
+</code></pre><p><em>注意</em> 提示读者需要注意的事项。</p>
+<hr>
+<h1 id="理论篇"><a href="#理论篇" class="headerlink" title="理论篇"></a>理论篇</h1><h2 id="什么是Redis？-1"><a href="#什么是Redis？-1" class="headerlink" title="什么是Redis？[1]"></a>什么是Redis？[1]</h2><p>   REmote DIctionary Server(Redis) 是一个由SalvatoreSanfilippo写的key-value(键值对)存储系统。<br>   Redis是一个开源的使用ANSI C语言编写、遵守BSD协议、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库，并提供多种语言的API。[详细见表一]<br>它通常被称为数据结构服务器，因为值（value）可以是字符串(String), 哈希(Map), 列表(list), 集合(sets) 和有序集合(sorted sets)等类型。</p>
+<blockquote>
+<p>小贴士：[2]Redis中的数据类型<br>哈希（Map hashmap）：散列表（Hash table，也叫哈希表），是根据键（Key）而直接访问在内存存储位置的数据结构。<br>列表（list）：列表是一种数据项构成的有限序列,即按照一定的线性顺序,排列而成的数据项的集合。（redis中使用双向链表实现）<br>集合（sets）：和中学时学习的概念是相似的。特点是集合中元素不能重复是唯一的。切内部是无序的<br>有序集合（sorted sets）：也是一种集合，但是内部数据是经过排序的。  </p>
+</blockquote>
+<pre><code>示例：  
+比如使用json表示：  
+哈希表：{key1:value1,key2:value2, ... ,keyn:valuen} 在这里的key和value是一一对应的关系，而且是函数关系。也就是说，key1 ... keyn 都是唯一的。  
+列表：[&apos;a&apos;,&apos;a&apos;,&apos;b&apos;,&apos;c&apos;,&apos;e&apos;]。注意这里的&apos;a&apos;是可以重复的这个在列表中是允许的，而且这里的顺序是不能变的，一旦顺序变了就不是同一个列表了。  
+集合：{v1,v2, ... ,vn}。这里v1到vn都是唯一的。也就是说{a,a}不是一个集合。这里集合的顺序是无关的，于是{a,b}和{b,a}在概念上可以视为一个集合  
+有序集合:{1,2,3, ... ,n} 这里1到n当然是不能重复的。其次他中元素是按照某种规则排序的。比如大小等。一旦顺序不一致在其中也不视为同一个有序集合了。
+</code></pre><p><em>注意</em> 在引用列表中的[2]连接中有更加详细的说明。为了方便阅读可以跳过但是建议在适当是时候阅读它。</p>
+<h2 id="特点和优势"><a href="#特点和优势" class="headerlink" title="特点和优势"></a>特点和优势</h2><h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ul>
+<li>Redis 是完全开源免费的，遵守BSD协议，是一个高性能的key-value数据库。</li>
+<li>Redis支持数据的持久化，可以将内存中的数据保持在磁盘中，重启的时候可以再次加载进行使用。</li>
+<li>Redis不仅仅支持简单的key-value类型的数据，同时还提供list，set，zset，hash等数据结构的存储。</li>
+<li>Redis支持数据的备份，即master-slave模式的数据备份。</li>
+</ul>
+<h2 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h2><ul>
+<li>性能极高 – Redis能读的速度是110000次/s,写的速度是81000次/s 。</li>
+<li>丰富的数据类型 – Redis支持二进制案例的 Strings, Lists, Hashes, Sets 及 Ordered Sets 数据类型操作。</li>
+<li>原子 – Redis的所有操作都是原子性的，同时Redis还支持对几个操作全并后的原子性执行。</li>
+<li>丰富的特性 – Redis还支持 publish/subscribe, 通知, key 过期等等特性。</li>
+</ul>
+<blockquote>
+<p>小贴士：<br>publish/subscribe ：订阅发布模式。阅发布模式定义了一种一对多的依赖关系，让多个订阅者对象同时监听某一个主题对象。这个主题对象在自身状态变化时，会通知所有订阅者对象，使它们能够自动更新自己的状态。他是设计模式中的一种。Redis支持了这种模式。<br>阅读了解更多订阅发布模式[3]订阅发布模式介绍。或者看有关Redis下订阅发布模式的支持[4]。</p>
+</blockquote>
+<hr>
+<h1 id="实践篇"><a href="#实践篇" class="headerlink" title="实践篇"></a>实践篇</h1><h2 id="安装Redis"><a href="#安装Redis" class="headerlink" title="安装Redis"></a>安装Redis</h2><h3 id="windows-5"><a href="#windows-5" class="headerlink" title="windows[5]"></a>windows[5]</h3><p>  <a href="https://github.com/MSOpenTech/redis/releases" target="_blank" rel="external">下载地址</a><br>  Redis 支持 32 位和 64 位。这个需要根据你系统平台的实际情况选择。  </p>
+<p>  <em>注意</em>  操作系统位数可以在我的电脑中的右键属性中看到。如果不知道就试试64位。Redis版本要最好和公司生产环境使用的发行版本一直，保证bug与问题可以重现。  </p>
+<p>  压缩包到 C 盘，解压后，将文件夹重新命名为 redis。(当然不安装到c盘也是允许的)<br>  打开一个 cmd 窗口 使用cd命令切换目录到 C:\redis 运行 redis-server.exe redis.windows.conf 。  </p>
+  <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> cd c:/redis</div><div class="line"><span class="meta">$</span> redis-server.exe redis.windows.conf</div><div class="line"><span class="meta">#</span># 这里的 redis.windows.conf 是Redis启动的配置文件 当这里不输入时 默认使用这个配置打开Redis服务。</div></pre></td></tr></table></figure>
+<p>  如果想方便的话，可以把 redis 的路径加到系统的环境变量里，这样就省得再输路径了，后面的那个 redis.windows.conf 可以省略，如果省略，会启用默认的配置。<br>  如果运行成功了。会出现和下面大致相似的返回。  </p>
+<p>  <img src="https://coding.net/u/zzhcoding/p/RedisCnGuide/git/raw/master/img/runstart.png" alt="成功图片"><br>  简单解释一下Port是端口。PID是进程号。<br> <em>注意</em> 服务启动后命令行不能关闭。</p>
+<blockquote>
+<p>扩展：<br>即使在windows下任然有比较好的终端解决方案。可以下载git使用git 的bash。或者直接使用docker。在docker中启动Redis或许是最优雅的解决方案。不过我个人建议开发的话换成macOS。</p>
+</blockquote>
+<h3 id="MacOS"><a href="#MacOS" class="headerlink" title="MacOS"></a>MacOS</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> brew install redis</div></pre></td></tr></table></figure>
+<p>搞定了！</p>
+<h2 id="命令行"><a href="#命令行" class="headerlink" title="命令行"></a>命令行</h2><p><em>注意</em> 在类unix系统中，redis-cli是作为一个命令存在的。它的作用是启动一个与Redis的交互的命令行模式。Windows用户要双击redis-cli.exe 可执行文件进入，这里是下面命令执行的前提。</p>
+<h3 id="创建键（key）"><a href="#创建键（key）" class="headerlink" title="创建键（key）"></a>创建键（key）</h3><p>使用<code>set key value</code>的方法就可以建立一组键值对了。比如:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">set zzh goodboy</div></pre></td></tr></table></figure>
+<p>这里zzh就被设置成了goodboy了。这里在此运行set命令可以把key zzh设置成其他的值，可以自己试试。  </p>
+<h3 id="获取key"><a href="#获取key" class="headerlink" title="获取key"></a>获取key</h3><p>使用<code>get key</code>可以得到key被设置的value的值。  </p>
+<p>使用<code>dump key</code>可以得到序列化后的value的值。   </p>
+<p>使用 <code>exists key</code>可以查询key是否存在。  </p>
+<h3 id="删除key"><a href="#删除key" class="headerlink" title="删除key"></a>删除key</h3><p>使用<code>del key</code>删除key</p>
+<h3 id="重命名key"><a href="#重命名key" class="headerlink" title="重命名key"></a>重命名key</h3><p><code>RENAME key newkey</code> 将key改为newkey 的名字。如果newkey存在的话，则newkey的内容会丢失。<br><code>RENAMENX key newkey</code>仅当 newkey 不存在时，将 key 改名为 newkey.</p>
+<h3 id="设置过期时间"><a href="#设置过期时间" class="headerlink" title="设置过期时间"></a>设置过期时间</h3><p>  这里的的key-value有类似于缓存的机制可以在一定时间过后自动的消亡。所以可以设置过期时间。<br>  <code>EXPIRE key seconds</code>为给定 key 设置过期时间。时间为秒。<br>  <code>EXPIREAT key timestamp</code>EXPIREAT 的作用和 EXPIRE 类似，都用于为 key 设置过期时间。 不同在于 EXPIREAT 命令接受的时间参数是 UNIX 时间戳(unix timestamp)。<br>  <code>PEXPIRE key milliseconds</code>设置 key 的过期时间以毫秒计。<br>  <code>PEXPIREAT key milliseconds-timestamp</code>设置 key 过期时间的时间戳(unix timestamp) 以毫秒计<br>  <code>PERSIST key</code>移除 key 的过期时间，key 将持久保持。</p>
+<h3 id="查询过期时间"><a href="#查询过期时间" class="headerlink" title="查询过期时间"></a>查询过期时间</h3><p>  <code>PTTL key</code> 以毫秒为单位返回 key 的剩余的过期时间。<br>  <code>TTL key</code>以秒为单位，返回给定 key 的剩余生存时间(TTL, time to live)。</p>
+<h3 id="查询key"><a href="#查询key" class="headerlink" title="查询key"></a>查询key</h3><p>   <code>KEYS params</code>可以用keys加上查询条件的方式。比如我要查询所有以aba开头的key。<br>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">keys aba*</div></pre></td></tr></table></figure></p>
+<hr>
+<h1 id="实用工具介绍"><a href="#实用工具介绍" class="headerlink" title="实用工具介绍"></a>实用工具介绍</h1><p>接下来将要介绍使用RedisDesktopManager(以下简称RDM) 使用教程。RDM是一款开源的redis管理GUI。</p>
+<h2 id="下载安装。"><a href="#下载安装。" class="headerlink" title="下载安装。"></a>下载安装。</h2><p>   <a href="https://redisdesktop.com/download" target="_blank" rel="external">下载地址</a></p>
+<h2 id="连接服务器"><a href="#连接服务器" class="headerlink" title="连接服务器"></a>连接服务器</h2><ol>
+<li>点击新建连接。让rdm新建一个到服务器的连接  </li>
+</ol>
+<p><img src="https://coding.net/u/zzhcoding/p/RedisCnGuide/git/raw/master/img/createc.png" alt="新建位置">  </p>
+<ol>
+<li>填写选项。点击完成。  </li>
+</ol>
+<p><img src="https://coding.net/u/zzhcoding/p/RedisCnGuide/git/raw/master/img/cc.png" alt="填写连接选项">  </p>
+<p>name: 连接的名称，自己取的不会影响连接的属性，尽量起有意义的值，比如环境，开发环境还是测试环境可以用dev和test表示。<br>host: redis服务启动的ip地址或者域名。本机可以是localhost或者172.0.0.1。建议使用域名的方式，这样修改host的域名配置节省大量时间。<br>port: redis 服务启动的端口号。<br>Auth：获取权限的秘钥。可以理解登录的密码。本地服务启动时默认没有密码可不填。其他环境需要联系管理员获取。</p>
+<h2 id="在某个库下新建key"><a href="#在某个库下新建key" class="headerlink" title="在某个库下新建key"></a>在某个库下新建key</h2><ol>
+<li>选中某一个库，右键，选择新建key。</li>
+<li>在新建中可以写key的类型和key的值。  </li>
+</ol>
+<p><img src="https://coding.net/u/zzhcoding/p/RedisCnGuide/git/raw/master/img/addkey.png" alt="添加key">  </p>
+<h2 id="查询key-1"><a href="#查询key-1" class="headerlink" title="查询key"></a>查询key</h2><ol>
+<li>一样的选择一个库比如db0然后右键有一个筛选。(filter 英文为过滤器)</li>
+<li>现在他会提示输入一个’regex’。也就是说他支持正则表达式查询。这里可以先理解为正常关键字查询即可。</li>
+<li>查完完你会发现列表中key变少了。怎么办？同样选择库右键，有一个还原筛选即可调回所有的key。</li>
+</ol>
+<blockquote>
+<p>扩展：<br>regex 正则表达式。是一种通用的计算机技术。甚至可以专门拿一本书来学。它可以实现文本中的模式配置。<br>比如以xx开头，以xx结尾。以xx开头但是不包含yy结尾。以字母开头，以数字结尾。这些你能想到的模式都可以表示出来。<br>学习正则是一个庞大的工程。建议在使用时查询规则来尝试。先学习其最基本的语法.[7]</p>
+</blockquote>
+<h2 id="修改删除操作"><a href="#修改删除操作" class="headerlink" title="修改删除操作"></a>修改删除操作</h2><ol>
+<li>选中一个key在其右侧就有一系列的操作方法。如下图：<br><img src="https://coding.net/u/zzhcoding/p/RedisCnGuide/git/raw/master/img/handle.png" alt="操作key"></li>
+</ol>
+<hr>
+<h1 id="redis-DB-的讨论"><a href="#redis-DB-的讨论" class="headerlink" title="redis + DB 的讨论"></a>redis + DB 的讨论</h1><p>  现在一般应用已经放弃了menchace+DB的组合而投身到redis+DB的阵营中来。特别是那种缓存需求量特别大，切需要管理的应用。<br>  首先redis具有缓存的性质。key-value存在内存中读写速度快，而且可以设置消亡时间，这都符合一个缓存的要求。<br>  但是memchae和redis不同，一断电，一重启，所有的键值对都将消失。redis则可以优雅的继续正常工作，因为redis提供了数据持久化的解决方案。要知道在缓存服务器重启的一瞬间，请求key的IO对数据库的压力是恐怖的。那么这里为什么说到了数据库呢？这一般与redis到DB的二层结构有关。<br>  我们模拟一个应用场景。一个webapp要调用用户的基本信息。但是由于一开始的公司发展原因，用户的基本信息不一张表里面，甚至不在一个库里面。比如要调取用户的购买的会员要走支付和crm的接口。这两个还算正常的，有的情况下一个信息接口要调用7、8个部门，而且算下来有10个sql之多。这样一个接口的速度可能慢的夸张。更要命的是，这样的接口一开始数据变化是比较大的，但是一旦用户成为长期用户这些信息将很少改变。可是使用这样接口的场景却非常的多。怎么办呢？<br>  一般（以java或者php举例）情况下，程序员使用缓存的办法来解决。当有人第一次请求这个接口的时候，执行sql查询数据库。现在将查出来的数据放在缓存中（比如Redis服务中）。现在有意思了，在第二次请求的时候，程序会先检查key是否存在，如果存在，直接获取value就可以了。这样非常快，因为数据在内存中。这样大大的提高的应用的速度，减少了数据库IO的压力。<br>  那么你或许会问如果数据改变了呢？这样读出来的缓存中的value和数据库中的数据不是不一致了吗？对这就是一种bug。一般可以手动的删除key。让程序在请求的时候重新走sql获取值，生成新key就可以了。或者更彻底的方法是在开发内部形成一套缓存key的生成规范，在修改数据的时候，使用程序删除key就可以了。</p>
+<blockquote>
+<p>扩展：<br>上面的例子包含一个通用的知识–分布式设计。使用多级缓存的方式只不过是其中很小的一部分。不过这是架构师的研究范围。<br>这里有一片非常简短的基础的博文的介绍.[8]</p>
+</blockquote>
+<p>  这里还设计到了两个常用的概念。颗粒度和命中率。<br>  颗粒度指的是一个key对应value所包含内容的大小，是一个相对的概念。比如一个key缓存了一整个网页，的颗粒度要比访问只缓存了数据段的颗粒度要大。在保证命中率高的情况下，我们希望颗粒度尽量的大一些，这证明了，资源的利用效率比较高。那么命中率是什么呢？指的是单位时间内请求同一个key的次数。<br>  考虑这样一个问题：数据a一分钟被请求10次，b被请求1000次。那么单独的为两个数据设置key就是合理的。如果使用hashmap为两数据设置联合的缓存可能就浪费了请求数据时IO的性能。<br>  注意！然而一般情况下对性能的影响不是特别大，如果请求次数不上到一定级别的话（但是讲道理到了一定数量级了，性能瓶颈就不由程序员这样解决了）是没有多大差别的。</p>
+<blockquote>
+<p>本文使用是叫做markdown的语法写成的。这里有其教程[9]</p>
+</blockquote>
+<h1 id="引用表"><a href="#引用表" class="headerlink" title="引用表"></a>引用表</h1><ul>
+<li><a href="http://blog.csdn.net/fly43108622/article/details/52964491" target="_blank" rel="external">[1]</a> Redis基础介绍</li>
+<li><a href="http://blog.csdn.net/hechurui/article/details/49508735" target="_blank" rel="external">[2]</a>Redis中的数据类型</li>
+<li><a href="http://blog.csdn.net/tjvictor/article/details/5223309" target="_blank" rel="external">[3]</a>订阅发布模式介绍</li>
+<li><a href="http://www.cnblogs.com/huangxincheng/p/5002794.html" target="_blank" rel="external">[4]</a>Redis下订阅发布模式的支持</li>
+<li><a href="http://www.runoob.com/redis/redis-tutorial.html" target="_blank" rel="external">[5]</a>Window下的安装教程</li>
+<li><a href="http://docs.redisdesktop.com/en/latest/quick-start/" target="_blank" rel="external">[6]</a>RedisDesktopManager官方使用手册</li>
+<li><a href="http://www.w3cschool.cn/regexp/zoxa1pq7.html" target="_blank" rel="external">[7]</a>正则表达式基本语法</li>
+<li><a href="http://blog.csdn.net/cutesource/article/details/5811914" target="_blank" rel="external">[8]</a>初认分布式知识</li>
+<li><a href="http://xianbai.me/learn-md/index.html" target="_blank" rel="external">[9]</a>markdown语法教程</li>
+</ul>
+<hr>
+<h1 id="附录："><a href="#附录：" class="headerlink" title="附录："></a>附录：</h1><p>表1：Redis 支持的语言表</p>
+<table>
+<thead>
+<tr>
+<th>ActionScript</th>
+<th>C</th>
+<th>C++</th>
+<th>C#</th>
+<th>Clojure</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Common Lisp</td>
+<td>Dart</td>
+<td>Erlang</td>
+<td>Go</td>
+<td>Haskell</td>
+</tr>
+<tr>
+<td>Haxe</td>
+<td>Io</td>
+<td>Java</td>
+<td>Node.js</td>
+<td>Lua</td>
+</tr>
+<tr>
+<td>Objective-C</td>
+<td>Perl</td>
+<td>PHP</td>
+<td>Pure Data</td>
+<td>Python</td>
+</tr>
+<tr>
+<td>R</td>
+<td>Ruby</td>
+<td>Scala</td>
+<td>Smalltalk</td>
+<td>Tcl</td>
+</tr>
+</tbody>
+</table>
+<p>配置文件参数说明:</p>
+<pre><code>redis.conf 配置项说明如下：
+1. Redis默认不是以守护进程的方式运行，可以通过该配置项修改，使用yes启用守护进程
+daemonize no
+2. 当Redis以守护进程方式运行时，Redis默认会把pid写入/var/run/redis.pid文件，可以通过pidfile指定(这个会和操作系统有关)
+pidfile /var/run/redis.pid
+3. 指定Redis监听端口，默认端口为6379，作者在自己的一篇博文中解释了为什么选用6379作为默认端口，因为6379在手机按键上MERZ对应的号码，而MERZ取自意大利歌女Alessia Merz的名字
+port 6379
+4. 绑定的主机地址
+bind 127.0.0.1
+5.当 客户端闲置多长时间后关闭连接，如果指定为0，表示关闭该功能
+timeout 300
+6. 指定日志记录级别，Redis总共支持四个级别：debug、verbose、notice、warning，默认为verbose
+loglevel verbose
+7. 日志记录方式，默认为标准输出，如果配置Redis为守护进程方式运行，而这里又配置为日志记录方式为标准输出，则日志将会发送给/dev/null
+logfile stdout
+8. 设置数据库的数量，默认数据库为0，可以使用SELECT &lt;dbid&gt;命令在连接上指定数据库id
+databases 16
+9. 指定在多长时间内，有多少次更新操作，就将数据同步到数据文件，可以多个条件配合
+save &lt;seconds&gt; &lt;changes&gt;
+Redis默认配置文件中提供了三个条件：
+save 900 1
+save 300 10
+save 60 10000
+分别表示900秒（15分钟）内有1个更改，300秒（5分钟）内有10个更改以及60秒内有10000个更改。
+
+10. 指定存储至本地数据库时是否压缩数据，默认为yes，Redis采用LZF压缩，如果为了节省CPU时间，可以关闭该选项，但会导致数据库文件变的巨大
+rdbcompression yes
+11. 指定本地数据库文件名，默认值为dump.rdb
+dbfilename dump.rdb
+12. 指定本地数据库存放目录
+dir ./
+13. 设置当本机为slav服务时，设置master服务的IP地址及端口，在Redis启动时，它会自动从master进行数据同步
+slaveof &lt;masterip&gt; &lt;masterport&gt;
+14. 当master服务设置了密码保护时，slav服务连接master的密码
+masterauth &lt;master-password&gt;
+15. 设置Redis连接密码，如果配置了连接密码，客户端在连接Redis时需要通过AUTH &lt;password&gt;命令提供密码，默认关闭
+requirepass foobared
+16. 设置同一时间最大客户端连接数，默认无限制，Redis可以同时打开的客户端连接数为Redis进程可以打开的最大文件描述符数，如果设置 maxclients 0，表示不作限制。当客户端连接数到达限制时，Redis会关闭新的连接并向客户端返回max number of clients reached错误信息
+maxclients 128
+17. 指定Redis最大内存限制，Redis在启动时会把数据加载到内存中，达到最大内存后，Redis会先尝试清除已到期或即将到期的Key，当此方法处理 后，仍然到达最大内存设置，将无法再进行写入操作，但仍然可以进行读取操作。Redis新的vm机制，会把Key存放内存，Value会存放在swap区
+maxmemory &lt;bytes&gt;
+18. 指定是否在每次更新操作后进行日志记录，Redis在默认情况下是异步的把数据写入磁盘，如果不开启，可能会在断电时导致一段时间内的数据丢失。因为 redis本身同步数据文件是按上面save条件来同步的，所以有的数据会在一段时间内只存在于内存中。默认为no
+appendonly no
+19. 指定更新日志文件名，默认为appendonly.aof
+ appendfilename appendonly.aof
+20. 指定更新日志条件，共有3个可选值： 
+no：表示等操作系统进行数据缓存同步到磁盘（快） 
+always：表示每次更新操作后手动调用fsync()将数据写到磁盘（慢，安全） 
+everysec：表示每秒同步一次（折衷，默认值）
+appendfsync everysec
+
+21. 指定是否启用虚拟内存机制，默认值为no，简单的介绍一下，VM机制将数据分页存放，由Redis将访问量较少的页即冷数据swap到磁盘上，访问多的页面由磁盘自动换出到内存中（在后面的文章我会仔细分析Redis的VM机制）
+ vm-enabled no
+22. 虚拟内存文件路径，默认值为/tmp/redis.swap，不可多个Redis实例共享
+ vm-swap-file /tmp/redis.swap
+23. 将所有大于vm-max-memory的数据存入虚拟内存,无论vm-max-memory设置多小,所有索引数据都是内存存储的(Redis的索引数据 就是keys),也就是说,当vm-max-memory设置为0的时候,其实是所有value都存在于磁盘。默认值为0
+ vm-max-memory 0
+24. Redis swap文件分成了很多的page，一个对象可以保存在多个page上面，但一个page上不能被多个对象共享，vm-page-size是要根据存储的 数据大小来设定的，作者建议如果存储很多小对象，page大小最好设置为32或者64bytes；如果存储很大大对象，则可以使用更大的page，如果不 确定，就使用默认值
+ vm-page-size 32
+25. 设置swap文件中的page数量，由于页表（一种表示页面空闲或使用的bitmap）是在放在内存中的，，在磁盘上每8个pages将消耗1byte的内存。
+ vm-pages 134217728
+26. 设置访问swap文件的线程数,最好不要超过机器的核数,如果设置为0,那么所有对swap文件的操作都是串行的，可能会造成比较长时间的延迟。默认值为4
+ vm-max-threads 4
+27. 设置在向客户端应答时，是否把较小的包合并为一个包发送，默认为开启
+glueoutputbuf yes
+28. 指定在超过一定的数量或者最大的元素超过某一临界值时，采用一种特殊的哈希算法
+hash-max-zipmap-entries 64
+hash-max-zipmap-value 512
+29. 指定是否激活重置哈希，默认为开启（后面在介绍Redis的哈希算法时具体介绍）
+activerehashing yes
+30. 指定包含其它的配置文件，可以在同一主机上多个Redis实例之间使用同一份配置文件，而同时各个实例又拥有自己的特定配置文件
+include /path/to/local.conf
+</code></pre><blockquote>
+<p>我将一直的无知与迷惑，我是黄油香蕉君，再见。</p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/redis/" rel="tag"># redis</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/02/node黑魔法使用js打开终端并运行命令/" rel="next" title="node黑魔法使用js打开终端并运行命令">
+                <i class="fa fa-chevron-left"></i> node黑魔法使用js打开终端并运行命令
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/23/新的开始/" rel="prev" title="新的开始">
+                新的开始 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="周子豪" />
+          <p class="site-author-name" itemprop="name">周子豪</p>
+           
+              <p class="site-description motion-element" itemprop="description">我将一直迷惑与无知。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://yuyouyou.github.io/" title="余幼幼" target="_blank">余幼幼</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.slegetank.com/" title="slegetan" target="_blank">slegetan</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://yvv11520.lofter.com/" title="yvv11520" target="_blank">yvv11520</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#OverView"><span class="nav-number">1.</span> <span class="nav-text">OverView</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#理论篇"><span class="nav-number">2.</span> <span class="nav-text">理论篇</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是Redis？-1"><span class="nav-number">2.1.</span> <span class="nav-text">什么是Redis？[1]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特点和优势"><span class="nav-number">2.2.</span> <span class="nav-text">特点和优势</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#特点"><span class="nav-number">2.2.1.</span> <span class="nav-text">特点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优势"><span class="nav-number">2.3.</span> <span class="nav-text">优势</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实践篇"><span class="nav-number">3.</span> <span class="nav-text">实践篇</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Redis"><span class="nav-number">3.1.</span> <span class="nav-text">安装Redis</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#windows-5"><span class="nav-number">3.1.1.</span> <span class="nav-text">windows[5]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MacOS"><span class="nav-number">3.1.2.</span> <span class="nav-text">MacOS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令行"><span class="nav-number">3.2.</span> <span class="nav-text">命令行</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建键（key）"><span class="nav-number">3.2.1.</span> <span class="nav-text">创建键（key）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取key"><span class="nav-number">3.2.2.</span> <span class="nav-text">获取key</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除key"><span class="nav-number">3.2.3.</span> <span class="nav-text">删除key</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重命名key"><span class="nav-number">3.2.4.</span> <span class="nav-text">重命名key</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置过期时间"><span class="nav-number">3.2.5.</span> <span class="nav-text">设置过期时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询过期时间"><span class="nav-number">3.2.6.</span> <span class="nav-text">查询过期时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询key"><span class="nav-number">3.2.7.</span> <span class="nav-text">查询key</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实用工具介绍"><span class="nav-number">4.</span> <span class="nav-text">实用工具介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#下载安装。"><span class="nav-number">4.1.</span> <span class="nav-text">下载安装。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#连接服务器"><span class="nav-number">4.2.</span> <span class="nav-text">连接服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在某个库下新建key"><span class="nav-number">4.3.</span> <span class="nav-text">在某个库下新建key</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查询key-1"><span class="nav-number">4.4.</span> <span class="nav-text">查询key</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改删除操作"><span class="nav-number">4.5.</span> <span class="nav-text">修改删除操作</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#redis-DB-的讨论"><span class="nav-number">5.</span> <span class="nav-text">redis + DB 的讨论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#引用表"><span class="nav-number">6.</span> <span class="nav-text">引用表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#附录："><span class="nav-number">7.</span> <span class="nav-text">附录：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">周子豪</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://zzhgithub-github-io.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2017/05/08/Redis教程/';
+          this.page.identifier = '2017/05/08/Redis教程/';
+          this.page.title = 'Redis教程';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://zzhgithub-github-io.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
