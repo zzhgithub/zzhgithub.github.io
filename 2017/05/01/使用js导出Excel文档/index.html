@@ -1,0 +1,772 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="js,npm," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="OverView  最近研究了一下js中一个导出数据到Excel的模块。发现国内竟然没有人翻译。而小学弟学妹们听见导出Excel什么的，更是闻虎色变。其实没那么难。今天香蕉君就翻译一下。原文地址传送门。注意下面都是我这个英语渣的翻译，如果发现了错误欢迎指出。 翻译之前再啰嗦几句  安装node使用npm下载依赖。（真不知道我在担心些什么） 使用 excel-export  在传入到execute">
+<meta name="keywords" content="js,npm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用js导出Excel文档">
+<meta property="og:url" content="http://yoursite.com/2017/05/01/使用js导出Excel文档/index.html">
+<meta property="og:site_name" content="黄油香蕉君的主页">
+<meta property="og:description" content="OverView  最近研究了一下js中一个导出数据到Excel的模块。发现国内竟然没有人翻译。而小学弟学妹们听见导出Excel什么的，更是闻虎色变。其实没那么难。今天香蕉君就翻译一下。原文地址传送门。注意下面都是我这个英语渣的翻译，如果发现了错误欢迎指出。 翻译之前再啰嗦几句  安装node使用npm下载依赖。（真不知道我在担心些什么） 使用 excel-export  在传入到execute">
+<meta property="og:updated_time" content="2017-06-24T06:14:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用js导出Excel文档">
+<meta name="twitter:description" content="OverView  最近研究了一下js中一个导出数据到Excel的模块。发现国内竟然没有人翻译。而小学弟学妹们听见导出Excel什么的，更是闻虎色变。其实没那么难。今天香蕉君就翻译一下。原文地址传送门。注意下面都是我这个英语渣的翻译，如果发现了错误欢迎指出。 翻译之前再啰嗦几句  安装node使用npm下载依赖。（真不知道我在担心些什么） 使用 excel-export  在传入到execute">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/05/01/使用js导出Excel文档/"/>
+
+
+
+
+
+  <title>使用js导出Excel文档 | 黄油香蕉君的主页</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">黄油香蕉君的主页</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">矫情的程序员</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/01/使用js导出Excel文档/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="周子豪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黄油香蕉君的主页">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">使用js导出Excel文档</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-01T14:13:26+08:00">
+                2017-05-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/01/使用js导出Excel文档/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/05/01/使用js导出Excel文档/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="OverView"><a href="#OverView" class="headerlink" title="OverView"></a>OverView</h1><p>  最近研究了一下js中一个导出数据到Excel的模块。发现国内竟然没有人翻译。而小学弟学妹们听见导出Excel什么的，更是闻虎色变。其实没那么难。今天香蕉君就翻译一下。原文地址<a href="https://www.npmjs.com/package/excel-export" target="_blank" rel="external">传送门</a>。注意下面都是我这个英语渣的翻译，如果发现了错误欢迎指出。</p>
+<h1 id="翻译之前再啰嗦几句"><a href="#翻译之前再啰嗦几句" class="headerlink" title="翻译之前再啰嗦几句"></a>翻译之前再啰嗦几句</h1><p>  安装node使用npm下载依赖。（真不知道我在担心些什么）</p>
+<h1 id="使用-excel-export"><a href="#使用-excel-export" class="headerlink" title="使用 excel-export"></a>使用 excel-export</h1><p>  在传入到<code>execute</code> 方法前设置好‘设置’对象的值。如果你想生成多个“工作表”（译者加：就是Excel下方那个可以切换的地方也有叫做sheet的）,那么建立一个对象数组即可。或者你可以直接传对象就会在一个“工作表中”<br>  使用<code>name</code>属性可以给这个“工作表”命名。<br>  使用<code>clos</code>是一个给纵列定义属性的数组。纵列的定义需要<code>caption</code>名称和<code>type</code>类型两个必须字段，和宽度可选字段。宽度是字符的。[1]属性中还可是定义一个叫做<code>beforeCellWrite</code>的回调函数。这函数有row（行），cell data（单元数据），option object（配置对象）（一会再说）三个形参。返回值就是填充这个单元的真正数据。（译者加：明显这是为了方便预处理）。支持的类型有：string（字符串），date（日期），bool（逻辑）和 number（数值）类型。<br>  使用<code>rows</code>表示要被导出的数据。它是数组的数组。它的每个数组长度要和clos一致。<br>  表格的样式是可选的。然而如果你使用表格样式，那么一个有效的样式xml文件是必须的。一个简单的方法获取这样的文件的方法是‘unzip’[2]一个包含你想要样式的Excel并把样式文件复制出来使用。使用<code>stylesXmlFile</code>属性赋值来使用。了解更多样式请百度。呵呵。<br>  <code>eOpt</code>(配置对象)在刚才说的回调函数中包含行和列的信息。<code>eOpt.styleIndex</code>应该是一个从0开的的所以，表示选择传入样式文件中表示单元格样式的标签。<code>eOpt.cellType</code>默认情况下是和之前定义好的type是保持一致的。然而在特定的应用场景下你也可以修改他。</p>
+<blockquote>
+<p>[1] 原文这里是 The unit for width property is character。但是看代码这里似乎是一个数字类型。  </p>
+<p>[2] ‘unzip’是什么操作？解压？这里不知道怎么翻译。也不知道怎么从其中导出样式文件。如果知道的希望告知，谢谢。</p>
+</blockquote>
+<h1 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</div><div class="line"><span class="keyword">var</span> nodeExcel = <span class="built_in">require</span>(<span class="string">'excel-export'</span>);</div><div class="line"><span class="keyword">var</span> app = express();</div><div class="line"></div><div class="line">app.get(<span class="string">'/Excel'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</div><div class="line">  	<span class="keyword">var</span> conf =&#123;&#125;;</div><div class="line">	conf.stylesXmlFile = <span class="string">"styles.xml"</span>;</div><div class="line">    conf.name = <span class="string">"mysheet"</span>;</div><div class="line">  	conf.cols = [&#123;</div><div class="line">		<span class="attr">caption</span>:<span class="string">'string'</span>,</div><div class="line">        <span class="attr">type</span>:<span class="string">'string'</span>,</div><div class="line">        <span class="attr">beforeCellWrite</span>:<span class="function"><span class="keyword">function</span>(<span class="params">row, cellData</span>)</span>&#123;</div><div class="line">			 <span class="keyword">return</span> cellData.toUpperCase();</div><div class="line">		&#125;,</div><div class="line">        <span class="attr">width</span>:<span class="number">28.7109375</span></div><div class="line">	&#125;,&#123;</div><div class="line">		<span class="attr">caption</span>:<span class="string">'date'</span>,</div><div class="line">		<span class="attr">type</span>:<span class="string">'date'</span>,</div><div class="line">		<span class="attr">beforeCellWrite</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">			<span class="keyword">var</span> originDate = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="built_in">Date</span>.UTC(<span class="number">1899</span>,<span class="number">11</span>,<span class="number">30</span>));</div><div class="line">			<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">row, cellData, eOpt</span>)</span>&#123;</div><div class="line">          		<span class="keyword">if</span> (eOpt.rowNum%<span class="number">2</span>)&#123;</div><div class="line">            		eOpt.styleIndex = <span class="number">1</span>;</div><div class="line">          		&#125;  </div><div class="line">          		<span class="keyword">else</span>&#123;</div><div class="line">            		eOpt.styleIndex = <span class="number">2</span>;</div><div class="line">          		&#125;</div><div class="line">                <span class="keyword">if</span> (cellData === <span class="literal">null</span>)&#123;</div><div class="line">                  eOpt.cellType = <span class="string">'string'</span>;</div><div class="line">                  <span class="keyword">return</span> <span class="string">'N/A'</span>;</div><div class="line">                &#125; <span class="keyword">else</span></div><div class="line">                  <span class="keyword">return</span> (cellData - originDate) / (<span class="number">24</span> * <span class="number">60</span> * <span class="number">60</span> * <span class="number">1000</span>);</div><div class="line">			&#125; </div><div class="line">		&#125;()</div><div class="line">	&#125;,&#123;</div><div class="line">		<span class="attr">caption</span>:<span class="string">'bool'</span>,</div><div class="line">		<span class="attr">type</span>:<span class="string">'bool'</span></div><div class="line">	&#125;,&#123;</div><div class="line">		<span class="attr">caption</span>:<span class="string">'number'</span>,</div><div class="line">		 <span class="attr">type</span>:<span class="string">'number'</span>				</div><div class="line">  	&#125;];</div><div class="line">  	conf.rows = [</div><div class="line"> 		[<span class="string">'pi'</span>, <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="built_in">Date</span>.UTC(<span class="number">2013</span>, <span class="number">4</span>, <span class="number">1</span>)), <span class="literal">true</span>, <span class="number">3.14</span>],</div><div class="line"> 		[<span class="string">"e"</span>, <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="number">2012</span>, <span class="number">4</span>, <span class="number">1</span>), <span class="literal">false</span>, <span class="number">2.7182</span>],</div><div class="line">        [<span class="string">"M&amp;M&lt;&gt;'"</span>, <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="built_in">Date</span>.UTC(<span class="number">2013</span>, <span class="number">6</span>, <span class="number">9</span>)), <span class="literal">false</span>, <span class="number">1.61803</span>],</div><div class="line">        [<span class="string">"null date"</span>, <span class="literal">null</span>, <span class="literal">true</span>, <span class="number">1.414</span>]  </div><div class="line">  	];</div><div class="line">  	<span class="keyword">var</span> result = nodeExcel.execute(conf);</div><div class="line">  	res.setHeader(<span class="string">'Content-Type'</span>, <span class="string">'application/vnd.openxmlformats'</span>);</div><div class="line">  	res.setHeader(<span class="string">"Content-Disposition"</span>, <span class="string">"attachment; filename="</span> + <span class="string">"Report.xlsx"</span>);</div><div class="line">  	res.end(result, <span class="string">'binary'</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">app.listen(<span class="number">3000</span>);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'Listening on port 3000'</span>);</div></pre></td></tr></table></figure>
+<h1 id="鸣谢"><a href="#鸣谢" class="headerlink" title="鸣谢"></a>鸣谢</h1><p>  最后再次感谢这个模块的作者。functionscope。谢谢你的工作，真的很棒。<br>  finally，thanks to the author functionscope.greate work,Really Inspiring！</p>
+<blockquote>
+<p>我将一直的无知与迷惑，我是黄油香蕉君，再见。</p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/js/" rel="tag"># js</a>
+          
+            <a href="/tags/npm/" rel="tag"># npm</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/25/梦话/" rel="next" title="梦话">
+                <i class="fa fa-chevron-left"></i> 梦话
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/23/新的开始/" rel="prev" title="新的开始">
+                新的开始 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="周子豪" />
+          <p class="site-author-name" itemprop="name">周子豪</p>
+           
+              <p class="site-description motion-element" itemprop="description">我将一直迷惑与无知。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://yuyouyou.github.io/" title="余幼幼" target="_blank">余幼幼</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.slegetank.com/" title="slegetan" target="_blank">slegetan</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://yvv11520.lofter.com/" title="yvv11520" target="_blank">yvv11520</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#OverView"><span class="nav-number">1.</span> <span class="nav-text">OverView</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#翻译之前再啰嗦几句"><span class="nav-number">2.</span> <span class="nav-text">翻译之前再啰嗦几句</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用-excel-export"><span class="nav-number">3.</span> <span class="nav-text">使用 excel-export</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#示例代码"><span class="nav-number">4.</span> <span class="nav-text">示例代码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#鸣谢"><span class="nav-number">5.</span> <span class="nav-text">鸣谢</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">周子豪</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://zzhgithub-github-io.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2017/05/01/使用js导出Excel文档/';
+          this.page.identifier = '2017/05/01/使用js导出Excel文档/';
+          this.page.title = '使用js导出Excel文档';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://zzhgithub-github-io.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

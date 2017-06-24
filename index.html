@@ -381,6 +381,270 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/01/使用js导出Excel文档/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="周子豪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黄油香蕉君的主页">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/01/使用js导出Excel文档/" itemprop="url">使用js导出Excel文档</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-01T14:13:26+08:00">
+                2017-05-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/01/使用js导出Excel文档/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/05/01/使用js导出Excel文档/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="OverView"><a href="#OverView" class="headerlink" title="OverView"></a>OverView</h1><p>  最近研究了一下js中一个导出数据到Excel的模块。发现国内竟然没有人翻译。而小学弟学妹们听见导出Excel什么的，更是闻虎色变。其实没那么难。今天香蕉君就翻译一下。原文地址<a href="https://www.npmjs.com/package/excel-export" target="_blank" rel="external">传送门</a>。注意下面都是我这个英语渣的翻译，如果发现了错误欢迎指出。</p>
+<h1 id="翻译之前再啰嗦几句"><a href="#翻译之前再啰嗦几句" class="headerlink" title="翻译之前再啰嗦几句"></a>翻译之前再啰嗦几句</h1><p>  安装node使用npm下载依赖。（真不知道我在担心些什么）</p>
+<h1 id="使用-excel-export"><a href="#使用-excel-export" class="headerlink" title="使用 excel-export"></a>使用 excel-export</h1><p>  在传入到<code>execute</code> 方法前设置好‘设置’对象的值。如果你想生成多个“工作表”（译者加：就是Excel下方那个可以切换的地方也有叫做sheet的）,那么建立一个对象数组即可。或者你可以直接传对象就会在一个“工作表中”<br>  使用<code>name</code>属性可以给这个“工作表”命名。<br>  使用<code>clos</code>是一个给纵列定义属性的数组。纵列的定义需要<code>caption</code>名称和<code>type</code>类型两个必须字段，和宽度可选字段。宽度是字符的。[1]属性中还可是定义一个叫做<code>beforeCellWrite</code>的回调函数。这函数有row（行），cell data（单元数据），option object（配置对象）（一会再说）三个形参。返回值就是填充这个单元的真正数据。（译者加：明显这是为了方便预处理）。支持的类型有：string（字符串），date（日期），bool（逻辑）和 number（数值）类型。<br>  使用<code>rows</code>表示要被导出的数据。它是数组的数组。它的每个数组长度要和clos一致。<br>  表格的样式是可选的。然而如果你使用表格样式，那么一个有效的样式xml文件是必须的。一个简单的方法获取这样的文件的方法是‘unzip’[2]一个包含你想要样式的Excel并把样式文件复制出来使用。使用<code>stylesXmlFile</code>属性赋值来使用。了解更多样式请百度。呵呵。<br>  <code>eOpt</code>(配置对象)在刚才说的回调函数中包含行和列的信息。<code>eOpt.styleIndex</code>应该是一个从0开的的所以，表示选择传入样式文件中表示单元格样式的标签。<code>eOpt.cellType</code>默认情况下是和之前定义好的type是保持一致的。然而在特定的应用场景下你也可以修改他。</p>
+<blockquote>
+<p>[1] 原文这里是 The unit for width property is character。但是看代码这里似乎是一个数字类型。  </p>
+<p>[2] ‘unzip’是什么操作？解压？这里不知道怎么翻译。也不知道怎么从其中导出样式文件。如果知道的希望告知，谢谢。</p>
+</blockquote>
+<h1 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</div><div class="line"><span class="keyword">var</span> nodeExcel = <span class="built_in">require</span>(<span class="string">'excel-export'</span>);</div><div class="line"><span class="keyword">var</span> app = express();</div><div class="line"></div><div class="line">app.get(<span class="string">'/Excel'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</div><div class="line">  	<span class="keyword">var</span> conf =&#123;&#125;;</div><div class="line">	conf.stylesXmlFile = <span class="string">"styles.xml"</span>;</div><div class="line">    conf.name = <span class="string">"mysheet"</span>;</div><div class="line">  	conf.cols = [&#123;</div><div class="line">		<span class="attr">caption</span>:<span class="string">'string'</span>,</div><div class="line">        <span class="attr">type</span>:<span class="string">'string'</span>,</div><div class="line">        <span class="attr">beforeCellWrite</span>:<span class="function"><span class="keyword">function</span>(<span class="params">row, cellData</span>)</span>&#123;</div><div class="line">			 <span class="keyword">return</span> cellData.toUpperCase();</div><div class="line">		&#125;,</div><div class="line">        <span class="attr">width</span>:<span class="number">28.7109375</span></div><div class="line">	&#125;,&#123;</div><div class="line">		<span class="attr">caption</span>:<span class="string">'date'</span>,</div><div class="line">		<span class="attr">type</span>:<span class="string">'date'</span>,</div><div class="line">		<span class="attr">beforeCellWrite</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">			<span class="keyword">var</span> originDate = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="built_in">Date</span>.UTC(<span class="number">1899</span>,<span class="number">11</span>,<span class="number">30</span>));</div><div class="line">			<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">row, cellData, eOpt</span>)</span>&#123;</div><div class="line">          		<span class="keyword">if</span> (eOpt.rowNum%<span class="number">2</span>)&#123;</div><div class="line">            		eOpt.styleIndex = <span class="number">1</span>;</div><div class="line">          		&#125;  </div><div class="line">          		<span class="keyword">else</span>&#123;</div><div class="line">            		eOpt.styleIndex = <span class="number">2</span>;</div><div class="line">          		&#125;</div><div class="line">                <span class="keyword">if</span> (cellData === <span class="literal">null</span>)&#123;</div><div class="line">                  eOpt.cellType = <span class="string">'string'</span>;</div><div class="line">                  <span class="keyword">return</span> <span class="string">'N/A'</span>;</div><div class="line">                &#125; <span class="keyword">else</span></div><div class="line">                  <span class="keyword">return</span> (cellData - originDate) / (<span class="number">24</span> * <span class="number">60</span> * <span class="number">60</span> * <span class="number">1000</span>);</div><div class="line">			&#125; </div><div class="line">		&#125;()</div><div class="line">	&#125;,&#123;</div><div class="line">		<span class="attr">caption</span>:<span class="string">'bool'</span>,</div><div class="line">		<span class="attr">type</span>:<span class="string">'bool'</span></div><div class="line">	&#125;,&#123;</div><div class="line">		<span class="attr">caption</span>:<span class="string">'number'</span>,</div><div class="line">		 <span class="attr">type</span>:<span class="string">'number'</span>				</div><div class="line">  	&#125;];</div><div class="line">  	conf.rows = [</div><div class="line"> 		[<span class="string">'pi'</span>, <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="built_in">Date</span>.UTC(<span class="number">2013</span>, <span class="number">4</span>, <span class="number">1</span>)), <span class="literal">true</span>, <span class="number">3.14</span>],</div><div class="line"> 		[<span class="string">"e"</span>, <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="number">2012</span>, <span class="number">4</span>, <span class="number">1</span>), <span class="literal">false</span>, <span class="number">2.7182</span>],</div><div class="line">        [<span class="string">"M&amp;M&lt;&gt;'"</span>, <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="built_in">Date</span>.UTC(<span class="number">2013</span>, <span class="number">6</span>, <span class="number">9</span>)), <span class="literal">false</span>, <span class="number">1.61803</span>],</div><div class="line">        [<span class="string">"null date"</span>, <span class="literal">null</span>, <span class="literal">true</span>, <span class="number">1.414</span>]  </div><div class="line">  	];</div><div class="line">  	<span class="keyword">var</span> result = nodeExcel.execute(conf);</div><div class="line">  	res.setHeader(<span class="string">'Content-Type'</span>, <span class="string">'application/vnd.openxmlformats'</span>);</div><div class="line">  	res.setHeader(<span class="string">"Content-Disposition"</span>, <span class="string">"attachment; filename="</span> + <span class="string">"Report.xlsx"</span>);</div><div class="line">  	res.end(result, <span class="string">'binary'</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">app.listen(<span class="number">3000</span>);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'Listening on port 3000'</span>);</div></pre></td></tr></table></figure>
+<h1 id="鸣谢"><a href="#鸣谢" class="headerlink" title="鸣谢"></a>鸣谢</h1><p>  最后再次感谢这个模块的作者。functionscope。谢谢你的工作，真的很棒。<br>  finally，thanks to the author functionscope.greate work,Really Inspiring！</p>
+<blockquote>
+<p>我将一直的无知与迷惑，我是黄油香蕉君，再见。</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/25/梦话/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="周子豪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黄油香蕉君的主页">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/04/25/梦话/" itemprop="url">梦话</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-25T14:11:15+08:00">
+                2017-04-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/04/25/梦话/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/04/25/梦话/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="不必要的前言"><a href="#不必要的前言" class="headerlink" title="不必要的前言"></a>不必要的前言</h1><p>  最近由于一个机缘巧合，我开始思考一些与我并不相干的问题。主要是失眠的情况下，用来打发时间的思想流。其中充满了唯心的悲观看法。于是我定义这些接近于梦话。如果我不失眠了，这种状况或许要少一些。</p>
+<h1 id="什么是社会"><a href="#什么是社会" class="headerlink" title="什么是社会"></a>什么是社会</h1><p>  首先，社会是一个集合的概念。简单的说一个人不能叫社会，只有许多人才叫社会。不严谨的定义，是有着密切关系的人类的和称。可以毫不疑惑的说，我就在社会中。但是我从未思考过，什么才是社会，这个概念的本质是什么？<br>  那么这里不得不提的就是关系，这里有许多组的相互关系。在社会中人和人的关系，人和社会中物质材料的关系。还有社会中的个体和社会的关系。可以说无关系不社会。但是我不认为关系是社会的本质。不认为一定数量的人和人关系的网络就可以定义成社会。当然这个定义可以在几乎所有的情况下成立。而已只要你说出一个具有一定数量的人的群体，并且存在某种关系网络在这个群体中，就可以称之为社会。比如我们常常说什么是一个小社会，这肯定了其具有了社会应该具有的全部性质。<br>  可是要指出这不能说明社会的成因。至少是我直管感受下社会的成因。我们甚至可以说一个蚁群是一个社会。但是这里我们可以直管的理解到不是我们的社会。也不是我这里说的社会。我说的是特指人类社会。这里讲的不是人类文明，因为我对文明这词本身存在一定的怀疑。我说讨论的是我们所处的，可以感知的社会。就是我生活的社会这一概念。这个充满了问题的社会。也是这样的一个巨大的客观的实体才有讨论的价值。  </p>
+<h1 id="先谈存在"><a href="#先谈存在" class="headerlink" title="先谈存在"></a>先谈存在</h1><p>  要解决社会是什么的问题，要先解决存在的问题。即存在和本质的先后。我是倾向于存在先与本质。那就是我们在社会中并没有什么终极使命，换句话说没有什么是我一出生就必须承担的事和责任。无论是理想还是抱负，都是后天的赋值。存在没有道理。如果你非要将因果叫做道理，那么我可以说任何一个在成“果”之后，便和这个“因”毫无关系。这里并不悲观，这样我们在有为自己赋值的空间。这样灵魂才是自由的，虽然荒诞但是是纯粹自由的。可是我们看到的结果是我们的生活往往不是这样的。我们常常为一些事情所烦恼。我称之为“身份枷锁”。<br>  这里的身份枷锁就是，社会关系对人个体赋值的结果。你是一位喜欢探险的人，希望去远处爬山，但是你不能这么做，你还有老婆孩子要养活，于是你很快的放弃了这个念头。你的身份被赋值为“父亲”。身份枷锁并不能对一个人起实际的作用。也就是说他的身份是“父亲”“丈夫”并不能阻止，他的想法和行为。实际上因为人灵魂自由的伴随存在而来的，所以没哟有效的方法让人不去想。但是真正阻止行为的也是“想”，担心也是想的一种吧。这里是担心别人的评价。没有人希望在别人的评价体系里别看低。<br>  那是评价吗？<br>  社会的本质是由评价系统建立的身份枷锁？这样说似乎给评价这个词太多的价值和作用。人是具有理性的，我们不会对单单的一个评价就选择行动或者不行动。虽然有的时候是一种评价的预期对我们在社会中的行为做指导。但是有的时候这种指导又是没有效果的。可见这样描绘的社会图景是不完全的，不本质的。在评价的背后一定还有一层更深的原因，或者逻辑本源。只是仅仅现在描绘出的社会图景就不能让人乐观。</p>
+<h1 id="讨论赋值的来源"><a href="#讨论赋值的来源" class="headerlink" title="讨论赋值的来源"></a>讨论赋值的来源</h1><p>  这里我不禁怀疑起来，所谓的身份枷锁的赋值行为有一个更加本质的逻辑传统。要讨论着种本质就要分析我们身份枷锁的来源。<br>  上面的例子中枷锁来自后天的社会契约，在中国这个社会中（至少在这里）是有八卦式的评论系统进行维持。但是我们知道不是所有的枷锁都来自于此。比如法律是由国家暴力机关进行维持的。但是这样就很难解释一些社会行为。比如爱国者对在国内对其他国家车辆的破坏行为。在比如大街上殴打小三而无人报警制止。（当天这件事实的成因或许更加的复杂）这些行为单单使用身份枷锁是很难解决的。因为身份枷锁是一种制约，是在社会中存在的人不去做某些决策的原因。但是不能成为其不理性行为和不利己行为的原因。于是乎我要面临的一个首要问题是：在社会中，人在追求评价升级的情况下，为什么会做出损人不利己的行为？我觉得这个问题比起，在利己的社会下，做出利他行为更加的有意义。当然后面这个问题有人研究过。不过大致的结论还是利己的，是某种“利己”。或许是这种利他可以提升他的评价，或者给与其心灵上的安慰，是唯心上的一种自我加强。这里不过多的讨论了。<br>  这里我们先把身份枷锁进行一定的抽象。他可以约束人的行为，但是是被动的，不大可能是产生某种积极（这里是主动）行为的诱因。也就是我是一名警察不太可能是我欺负一个素不相识的流浪汉的原因。但是这件事确实是发生过的。虽然不是中国的社会。那么是什么使我们轻易的中伤他人呢？<br>  是分类行为。<br>  这是我认为社会之所以具有今天这个形态的全部逻辑来源。有点类似的叫做贴标签。不同的是标签是某些特定的属性，而分类着可能默认包含了一组属性。这种分类带来的后果是可怕的。比如在学校中分班后，所谓好班和坏班。在比如学校中存在的好学校坏学校。这种分类的行为其实是我们在做任何一个决策时必然发生的社会心理过程。又是是显示的，想想他和我是不是一个利益集团。有的时候又是隐式的，比如爱国行为。<br>  这个解释了一切，我们在倾向性的分类，在某种语境下，把自己和某些具体共同利益和性质或历史记忆的人分为一类，然后无成本的迫害剥削不属于自己一类的人。</p>
+<h1 id="绝望的结论"><a href="#绝望的结论" class="headerlink" title="绝望的结论"></a>绝望的结论</h1><p>  这里我深深对这种人类的分类行为提出批判。这使我不禁想到了中国传统的大同的概念与齐物论。发现在中国传统观念中有对于这种社会形态倾向的批判。不过我仍然对这些思想持保留态度。因为我们有研究过这些古老思想，在当时的社会出发点和我今天描述的问题是否一样。这使我怀疑我在思考过程中是不是在刻意的异化社会这个概念。先看看现在社会的定义。<br>  社会是自然人在数量一定多的集合中，使用分类排他的决策方式派生出关系网络而形成的动态平衡。所谓法律与道德，是平衡下的妥协产物。是一种终极评价系统，这套系统要不由由社会独立出来的团体强制或者社会中每个来自觉维护。<br>  如果这样可以看出所谓的是舆论，不过是这个评价体系中的一部分，而不是什么公权力。道德的本质使人怀疑和警惕。一个公共事件发生，由于当今信息社会的特点，人们更加倾向于对非自己分类的个体给与低评价，而给与自己类别高评价。由于网络的虚拟性，这个评价不在需要成本，或许网民中有些个体根本不把任何其他网名当做同类。于是乎社会出现了种种问题。没有了理性，没有了实用角度，原因很简单，那样的成本过高，并且被别人分为异类的概率太高了。<br>  比如一个人觉得不能怎么怎么样要做一个正义的人，那么久有人告诉他不要这样做。为什么呢？一个看似正确的言论变成不正常的了？这里我要强调我不对任何这种争论发表真实看法。我本质觉得这种情况是没有讨论的必要的。为什么这么觉得我有时间在讨论。单单说这里，原来看似不正确的言论会有人支持。其实道理很简单，我觉得可以借用沉默的螺旋的思路来解释，结合我说的分类原理。原来这种看似分类人数少的类别在信息自由化的今天，大家发现原来与我同类别的人这么多，于是敢于说话了，于是乎慢慢的抢占了主流。<br>  我这说的绝望是什么意思呢？难道我觉得现在因为坏人越来越多了，那按照这样社会会按照坏人的分类体系发展。如果你这么以为就太小看我的害怕了。对于所谓好坏我是不去这样判断的。我说过存在先与本质，于是分类的选择是一种正常的行为，一种理性的行为，于是乎不在好与坏，而在于特定语境的争夺。这里关键的是语境，语境是分类的要素，而好与坏是对应语境下的。对于利益相关方，有必要烦恼于此。我是不会在意的。我在意的是：<br>  分类行为是怎么的？<br>  我尝试进行价值判断，是正常的还是异化的。然后我仔细的想了想，把正常这两个字写的老大了，在我那块小黑板上。每天早上起床晚上睡觉前都看一眼想一想。然后不得不承认是正常的。是再正常不过了。甚至“分类”代表着理性。分类是我们认识世界的根本方法。</p>
+<h1 id="理性带来的非理性"><a href="#理性带来的非理性" class="headerlink" title="理性带来的非理性"></a>理性带来的非理性</h1><p>  这仿佛是一个悖论。一直萦绕在我脑海里，我不断思考为什么会这样？其实我没在认识世界的时候有一个行为就是概念区分，举一个简单的例子来说，我们知道是非知道黑白一样。是概念的区分，其实也是对客观事物的分类行为。一旦我们在认识事物的时候完成了概念的区分，事物自然的完成了分类过程。如果你不是什么事都模棱两可的话，当你认识事物的时候，当你自认为清晰概念的时候，其实是在曲解了概念。<br>  可是不区分概念，那么我们怎么认知呢？高级的认知更是向概念细化的程度发展，可是这种人类自以为神性的，先验的理性，结果是一定的非理性，不~更加直白的表述是必然的非理性。我陷入了迷思，要么批评理性本身？可是要知道这种批判本身就带有所谓理性的分析方式和逻辑出发点。如果批判成立，即可马上对批判的理性过程进行否定，即批判不成立。那么肯定这种非理性，即分类的思考方式是可以肯定的，是正常的，是合法的，是一般性的。于是由此派生出来的种种问题，是随机的结果。是不确定什么时间发送的必然？没有办法从根本上解决社会中分类行为，和所带来的问题？<br>  如果是这样一切竟然可以自洽。分类是我认识事物的继承性结果，是正常的概念记忆方式，与逻辑习惯。于是分类决定一个人的评价体系和评价逻辑。由于利益平衡人们自觉维护这套体系。在社会运动和历史继承中，评价标准处于暂时平衡出现法律和道德，于是乎，基于当前集体中个体的职能分工，人被身份枷锁赋值。<br>  这里任何一个环节如果主观意志与这套逻辑链中的既定历史结果出现了冲突，就会出现矛盾。从心理学角度看可能叫做心理不健康，甚至是变态。从法律角度看可能是某种犯罪。利益共享者可能觉得他疯了。利益冲突者可能觉得他道德败坏。无关者更倾向于负面评价或者娱乐化。<br>  但是这一切的一切都是正常的。社会这个概念天然排除主观的独立判断结果。或者说，它不影响，不过是一个尺度，用来给这主观的个人行为下定义，作为给出的概念区分的判断标准。分类是一个人由出生到社会中生成的内因和联系。评价则是维持这种联系的行为。<br>  我本来对这套东西的批判，但是却不得不得出这个是社会之所以是社会的必然条件。这不得不让我有些沮丧，问题根源出现在哪里？</p>
+<h1 id="再次回到不可知"><a href="#再次回到不可知" class="headerlink" title="再次回到不可知"></a>再次回到不可知</h1><p>  我害怕回到相信不可知论，和命运论的思考中。因为在哪里有一个有神论的结局在向我招手，或者说一个精神病人在想你们招手。这的思考没有答案而且很容易循环自证。不然我有的想有关意义本是是什么的问题想几天睡不着觉。可是这不是找寻答案的态度。于是我不得不重新审视不可知的世界。<br>  我姑且认为世界是可知的吧。我们知道了很大的星星，和很小的夸克。但是我是怎么知道的呢？有些是看有些是靠计算。有些只存在我们脑海中，但是我们可以行动去验证去演绎。可是我们怎么表述我们知道了呢？说出来？写下来。用什么工具？语言？文字？符号？我写下来了，于是我记录了我的观察，可是这个概念清晰了？他就描述了我的想法？只可意会不能言传，那你还说出来！<br>  所以我们能正常的交流，真是一个奇迹。<br>  或者说这件事，重来没有发生过。一千个读者有一千个哈莫雷特。一万个人类，就有一万个“人类”。我说要你拿杯水的时候，你拿了水给我，不过是水的巧合的映射到那个物体上了。或者说，我在说的时候都不知道我具体是要什么！一想到这里我浑身都起鸡皮疙瘩。灵魂交流一开始解释一个不存在的概念。是个概念的概念。<br>  由此意义成了被定义。（完了~又到了意义）因为我不知道，所以当我说出来的时候它才存在。可是存在不是先与本质吗？不然唯物的世界就说不清了。</p>
+<h1 id="我与社会的关系"><a href="#我与社会的关系" class="headerlink" title="我与社会的关系"></a>我与社会的关系</h1><p>  由此我没有了结论。这次的思考混乱不堪。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/23/拾遗录13早期的非主流风格/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1297,277 +1561,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/24/使用Common-Lisp调用C语言函数/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="周子豪">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黄油香蕉君的主页">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/24/使用Common-Lisp调用C语言函数/" itemprop="url">使用Common-Lisp调用C语言函数</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-24T17:27:48+08:00">
-                2017-03-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/03/24/使用Common-Lisp调用C语言函数/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/03/24/使用Common-Lisp调用C语言函数/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>  我们知道在emacs实现中使用的lisp和c语言。这个设计使得emacs成了一件不折不扣的艺术品。这样的好处是将两种语言的长处发挥到了极致。当然其中还有一些设计哲学要去学习。不过我们先看看在common lisp中调用到c语言的函数。</p>
-<h1 id="我的环境"><a href="#我的环境" class="headerlink" title="我的环境"></a>我的环境</h1><ul>
-<li>MacOS</li>
-<li>SLIME （emacs + spacemacs 配置）</li>
-<li>mac自带的gcc</li>
-<li>quicklisp</li>
-</ul>
-<blockquote>
-<p>以上这些的教程都可以在我之前的博客中找到，我就不写传送门了。</p>
-</blockquote>
-<h1 id="准备过程（其中可能有方法论）"><a href="#准备过程（其中可能有方法论）" class="headerlink" title="准备过程（其中可能有方法论）"></a>准备过程（其中可能有方法论）</h1><p>  接触这个问题的过程是从我希望使用common lisp写出GUI来开始的。那么我有什么路可以走呢？自己写一个图像化接口几乎是不可能的。其实如果哪天我疯了或许会开始这样的一个项目:P 那么现在有一条路可以走，就是调用已经有的跨平台图像化接口。第一个想到的竟然是openGL，额。尴尬的是OpenGL来做这个活并是很开心。而且在我面前还有一个重要的问题，那就是怎么用CL调用到C语言实现的文件。（动态和静态链接库）<br>  于是我百度谷歌使用CL调用C语言函数，结果有一个人问：用cffi和ffi那个好？额。这个是什么呢？结果一查我发现这个是<code>Common Foreign Function Interface</code>的缩写。外部函数接口。这个不就是我想要的吗？简单的看一下英文这个不就有C的支持吗~于是信息若狂，的打开了文档。这里有<a href="https://common-lisp.net/project/cffi/manual/cffi-manual.html" target="_blank" rel="external">传送门</a><br>  所以让我们写一个小的demo来调用，自己使用c写的一个测试方法吧。</p>
-<h1 id="完成c文件"><a href="#完成c文件" class="headerlink" title="完成c文件"></a>完成c文件</h1><p>  新建一个项目。建立一个叫做<code>testlib.c</code>的文件。现在我们就定义一个简单的函数吧。如下:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> MIX 100</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">test_fn</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">  <span class="keyword">return</span> MIX;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>  要记住我们是没有办法直接使用c语言的源码的。我们需要先编译了才可以了。运行下面的命令就可以生成必要的文件了。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ gcc -c testlib.c</div><div class="line"><span class="comment"># 这将生成 .o 文件 然后我们要的是 .so 文件</span></div><div class="line">$ gcc -shared -fPIC -o testlib.so testlib.o</div></pre></td></tr></table></figure>
-<h1 id="使用common-lisp-来调用这个文件"><a href="#使用common-lisp-来调用这个文件" class="headerlink" title="使用common lisp 来调用这个文件"></a>使用common lisp 来调用这个文件</h1><p>  现在在同级的目录下建立一个叫做<code>test.lisp</code>的文件。文件里的内容如下:</p>
-<figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">;; test cffi</span></div><div class="line">(<span class="name">ql</span><span class="symbol">:quickload</span> <span class="string">"cffi"</span>)</div><div class="line"></div><div class="line">(<span class="name">cffi</span><span class="symbol">:define-foreign-library</span> testlib</div><div class="line">  (<span class="symbol">:unix</span> <span class="string">"testlib.so"</span>)</div><div class="line">  (<span class="name">t</span> (<span class="symbol">:default</span> <span class="string">"testlib"</span>)))</div><div class="line"></div><div class="line">(<span class="name">cffi</span><span class="symbol">:use-foreign-library</span> testlib)</div><div class="line">(<span class="name">cffi</span><span class="symbol">:defctype</span> back-max <span class="symbol">:int</span>)</div><div class="line">(<span class="name">cffi</span><span class="symbol">:defcfun</span> <span class="string">"test_fn"</span> back-max</div><div class="line">  (<span class="name">x</span> <span class="symbol">:int</span>))</div></pre></td></tr></table></figure>
-<p>  简单的介绍一下这些代码在做什么。<code>define-foreign-library</code>是在定义一个C语言的库。这个方法用来指定库的位置和在不同环境中的位置。然后<code>use-foreign-library</code>加载这个库。现在直接调用时调用不到的。我们需要定义这个c中的函数到lisp中，同样要定义好入参和出参的值。<br>  现在<code>SPC-m-&#39;</code>打开一个REPL，然后逐条的对上面的语句使用<code>C-c C-c</code>。如果没有错的话现在就可以调用这个函数了。<br>  我们在REPL中输入<code>(test_fn 1)</code>就可以看到返回了我们在c中定义好的100了。</p>
-<h1 id="Learn-More"><a href="#Learn-More" class="headerlink" title="Learn More"></a>Learn More</h1><p>  现在就可以写我们自己的c语言的函数，然后使用lisp优雅的调用他们。但是单单是我上面的介绍肯定远远不够。我们还需要在必要的时候阅读上面传送门中的文档才行的</p>
-<h1 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h1><p>  我本来是想在这个过程中使用lisp调用有名的gtk。虽然我现在还是不了解那是个啥。安装也没有成功。但是并不影响我在成功调用到c语言时的激动。相信我可以使用CL的这个功能在以后带来更加精彩的应用。谢谢读者们。</p>
-<blockquote>
-<p>我将一直的迷惑与无知，我是黄油香蕉君，再见。</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/18/拾遗录7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="周子豪">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黄油香蕉君的主页">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/18/拾遗录7/" itemprop="url">拾遗录7</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-18T15:15:48+08:00">
-                2017-03-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/03/18/拾遗录7/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/03/18/拾遗录7/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="题于同学录"><a href="#题于同学录" class="headerlink" title="题于同学录"></a>题于同学录</h1><h2 id="诗"><a href="#诗" class="headerlink" title="诗"></a>诗</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">百花殆尽方很晚，归雁南山故人心。  </div><div class="line">社过桃李香不在，醉卧席听门扉音。  </div><div class="line">邻家姊弟笑正临，青竹相伴秋千去。  </div><div class="line">仰首空间白鸟孤，低头不忆垂髫时。</div></pre></td></tr></table></figure>
-<h2 id="解"><a href="#解" class="headerlink" title="解"></a>解</h2><p>  想解这首诗，就要提一下这首诗的创作背景。高三正是到了毕业季的时候，大家开始互相发同学录。（不知道当初什么原因。我是没有的，现在有一些后悔）一个女同学给我了同学录，(不是我喜欢的那个)正值年少轻狂的我，于是在寄语中写了这首诗，以卖弄自己的“才华”。一样的并没有什么才华好去卖弄，写同学录的时候重要的是真诚，好在我给大家写的都很认真，我本人也很珍重。只不过那时诗句就在脑子里，于是就写下来了。<br>  “百花殆尽方很晚”这句老实说写的并不是很好。我本意就是写一个铺垫，铺垫一种分离的气氛，但是写出了一种要分离却悔恨的苦楚，实在是在渲染手法上乱了分寸。同样是分离,觉得“恨晚”的自责和同学间分离的不舍是有区别的。只能说功力不够，花鸟来凑。不过细细想来也还可以，人不都是在分离的时候在觉得自责吗？分离就分离吧，没事的，就像每年归来南山的鸿雁，心还是一样的。这里……现在想想真是有点耐人寻味的感觉。我后来去重庆上学住的就是南山。但是我当时怎么会知道呢？我连我能考到什么学校都不知道。如今看来有些命运离奇之感。<br>  “社”这里是使用的一个隐喻，古代的时候“社”是一种祭祀活动，要杀猪杀羊喝酒祭天。此处暗指的就是吃的那顿散伙饭。正是那样的春季，聚会过后“桃李”就都不在，就都离开校园，大家酒过三巡，欢愉不在，也安静下来。醉卧席间。仿佛若有所失，仿佛若有所得。安静异常，听到门咯吱的声响。<br>  忽然有人回忆起了更加小时候的事来。“那个时候我和邻居家的小妹妹玩的很好，我还和她手拉着手一去去荡秋千呢…………”众人目光变向远方，仿佛真的看到那时的情景。是啊，曾经我们不也是一无所知的小孩子，可是时光一晃就到了到了现在了。抬头看天，一只白鸟飞过。不禁低下头低语:“不说儿时的事了”。<br>  这里，白鸟是时间的隐喻。不知道为什么我就是觉得白鸟是代表光阴的意象。其实那是青春未过却又有青春很快的意味。这最后一句是情感的收束。是我写诗的毛病和问题。总是使用一个情绪低的结尾。这首诗在情感表达上是克制的，但不是美好的。在艺术手法上使用了简单的“举头望明月，低头思故乡”的模式。可意境始终是低沉了些，只是到了今日我有了一个，比较积极的新解释。<br>  看见白鸟，即知道时光继续流逝，既是匆匆逝去，又是滚滚未来。和从前儿时的玩伴虽然忘记了，但是我们不是又交到了新的朋友吗！青春如此来来去去，这次努力不忘记就好。“别说你小时候的那些事了”，我们快讨论讨论想去哪所大学，有什么理想，有的没的都可以说………………<br>  不行我编不下去了。你们自己想吧~</p>
-<blockquote>
-<p>读我自己的诗真是郁闷啊。我下次一定要找一首欢快的诗来写。一定。</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1617,7 +1610,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">25</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1630,7 +1623,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
