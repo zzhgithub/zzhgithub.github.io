@@ -409,7 +409,7 @@
 <p>  这个函数再简单不过了。现在我想这样先获取一个图片的宽和高以便于在后面可以方便的建立一个对应的bitmap进行接下来的运算。<br>  还有我写的其他很多函数都要判断这个<code>*png-boject*</code>这个值存不存在以免出现不安全的调用。</p>
 <figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">(<span class="name">defun</span> check-object-and-do-funcation (<span class="name">fn</span>)</div><div class="line">(<span class="name">if</span> (<span class="name">eql</span> <span class="literal">nil</span> *png-object*)</div><div class="line">    (<span class="name">format</span> <span class="literal">t</span> <span class="string">"we never hava png-object.please use funcation (set-png-object *file*) to set frist"</span>)</div><div class="line">    (<span class="name">funcall</span> fn)))</div><div class="line"></div><div class="line">(<span class="name">defun</span> get-size ()</div><div class="line">(<span class="name">let</span> ((<span class="name">fn</span> #'(lambda () (list (png-read:width *png-object*) (png-read:height *png-object*)))))</div><div class="line">  (<span class="name">check-object-and-do-funcation</span> fn)))</div></pre></td></tr></table></figure>
 <p>  好了。回到一个重要的问题上面。我们怎么转换的算法问题了。</p>
-<h1 id="一点算法的讨论"><a href="#一点算法的讨论" class="headerlink" title="一点算法的讨论"></a>一点算法的讨论</h1><p>  说道这个算法，我就想到了我在大学的时候学的一门叫做《数字图像处理》的课程。想当初我因为经常逃课不去，还被取消了考试资格，无奈来年重修了。<br>  说道这个算法我首先想到了就是简化。首先说道我们使用的颜色表示系统。RGB颜色。这个很简单用过PS的都知道，比如我们熟悉的66CCFF是洛天依的颜色。表示的就是这个系统–红绿蓝。值都是从0到255。也就是说这里每个点存的是一个向量。现在由于我使用文字符号作为颜色的表示于是就不可以考虑图片的颜色差别，只能估计到颜色的深浅（其实可以，一会有空我在讨论），于是乎我就要把原来的3维的向量映射到一个灰度表上。这里将有许多种思路。其中先说本程序使用的，也是最简单的方法。  </p>
+<h1 id="一点算法的讨论"><a href="#一点算法的讨论" class="headerlink" title="一点算法的讨论"></a>一点算法的讨论</h1><p>  说道这个算法，我就想到了我在大学的时候学的一门叫做《数字图像处理》的课程。想当初我因为经常逃课不去，还被取消了考试资格，无奈来年重修了。<br>  说道这个算法我首先想到了就是简化。首先说道我们使用的颜色表示系统。RGB颜色。这个很简单用过PS的都知道，比如我们熟悉的66CCFF是洛天依的颜色。表示的就是这个系统—红绿蓝。值都是从0到255。也就是说这里每个点存的是一个向量。现在由于我使用文字符号作为颜色的表示于是就不可以考虑图片的颜色差别，只能估计到颜色的深浅（其实可以，一会有空我在讨论），于是乎我就要把原来的3维的向量映射到一个灰度表上。这里将有许多种思路。其中先说本程序使用的，也是最简单的方法。  </p>
 <h2 id="RGB到灰度的算法"><a href="#RGB到灰度的算法" class="headerlink" title="RGB到灰度的算法"></a>RGB到灰度的算法</h2><h3 id="算数平局值法"><a href="#算数平局值法" class="headerlink" title="算数平局值法"></a>算数平局值法</h3><p>  这个方法估计一下子就可以想到了。就是算三个颜色的平局值然后在根据这个平均值进行映射。想一下原来时0-255每个，取完值还是255个。这个方法真的不算是最好，不过是最简明的。但是是我思考了其他方法最后选择的。因为这个方法的缺点很明显，比如两完全不同的颜色（0 255 0）和（255 0 0）。在这种算法下本来是一个正常的边界，现在灰度会变成一样，就糊到一起了。这个当然不是我希望看到的。</p>
 <blockquote>
 <p><em>注意</em>  下面的内容和专业知识有关，但是写的又很不专业，如果你不感兴趣我不建议你看，也许会对你造成迷惑。（我将用“选”字标记）</p>
@@ -568,7 +568,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -590,7 +590,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
