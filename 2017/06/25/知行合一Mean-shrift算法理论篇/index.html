@@ -102,7 +102,10 @@
 <meta property="og:description" content="总前言  以前在自学机器学习的时候，只是简单的看了一下思路然后就是跟着进行数学推到。至于从算法到实际实现总是从在一些距离。于是就有了自己写这样一个系列文章的想法。就是把自己学习到的知识到实践的过程记录下来。思考出一条从理论到实践的路径一直都是我非常想研究的。这一篇文章或许看不出什么，不过我相信只有坚持这种工作，一定可以得出令人欣喜的答案来的。 简介  Mean shirft 中文译名又叫做，均值漂">
 <meta property="og:image" content="http://yoursite.com/images/ms.jpg">
 <meta property="og:image" content="http://yoursite.com/images/ms3d.png">
-<meta property="og:updated_time" content="2017-06-26T02:46:29.000Z">
+<meta property="og:image" content="http://yoursite.com/images/rtpdf.png">
+<meta property="og:image" content="http://yoursite.com/images/pa.png">
+<meta property="og:image" content="http://yoursite.com/images/khs.png">
+<meta property="og:updated_time" content="2017-06-26T09:43:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="知行合一Mean-shrift算法理论篇">
 <meta name="twitter:description" content="总前言  以前在自学机器学习的时候，只是简单的看了一下思路然后就是跟着进行数学推到。至于从算法到实际实现总是从在一些距离。于是就有了自己写这样一个系列文章的想法。就是把自己学习到的知识到实践的过程记录下来。思考出一条从理论到实践的路径一直都是我非常想研究的。这一篇文章或许看不出什么，不过我相信只有坚持这种工作，一定可以得出令人欣喜的答案来的。 简介  Mean shirft 中文译名又叫做，均值漂">
@@ -394,7 +397,33 @@
 <h2 id="推广到高维"><a href="#推广到高维" class="headerlink" title="推广到高维"></a>推广到高维</h2><p>  和刚才一直现在吧球体，改成超球体即可。什么是超球体呢？你可以理解为无论从那个维度对他进行投影都是一个圆就可以了。不用强迫自己完全想象出来。</p>
 <h1 id="公式推导"><a href="#公式推导" class="headerlink" title="公式推导"></a>公式推导</h1><p>  或许你觉得低维度下，很好思考和实现，但是数学家们，或者玩算法的人希望自己的算法是万能的。于是我们要借助数学工具对算法进行推导，和重新表述。不要害怕这个和我刚才说的，并没有多大的不同。现在你要做的就是理解，每一个步骤，然后在不懂的地方停下来思考一下就行了。  </p>
 <h2 id="基本形式"><a href="#基本形式" class="headerlink" title="基本形式"></a>基本形式</h2><p>  在给定的 $ d $ 维的空间 $ R^{d} $ 中有 $ n $ 个样本点。这样不难得出在空间中任意一个点的Mean shrift向量如下：</p>
-<script type="math/tex; mode=display">M_h = \frac{1}{K} \sum_{x_i \in S_k}^n (x_i - x)</script>
+<script type="math/tex; mode=display">M_h = \frac{1}{K} \sum_{x_i \in S_k} (x_i - x)</script><p>  简单的解释一下这个公式。$ K $是指的是$ x $有$ K $个临近点。其中超球体$ S_k $的半径为$ h $,它的公式表示如下:</p>
+<script type="math/tex; mode=display">S_h = \{ y:(y-x_i)_T(y-x_i) < h^2 \}</script><h2 id="使用核函数进行密度估计"><a href="#使用核函数进行密度估计" class="headerlink" title="使用核函数进行密度估计"></a>使用核函数进行密度估计</h2><p>  首先我把这个密度估计的函数给出来:(注意这里面$ K() $是核函数)  </p>
+<script type="math/tex; mode=display">f(x) = \frac{1}{nh^d}\sum_{i=1}^nK(\frac{x-x_i}{h})</script><p>  你或许会问这个是什么玩意？我为啥要密度估计？还有你为啥知道密度估计是这公式呢？  </p>
+<p>  现在我们都以二维的数据进行思考。想象一下一个平面上面有许多的点我们可以用(x,y)来表示。现在我们要通过平面内现有的点的疏密来获取平面上每个点的密度值。于是原来的（x,y）变成了（x,y,z）一个表示平面内每一个点密度的曲面。就像下面这个图一样。<br>  <img src="/images/rtpdf.png" alt="由点映射到密度曲面"></p>
+<p>  看到了这个密度曲线你是不是，豁然开朗了。如果你还没有感觉，不妨想象一下把左边的那个“小山脉”倒置过来，就成了一个小漏斗。现在吧一个小球放在任意一个点上，必然的停止在一个“小山”的“顶峰”。这就是模拟了上方向量移动的动作。（使用模仿这个词不太恰当）哦现在对这个密度函数求偏导数，然后命令其等于0就可以知道哪里是“山峰”了，因为“山峰”是平的。</p>
+<p>  “等等，不要蒙我！”你或许会说。这里没有解释两点，为什么原来的点是离散的，现在就变成连续的曲面了呢？其次，这里和核函数有什么关系呢？</p>
+<p>  好吧在求取偏导数之前。我来尝试解释一下这个问题，不过这里只不过是一种理解方式。首先我们要表示一个离散的一维的点的密度怎么表示呢？我们知道点在总个数为N。于是我们不妨选取一段很小的距离h，然后看看在这段范围内有多少的点。假设有k个点。于是他的密度可以可以近似的表示为：$ p = \frac{k}{N} $,想象一下这里面h足够的小，然后我们可以得到这样的图像。<br>  <img src="/images/pa.png" alt="直方图估计"></p>
+<p>  现在想想$ \frac{k}{N} $是点出现的概率，并不是在真正的密度，思考在二维空间中，真正的密度应该是$ \frac{k}{NV}$ 其中V可以理解为一个以h为边长的正方形。我们便可以说这里的h是这里的窗口大小。<br>  可以现在表示整个密度的函数似乎太麻烦了。那怎么办呢？那我们设想一个函数。让他有一下三个功能：</p>
+<ol>
+<li>在窗口内有值，在窗口外没有值。</li>
+<li>这个函数表现出离x越近对密度的结果影响越大，越远越小。</li>
+<li>函数在各个方向上的影响是一致的。（对称的）</li>
+</ol>
+<blockquote>
+<p>细心的读者或许会发现条件2其实包含了，条件1。没有值可以理解为对结果的影响为0。</p>
+</blockquote>
+<p>  现在我们就给自己投机取巧的函数起名为K，于是就可以轻易表示出来在二维空间中的密度函数。</p>
+<script type="math/tex; mode=display">f(x) = \frac{1}{nh^2}\sum_{i=1}^nK(\frac{x-x_i}{h})</script><blockquote>
+<p>这里我关于使用$ \frac{x-x_i}{h} $中的h是这样理解的。这的距离尺度是相对于窗口大小h的距离。而不是绝对距离。这在一维的空间可以理解为距离，而在二维就是一个向量了。所以这里的解释可能存在一定的问题。希望读者，有更好的解释可以，告诉我。谢谢您 :）</p>
+</blockquote>
+<p>  怎么样？现在这个公式是不是和之前的很像了。除了这里的是2维的，现在推广到d维，就可以得到我们要的公式了。但是你任然不满足：“你怎么知道有这样的函数K，满足你的种种变态要求呢？”。你别说还真的有这样的一些函数就是满足了所有的要求，而且还很多。  </p>
+<p>  那他们张什么样呢？为什么又这个神奇的功效呢？了解更多请使用<a href="http://blog.csdn.net/ttransposition/article/details/38514271" target="_blank" rel="external">传送门</a>。我可先截一张图，让大家感受一下，不做过多的介绍了。</p>
+<p>  <img src="/images/khs.png" alt="核函数"></p>
+<blockquote>
+<p><em>注意</em> 这里有关于核函数的还有:<a href="http://www.cnblogs.com/liqizhou/archive/2012/05/11/2495788.html" target="_blank" rel="external">传送门</a>这个是介绍SVM（支持向机）中的核函数。但是我对于核函数的理解还不是很深。希望哪位朋友有相关论文或者文章推荐给我。万分感谢。</p>
+</blockquote>
+<h2 id="开始纯数学推导吧！"><a href="#开始纯数学推导吧！" class="headerlink" title="开始纯数学推导吧！"></a>开始纯数学推导吧！</h2>
       
     </div>
 
@@ -604,7 +633,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#总前言"><span class="nav-number">1.</span> <span class="nav-text">总前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">2.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#算法思想"><span class="nav-number">3.</span> <span class="nav-text">算法思想</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#二维空间"><span class="nav-number">3.1.</span> <span class="nav-text">二维空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三维空间"><span class="nav-number">3.2.</span> <span class="nav-text">三维空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#推广到高维"><span class="nav-number">3.3.</span> <span class="nav-text">推广到高维</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#公式推导"><span class="nav-number">4.</span> <span class="nav-text">公式推导</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本形式"><span class="nav-number">4.1.</span> <span class="nav-text">基本形式</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#总前言"><span class="nav-number">1.</span> <span class="nav-text">总前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">2.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#算法思想"><span class="nav-number">3.</span> <span class="nav-text">算法思想</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#二维空间"><span class="nav-number">3.1.</span> <span class="nav-text">二维空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三维空间"><span class="nav-number">3.2.</span> <span class="nav-text">三维空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#推广到高维"><span class="nav-number">3.3.</span> <span class="nav-text">推广到高维</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#公式推导"><span class="nav-number">4.</span> <span class="nav-text">公式推导</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本形式"><span class="nav-number">4.1.</span> <span class="nav-text">基本形式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用核函数进行密度估计"><span class="nav-number">4.2.</span> <span class="nav-text">使用核函数进行密度估计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始纯数学推导吧！"><span class="nav-number">4.3.</span> <span class="nav-text">开始纯数学推导吧！</span></a></li></ol></li></ol></div>
             
 
           </div>
