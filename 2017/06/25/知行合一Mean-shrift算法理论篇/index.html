@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="mean-shrift,机器学习," />
+  <meta name="keywords" content="mean-shift,机器学习," />
 
 
 
@@ -94,7 +94,7 @@
 
 
 <meta name="description" content="总前言  以前在自学机器学习的时候，只是简单的看了一下思路然后就是跟着进行数学推到。至于从算法到实际实现总是存在一些距离。于是就有了自己写这样一系列文章的想法。就是把自己从知识到实践的过程记录下来。思考出一条从理论到实践的路径。这一直都是我非常想研究的。一篇文章或许看不出什么，不过我相信只要坚持这种工作，一定可以得出令人欣喜的答案来的。 简介  Mean shift 中文译名又叫做，均值漂移。在机">
-<meta name="keywords" content="mean-shrift,机器学习">
+<meta name="keywords" content="mean-shift,机器学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="知行合一Mean-shift算法理论篇">
 <meta property="og:url" content="http://yoursite.com/2017/06/25/知行合一Mean-shrift算法理论篇/index.html">
@@ -105,7 +105,7 @@
 <meta property="og:image" content="http://yoursite.com/images/rtpdf.png">
 <meta property="og:image" content="http://yoursite.com/images/pa.png">
 <meta property="og:image" content="http://yoursite.com/images/khs.png">
-<meta property="og:updated_time" content="2017-06-27T12:50:06.000Z">
+<meta property="og:updated_time" content="2017-06-27T12:58:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="知行合一Mean-shift算法理论篇">
 <meta name="twitter:description" content="总前言  以前在自学机器学习的时候，只是简单的看了一下思路然后就是跟着进行数学推到。至于从算法到实际实现总是存在一些距离。于是就有了自己写这样一系列文章的想法。就是把自己从知识到实践的过程记录下来。思考出一条从理论到实践的路径。这一直都是我非常想研究的。一篇文章或许看不出什么，不过我相信只要坚持这种工作，一定可以得出令人欣喜的答案来的。 简介  Mean shift 中文译名又叫做，均值漂移。在机">
@@ -469,7 +469,7 @@
 <script type="math/tex; mode=display">\nabla f(x) = \frac{2c_{k,d}}{nh_{d+2}} \bigg[ \sum_{i=1}^n g \bigg( \bigg\|\frac{x-x_i}{h}\bigg\|^2\bigg) \bigg] \bigg[ \frac{\sum_{i=1}^n x_i g\big( \big\| \frac{x-x_i}{h}\big\|^2\big)}{\sum_{i=1}^n g\big( \big\| \frac{x-x_i}{h}\big\|^2\big)}-x \bigg]</script><blockquote>
 <p><em>没看出来怎么推导出这部的同学请来看</em> ： 关于这个公式很多的同学表示很头大，但是如果你看完我的介绍，可能会吐血哭出来。这个就是简单的分数运算。首先把$ x-x_i $和后面的一大坨乘开。然后在每一项在除以那一大坨。在外面乘以那一大坨。就是这个公式了。</p>
 </blockquote>
-<p>  关键的地方来了。注意理解这个公式。现在我们令$ G(x) = c_{g,d}g(|x|^2)$,那么这时第二项，就变成了对于新核函数G(x)进行的密度估计。好！停下来思考两秒钟。</p>
+<p>  关键的地方来了。注意理解这个公式。现在我们令$ G(x) = c_{g,d}g(| x |^2)$,那么这时第二项，就变成了对于新核函数G(x)进行的密度估计。好！停下来思考两秒钟。</p>
 <p>  那么这个第二项就是一个大于0的数了。于是乎我们令第三项为$m_h$。仔细思考一下这个$m_h$就是我们要的自适应的步长。</p>
 <script type="math/tex; mode=display">m_h(x) = \frac{\sum_{i=1}^n x_i g\big( \big\| \frac{x-x_i}{h}\big\|^2\big)}{\sum_{i=1}^n g\big( \big\| \frac{x-x_i}{h}\big\|^2\big)}-x</script><p>  思考一下你会发现，由于第一项和第二项是一个数不对这个梯度变为0提供贡献，所以这一项可以提供梯度下降的方向。然后我们看到</p>
 <script type="math/tex; mode=display">\sum_{i=1}^n g\big( \big\| \frac{x-x_i}{h}\big\|^2\big)</script><p>  是核函数密度的估计，以高斯核为例，这里原来的密度估计完全一致。也就是说，这里的$m_h$和原来的密度估计成反比，这样就做到了密度大的地方，他的倒数就小。密度小的地方他的倒数就大。<br>  于是反应到步长上就是，离模点（极值点）远的地方，步长大，近的地方步长小。  </p>
@@ -523,7 +523,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/mean-shrift/" rel="tag"># mean-shrift</a>
+            <a href="/tags/mean-shift/" rel="tag"># mean-shift</a>
           
             <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
           
