@@ -105,7 +105,7 @@
 <meta property="og:image" content="http://yoursite.com/images/rtpdf.png">
 <meta property="og:image" content="http://yoursite.com/images/pa.png">
 <meta property="og:image" content="http://yoursite.com/images/khs.png">
-<meta property="og:updated_time" content="2017-06-27T03:38:26.000Z">
+<meta property="og:updated_time" content="2017-06-27T06:56:53.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="知行合一Mean-shift算法理论篇">
 <meta name="twitter:description" content="总前言  以前在自学机器学习的时候，只是简单的看了一下思路然后就是跟着进行数学推到。至于从算法到实际实现总是存在一些距离。于是就有了自己写这样一系列文章的想法。就是把自己从知识到实践的过程记录下来。思考出一条从理论到实践的路径。这一直都是我非常想研究的。一篇文章或许看不出什么，不过我相信只要坚持这种工作，一定可以得出令人欣喜的答案来的。 简介  Mean shift 中文译名又叫做，均值漂移。在机">
@@ -430,7 +430,17 @@
 <script type="math/tex; mode=display">\sum_{i=1}^n(x_i-x)</script><p>  是不是突然想哭出来？这个不就是那个各个点到x的向量和吗！</p>
 <script type="math/tex; mode=display">g\big( \big\|\frac{x-x_i}{h}\big\|^2\big)</script><p>  一看就更加的亲切了，这个不就保证了在窗口h内有值在窗口h外对梯度下降的影响是零吗！更加神奇的是你发现里x越近的点在对$ (x_i-x) $这个向量的加权越大（特别在高斯核下,在别的核下可能加权是一样的）。<br>  现在回忆一下前文，我是不是说过的“模仿”一词不准确？对，这里是向量的漂移模仿了，梯度函数求极值点的过程。而且正好描述的是在核函数影响下窗口大小h内点权重一致的情况。<br>  现在我们知道了我们要在$ \nabla f(x) $下求极值点。那就可以使用最传统的方法，求出一个点的梯度，然后按照梯度的方向移动一段距离，再继续求梯度。重复这个过程，一直到求出的梯度趋近于0。现在变知道了这个方向是，在窗口h内的点到x所构成的向量的加权和。看看我们终于回到了最初的定义了！</p>
 <p>  但是向这个方向移动多少呢？步子迈大了容易扯到蛋（移动过了，然后来回摆动永远不收敛），步子迈小了收敛速度太慢了。那么可不可以让在它在离收敛点远的地方，步子大一点，接近了极值点，步子就小一点呢？<br>  答案是：当然可以！</p>
-<h2 id="自适应步长"><a href="#自适应步长" class="headerlink" title="自适应步长"></a>自适应步长</h2><p>  TODO</p>
+<h2 id="自适应步长"><a href="#自适应步长" class="headerlink" title="自适应步长"></a>自适应步长</h2><p>  我们在来回顾一下，这个公式。请始终记住他表示的是密度函数的梯度。下降最快的方向。</p>
+<script type="math/tex; mode=display">\nabla f(x) = \frac{2c_{k,d}}{nh^{d+2}}\sum_{i=1}^n(x_i-x)g\big( \big\|\frac{x-x_i}{h}\big\|^2\big)</script><p>  现在对这个公式进行一定的整理。后得到：</p>
+<script type="math/tex; mode=display">\nabla f(x) = \frac{2c_{k,d}}{nh_{d+2}} \bigg[ \sum_{i=1}^n g \bigg( \bigg\|\frac{x-x_i}{h}\bigg\|^2\bigg) \bigg] \bigg[ \frac{\sum_{i=1}^n x_i g\big( \big\| \frac{x-x_i}{h}\big\|^2\big)}{\sum_{i=1}^n g\big( \big\| \frac{x-x_i}{h}\big\|^2\big)}-x \bigg]</script><blockquote>
+<p><em>没看出来怎么推导出这部的同学请来看</em> ： 关于这个公式很多的同学表示很头大，但是如果你看完我的介绍，可能会吐血哭出来。这个就是简单的分数运算。首先把$ x-x_i $和后面的一大坨乘开。然后在每一项在除以那一大坨。在外面乘以那一大坨。就是这个公式了。</p>
+</blockquote>
+<p>  关键的地方来了。注意理解这个公式。现在我们令$ G(x) = c_{g,d}g(|x|^2)$,那么这时第二项，就变成了对于新核函数G(x)进行的密度估计。好！停下来思考两秒钟。</p>
+<p>  那么这个第二项就是一个大于0的数了。于是乎我们令第三项为$m_h$。仔细思考一下这个$m_h$就是我们要的自适应的步长。</p>
+<script type="math/tex; mode=display">m_h(x) = \frac{\sum_{i=1}^n x_i g\big( \big\| \frac{x-x_i}{h}\big\|^2\big)}{\sum_{i=1}^n g\big( \big\| \frac{x-x_i}{h}\big\|^2\big)}-x</script><p>  思考一下你会发现，由于第一项和第二项是一个数不对这个梯度变为0提供贡献，所以这一项可以提供梯度下降的方向。然后我们看到</p>
+<script type="math/tex; mode=display">\sum_{i=1}^n g\big( \big\| \frac{x-x_i}{h}\big\|^2\big)</script><p>  是核函数密度的估计，以高斯核为例，这里原来的密度估计完全一致。也就是说，这里的$m_h$和原来的密度估计成反比，这样就做到了密度大的地方，他的倒数就小。密度小的地方他的倒数就大。<br>  于是反应到步长上就是，离模点（极值点）远的地方，步长大，近的地方步长小。  </p>
+<script type="math/tex; mode=display">x' = x + m_h(x)</script><p>  这个就是可以使用算法迭代的最终公式。顺便提一句这里m_h就是人们口中的mean shift向量了。</p>
+<h1 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h1><p>  终于完成了。不知道你理解了没有。还有没有读过研究生，或有专业老师的指导，如果有什么错误，欢迎指正。感谢你的阅读。</p>
 <blockquote>
 <p>我将一直的迷惑和无知，我黄油香蕉君，再见。</p>
 </blockquote>
@@ -648,7 +658,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#总前言"><span class="nav-number">1.</span> <span class="nav-text">总前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">2.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#算法思想"><span class="nav-number">3.</span> <span class="nav-text">算法思想</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#二维空间"><span class="nav-number">3.1.</span> <span class="nav-text">二维空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三维空间"><span class="nav-number">3.2.</span> <span class="nav-text">三维空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#推广到高维"><span class="nav-number">3.3.</span> <span class="nav-text">推广到高维</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#公式推导"><span class="nav-number">4.</span> <span class="nav-text">公式推导</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本形式"><span class="nav-number">4.1.</span> <span class="nav-text">基本形式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用核函数进行密度估计"><span class="nav-number">4.2.</span> <span class="nav-text">使用核函数进行密度估计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始纯数学推导吧！"><span class="nav-number">4.3.</span> <span class="nav-text">开始纯数学推导吧！</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自适应步长"><span class="nav-number">4.4.</span> <span class="nav-text">自适应步长</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#总前言"><span class="nav-number">1.</span> <span class="nav-text">总前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">2.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#算法思想"><span class="nav-number">3.</span> <span class="nav-text">算法思想</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#二维空间"><span class="nav-number">3.1.</span> <span class="nav-text">二维空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三维空间"><span class="nav-number">3.2.</span> <span class="nav-text">三维空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#推广到高维"><span class="nav-number">3.3.</span> <span class="nav-text">推广到高维</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#公式推导"><span class="nav-number">4.</span> <span class="nav-text">公式推导</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本形式"><span class="nav-number">4.1.</span> <span class="nav-text">基本形式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用核函数进行密度估计"><span class="nav-number">4.2.</span> <span class="nav-text">使用核函数进行密度估计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始纯数学推导吧！"><span class="nav-number">4.3.</span> <span class="nav-text">开始纯数学推导吧！</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自适应步长"><span class="nav-number">4.4.</span> <span class="nav-text">自适应步长</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#写在最后"><span class="nav-number">5.</span> <span class="nav-text">写在最后</span></a></li></ol></div>
             
 
           </div>
