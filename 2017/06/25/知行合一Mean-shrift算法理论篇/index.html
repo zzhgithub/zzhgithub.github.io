@@ -105,7 +105,7 @@
 <meta property="og:image" content="http://yoursite.com/images/rtpdf.png">
 <meta property="og:image" content="http://yoursite.com/images/pa.png">
 <meta property="og:image" content="http://yoursite.com/images/khs.png">
-<meta property="og:updated_time" content="2017-06-27T12:58:19.000Z">
+<meta property="og:updated_time" content="2017-06-28T01:49:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="知行合一Mean-shift算法理论篇">
 <meta name="twitter:description" content="总前言  以前在自学机器学习的时候，只是简单的看了一下思路然后就是跟着进行数学推到。至于从算法到实际实现总是存在一些距离。于是就有了自己写这样一系列文章的想法。就是把自己从知识到实践的过程记录下来。思考出一条从理论到实践的路径。这一直都是我非常想研究的。一篇文章或许看不出什么，不过我相信只要坚持这种工作，一定可以得出令人欣喜的答案来的。 简介  Mean shift 中文译名又叫做，均值漂移。在机">
@@ -429,6 +429,9 @@
 <h1 id="算法思想"><a href="#算法思想" class="headerlink" title="算法思想"></a>算法思想</h1><h2 id="二维空间"><a href="#二维空间" class="headerlink" title="二维空间"></a>二维空间</h2><p>  首先我们先假设一个任务。我们给出平面中的一组点，然后要求你根据这些点的信息，将空间分割开来。怎么分割呢？如果给你一只铅笔，你或许可以把这些点想象成天空中的星星，有的地方很密集，有的地方和稀疏，有的像星云的一部分，有的又像银河之类的一个尾巴。你可能凭感觉画出来了。但是这样的工作可以由机器自动完成吗？<br>  答案是可以，我们选取平面内的任意一个点，看看他周围已经存在的数据对这个点的影响是什么。然后通过这个影响移动这个点。然后在进行迭代，就可以得出这个点收敛的数据了。(收敛的条件当然是这个影响趋近与0)<br>  额。听起来还是很抽象？看看下面的图片你就明白了。<br>  <img src="/images/ms.jpg" alt="meanshirf"><br>  首先先随便选取一个点X，然后画一个半径为h的圆。之后求在这个圆中(圆形内部)的点到X所构成的向量的和。我们称之为平均向量。<br>  之后对X在平均向量上的方向和距离上进行平移。得到新的X。然后重复这个步骤。一直到它附近的点的平均向量为0，或者长度足够小。（小于我们设定的值）<br>  注意,这个时候，如果你是要分割平面，你要想象许多的点，把平面内的位置都覆盖了，你会发现最后所有的点也就只收敛于几种值。如果你要对已经有了的点进行聚类，那么你就只需要把要分类（实际是聚类）的点都进行一次计算就可以了。（这里有个小技巧，理论上在计算过程中所有经过的点，和包裹到的周围的点都可以认为是一个类别里的，这样在一些时候可以大大减少计算的量。）  </p>
 <h2 id="三维空间"><a href="#三维空间" class="headerlink" title="三维空间"></a>三维空间</h2><p>  如果二维空间内的点的移动方法和规律你已经理解了，那么不难推广到三维的空间中。这里只要把原来用于圈住周围点的圆，变为球体就可以了。下面我给你看一张在mean shirt论文里面在三维空间进行聚类的结果图。<br>  <img src="/images/ms3d.png" alt="meanshirf3D"><br>  怎样很神奇吧，这些3维空间中的点被分为了三类。现在闭上眼睛好好想象一下，这些点不断的画球移动然后停在一个点的过程。</p>
 <h2 id="推广到高维"><a href="#推广到高维" class="headerlink" title="推广到高维"></a>推广到高维</h2><p>  和刚才过程一致。现在把球体，改成超球体即可。什么是超球体呢？你可以理解为无论从那个维度对他进行投影都是一个圆就可以了。不用强迫自己完全想象出来。</p>
+<blockquote>
+<p>这里的描述不过准确，应该是说投影到任意的二维空间中是一个圆。投影到任意三维空间是球体。感谢。@申波同学的帮助。</p>
+</blockquote>
 <h1 id="公式推导"><a href="#公式推导" class="headerlink" title="公式推导"></a>公式推导</h1><p>  或许你觉得低维度下，很好思考和实现，但是数学家们，或者玩算法的人希望自己的算法是万能的。于是我们要借助数学工具对算法进行推导，和重新表述。不要害怕!这个和我刚才说的，并没有多大的不同。现在你要做的就是理解，每一个步骤，然后在不懂的地方停下来思考一下就行了。  </p>
 <h2 id="基本形式"><a href="#基本形式" class="headerlink" title="基本形式"></a>基本形式</h2><p>  在给定的 $ d $ 维的空间 $ R^{d} $ 中有 $ n $ 个样本点。这样不难得出在空间中任意一个点的Mean shrift向量如下：</p>
 <script type="math/tex; mode=display">M_h = \frac{1}{K} \sum_{x_i \in S_k} (x_i - x)</script><p>  简单的解释一下这个公式。$ K $是指的是$ x $有$ K $个临近点。其中超球体$ S_k $的半径为$ h $,它的公式表示如下:</p>
@@ -652,7 +655,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -674,7 +677,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
