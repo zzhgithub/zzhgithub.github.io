@@ -102,7 +102,7 @@
 <meta property="og:description" content="前言（阅读指南）  我准备写一个轻松的PCA算法的教程。传说中的零基础教程，也就是不用带特别多脑子去阅读的教程。不过有很好线性代数基础的同学可能会觉得我有点啰嗦。那些超级简单的内容请跳过去就好啦。 问题出发：如何给数据降维  现在我们都知道，PCA（主要成分分析）是一种可以把高纬度的数据降低到低纬的一种降维算法。他的英文全称Principal components analysis。当然你肯定不在">
 <meta property="og:image" content="http://yoursite.com/images/pca1.png">
 <meta property="og:image" content="http://yoursite.com/images/pca2.png">
-<meta property="og:updated_time" content="2017-07-01T14:30:23.000Z">
+<meta property="og:updated_time" content="2017-07-01T14:32:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从零开始的PCA（主要成分分析）教程">
 <meta name="twitter:description" content="前言（阅读指南）  我准备写一个轻松的PCA算法的教程。传说中的零基础教程，也就是不用带特别多脑子去阅读的教程。不过有很好线性代数基础的同学可能会觉得我有点啰嗦。那些超级简单的内容请跳过去就好啦。 问题出发：如何给数据降维  现在我们都知道，PCA（主要成分分析）是一种可以把高纬度的数据降低到低纬的一种降维算法。他的英文全称Principal components analysis。当然你肯定不在">
@@ -449,8 +449,8 @@
 <script type="math/tex; mode=display">{x^{(i)}}^T u = u^T x^{(i)}</script><p>  现在仅仅把平方中的一个换成另外一个整理后就可以得到下面的公式了：</p>
 <script type="math/tex; mode=display">\lambda = u^T \bigg( \frac{1}{m}\sum_{i=1}{m} x^{(i)}{x^{(i)}}^T \bigg) u</script><p>  中间那个大括号里面的是不是很熟悉呢？那现在我这样写呢：</p>
 <script type="math/tex; mode=display">cov(X,X) = \frac{1}{m}\sum_{i=1}{m} (x^{(i)}-0)(x^{(i)-0})^T</script><p>  哈哈现在发现了吧，由于我们移动了中心点，E（X）=0；那么原来公式中的大括号中的就是元素数据的本征协方差矩阵。注意这个矩阵是可以求的（而且是方阵）。现在我们令这一大坨为$ \sum $<br>  然后我们等式两边都去左乘u,然后就会得到：</p>
-<script type="math/tex; mode=display">u\lambda = uu^T\sumu</script><p>  由于u是单位方向向量，那么$uu^T=1$于是乎：</p>
-<script type="math/tex; mode=display">u\lambda = \sumu</script><h1 id="石破天惊"><a href="#石破天惊" class="headerlink" title="石破天惊"></a>石破天惊</h1><p>  看到上面的式子，真有一种石破天惊的感觉。我查一定哎呀的叫起来。这个不就是矩阵的特征值和特征向量吗！方差就是特征值，方向矩阵就是特征向量。更加诡异的来了。由于特征值的定义，这里面的特征向量是相互正交的。也就是说：</p>
+<script type="math/tex; mode=display">u\lambda = uu^T\sum u</script><p>  由于u是单位方向向量，那么$uu^T=1$于是乎：</p>
+<script type="math/tex; mode=display">u\lambda = \sum u</script><h1 id="石破天惊"><a href="#石破天惊" class="headerlink" title="石破天惊"></a>石破天惊</h1><p>  看到上面的式子，真有一种石破天惊的感觉。我查一定哎呀的叫起来。这个不就是矩阵的特征值和特征向量吗！方差就是特征值，方向矩阵就是特征向量。更加诡异的来了。由于特征值的定义，这里面的特征向量是相互正交的。也就是说：</p>
 <ul>
 <li><p>我们得到了一组符合条件的正交基 *</p>
 <p>不知道你还有没有印象了。线性代数中正交变换，可以使用过渡矩阵，仅仅做一次矩阵间乘法就可以了。现在为了保证方差最大，我们仅仅要对得到的方差进行排序。然后降到几位就取前几个作为正交基就可以了。</p>
