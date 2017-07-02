@@ -93,17 +93,17 @@
 
 
 
-<meta name="description" content="OverView  最近研究了一下js中一个导出数据到Excel的模块。发现国内竟然没有人翻译。而小学弟学妹们听见导出Excel什么的，更是闻虎色变。其实没那么难。今天香蕉君就翻译一下。原文地址传送门。注意下面都是我这个英语渣的翻译，如果发现了错误欢迎指出。 翻译之前再啰嗦几句  安装node使用npm下载依赖。（真不知道我在担心些什么） 使用 excel-export  在传入到execute">
+<meta name="description" content="OverView  最近研究了一下js中一个导出数据到Excel的模块。发现国内竟然没有人翻译。而小学弟学妹们听见导出Excel什么的，更是闻虎色变。其实没那么难。今天香蕉君就翻译一下。原文地址传送门。注意下面都是我这个英语渣的翻译，如果发现了错误欢迎指出。">
 <meta name="keywords" content="js,npm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用js导出Excel文档">
 <meta property="og:url" content="http://yoursite.com/2017/05/01/使用js导出Excel文档/index.html">
 <meta property="og:site_name" content="黄油香蕉君的主页">
-<meta property="og:description" content="OverView  最近研究了一下js中一个导出数据到Excel的模块。发现国内竟然没有人翻译。而小学弟学妹们听见导出Excel什么的，更是闻虎色变。其实没那么难。今天香蕉君就翻译一下。原文地址传送门。注意下面都是我这个英语渣的翻译，如果发现了错误欢迎指出。 翻译之前再啰嗦几句  安装node使用npm下载依赖。（真不知道我在担心些什么） 使用 excel-export  在传入到execute">
-<meta property="og:updated_time" content="2017-06-24T16:24:10.000Z">
+<meta property="og:description" content="OverView  最近研究了一下js中一个导出数据到Excel的模块。发现国内竟然没有人翻译。而小学弟学妹们听见导出Excel什么的，更是闻虎色变。其实没那么难。今天香蕉君就翻译一下。原文地址传送门。注意下面都是我这个英语渣的翻译，如果发现了错误欢迎指出。">
+<meta property="og:updated_time" content="2017-07-02T09:10:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用js导出Excel文档">
-<meta name="twitter:description" content="OverView  最近研究了一下js中一个导出数据到Excel的模块。发现国内竟然没有人翻译。而小学弟学妹们听见导出Excel什么的，更是闻虎色变。其实没那么难。今天香蕉君就翻译一下。原文地址传送门。注意下面都是我这个英语渣的翻译，如果发现了错误欢迎指出。 翻译之前再啰嗦几句  安装node使用npm下载依赖。（真不知道我在担心些什么） 使用 excel-export  在传入到execute">
+<meta name="twitter:description" content="OverView  最近研究了一下js中一个导出数据到Excel的模块。发现国内竟然没有人翻译。而小学弟学妹们听见导出Excel什么的，更是闻虎色变。其实没那么难。今天香蕉君就翻译一下。原文地址传送门。注意下面都是我这个英语渣的翻译，如果发现了错误欢迎指出。">
 
 
 
@@ -419,6 +419,7 @@
 
       
         <h1 id="OverView"><a href="#OverView" class="headerlink" title="OverView"></a>OverView</h1><p>  最近研究了一下js中一个导出数据到Excel的模块。发现国内竟然没有人翻译。而小学弟学妹们听见导出Excel什么的，更是闻虎色变。其实没那么难。今天香蕉君就翻译一下。原文地址<a href="https://www.npmjs.com/package/excel-export" target="_blank" rel="external">传送门</a>。注意下面都是我这个英语渣的翻译，如果发现了错误欢迎指出。</p>
+<a id="more"></a>
 <h1 id="翻译之前再啰嗦几句"><a href="#翻译之前再啰嗦几句" class="headerlink" title="翻译之前再啰嗦几句"></a>翻译之前再啰嗦几句</h1><p>  安装node使用npm下载依赖。（真不知道我在担心些什么）</p>
 <h1 id="使用-excel-export"><a href="#使用-excel-export" class="headerlink" title="使用 excel-export"></a>使用 excel-export</h1><p>  在传入到<code>execute</code> 方法前设置好‘设置’对象的值。如果你想生成多个“工作表”（译者加：就是Excel下方那个可以切换的地方也有叫做sheet的）,那么建立一个对象数组即可。或者你可以直接传对象就会在一个“工作表中”<br>  使用<code>name</code>属性可以给这个“工作表”命名。<br>  使用<code>clos</code>是一个给纵列定义属性的数组。纵列的定义需要<code>caption</code>名称和<code>type</code>类型两个必须字段，和宽度可选字段。宽度是字符的。[1]属性中还可是定义一个叫做<code>beforeCellWrite</code>的回调函数。这函数有row（行），cell data（单元数据），option object（配置对象）（一会再说）三个形参。返回值就是填充这个单元的真正数据。（译者加：明显这是为了方便预处理）。支持的类型有：string（字符串），date（日期），bool（逻辑）和 number（数值）类型。<br>  使用<code>rows</code>表示要被导出的数据。它是数组的数组。它的每个数组长度要和clos一致。<br>  表格的样式是可选的。然而如果你使用表格样式，那么一个有效的样式xml文件是必须的。一个简单的方法获取这样的文件的方法是‘unzip’[2]一个包含你想要样式的Excel并把样式文件复制出来使用。使用<code>stylesXmlFile</code>属性赋值来使用。了解更多样式请百度。呵呵。<br>  <code>eOpt</code>(配置对象)在刚才说的回调函数中包含行和列的信息。<code>eOpt.styleIndex</code>应该是一个从0开的的所以，表示选择传入样式文件中表示单元格样式的标签。<code>eOpt.cellType</code>默认情况下是和之前定义好的type是保持一致的。然而在特定的应用场景下你也可以修改他。</p>
 <blockquote>

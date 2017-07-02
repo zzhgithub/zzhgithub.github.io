@@ -105,7 +105,7 @@
 <meta property="og:image" content="https://coding.net/u/zzhcoding/p/RedisCnGuide/git/raw/master/img/cc.png">
 <meta property="og:image" content="https://coding.net/u/zzhcoding/p/RedisCnGuide/git/raw/master/img/addkey.png">
 <meta property="og:image" content="https://coding.net/u/zzhcoding/p/RedisCnGuide/git/raw/master/img/handle.png">
-<meta property="og:updated_time" content="2017-06-24T16:25:45.000Z">
+<meta property="og:updated_time" content="2017-07-02T09:20:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redis教程">
 <meta name="twitter:description" content="OverView正文。  小贴士：这里将对正文中的某些词汇进行解释。 扩展： 这里是作者建议的内容，和编程方面的延伸。可以跳过阅读。  示例：这里是帮助读者理解而写的示例。 注意 提示读者需要注意的事项。  理论篇什么是Redis？[1]   REmote DIctionary Server(Redis) 是一个由SalvatoreSanfilippo写的key-value(键值对)存储系统。">
@@ -432,7 +432,7 @@
 <pre><code>示例：这里是帮助读者理解而写的示例。
 </code></pre><p><em>注意</em> 提示读者需要注意的事项。</p>
 <hr>
-<h1 id="理论篇"><a href="#理论篇" class="headerlink" title="理论篇"></a>理论篇</h1><h2 id="什么是Redis？-1"><a href="#什么是Redis？-1" class="headerlink" title="什么是Redis？[1]"></a>什么是Redis？[1]</h2><p>   REmote DIctionary Server(Redis) 是一个由SalvatoreSanfilippo写的key-value(键值对)存储系统。<br>   Redis是一个开源的使用ANSI C语言编写、遵守BSD协议、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库，并提供多种语言的API。[详细见表一]<br>它通常被称为数据结构服务器，因为值（value）可以是字符串(String), 哈希(Map), 列表(list), 集合(sets) 和有序集合(sorted sets)等类型。</p>
+<h1 id="理论篇"><a href="#理论篇" class="headerlink" title="理论篇"></a>理论篇</h1><h2 id="什么是Redis？-1"><a href="#什么是Redis？-1" class="headerlink" title="什么是Redis？[1]"></a>什么是Redis？[1]</h2><p>   REmote DIctionary Server(Redis) 是一个由SalvatoreSanfilippo写的key-value(键值对)存储系统。<br>   Redis是一个开源的使用ANSI C语言编写、遵守BSD协议、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库，并提供多种语言的API。[详细见表一]<br>它通常被称为数据结构服务器，因为值（value）可以是字符串(String), 哈希(Map), 列表(list), 集合(sets) 和有序集合(sorted sets)等类型。<br><a id="more"></a></p>
 <blockquote>
 <p>小贴士：[2]Redis中的数据类型<br>哈希（Map hashmap）：散列表（Hash table，也叫哈希表），是根据键（Key）而直接访问在内存存储位置的数据结构。<br>列表（list）：列表是一种数据项构成的有限序列,即按照一定的线性顺序,排列而成的数据项的集合。（redis中使用双向链表实现）<br>集合（sets）：和中学时学习的概念是相似的。特点是集合中元素不能重复是唯一的。切内部是无序的<br>有序集合（sorted sets）：也是一种集合，但是内部数据是经过排序的。  </p>
 </blockquote>

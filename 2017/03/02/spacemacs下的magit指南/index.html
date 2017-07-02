@@ -93,17 +93,17 @@
 
 
 
-<meta name="description" content="看这个教程之前你要: 成功安装了emacs和使用了spacemacs的配置。 已经了解使用了git  为什么要使用magit？  首先，对于一个用户来说在命令行中使用git时不方便的。我其实没有心情记录那么多的指令。（其实也不多）但是gui又少了一些逼格。那么怎么办呢？又想高效又想直观，又要逼格。于是我们有了magit在这之间的完美权衡。 在spacemacs中配置。  首先magit已经集成在了">
+<meta name="description" content="看这个教程之前你要: 成功安装了emacs和使用了spacemacs的配置。 已经了解使用了git  为什么要使用magit？  首先，对于一个用户来说在命令行中使用git时不方便的。我其实没有心情记录那么多的指令。（其实也不多）但是gui又少了一些逼格。那么怎么办呢？又想高效又想直观，又要逼格。于是我们有了magit在这之间的完美权衡。">
 <meta name="keywords" content="emacs,git,spacemacs">
 <meta property="og:type" content="article">
 <meta property="og:title" content="spacemacs下的magit指南">
 <meta property="og:url" content="http://yoursite.com/2017/03/02/spacemacs下的magit指南/index.html">
 <meta property="og:site_name" content="黄油香蕉君的主页">
-<meta property="og:description" content="看这个教程之前你要: 成功安装了emacs和使用了spacemacs的配置。 已经了解使用了git  为什么要使用magit？  首先，对于一个用户来说在命令行中使用git时不方便的。我其实没有心情记录那么多的指令。（其实也不多）但是gui又少了一些逼格。那么怎么办呢？又想高效又想直观，又要逼格。于是我们有了magit在这之间的完美权衡。 在spacemacs中配置。  首先magit已经集成在了">
-<meta property="og:updated_time" content="2017-06-24T16:25:54.000Z">
+<meta property="og:description" content="看这个教程之前你要: 成功安装了emacs和使用了spacemacs的配置。 已经了解使用了git  为什么要使用magit？  首先，对于一个用户来说在命令行中使用git时不方便的。我其实没有心情记录那么多的指令。（其实也不多）但是gui又少了一些逼格。那么怎么办呢？又想高效又想直观，又要逼格。于是我们有了magit在这之间的完美权衡。">
+<meta property="og:updated_time" content="2017-07-02T09:21:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="spacemacs下的magit指南">
-<meta name="twitter:description" content="看这个教程之前你要: 成功安装了emacs和使用了spacemacs的配置。 已经了解使用了git  为什么要使用magit？  首先，对于一个用户来说在命令行中使用git时不方便的。我其实没有心情记录那么多的指令。（其实也不多）但是gui又少了一些逼格。那么怎么办呢？又想高效又想直观，又要逼格。于是我们有了magit在这之间的完美权衡。 在spacemacs中配置。  首先magit已经集成在了">
+<meta name="twitter:description" content="看这个教程之前你要: 成功安装了emacs和使用了spacemacs的配置。 已经了解使用了git  为什么要使用magit？  首先，对于一个用户来说在命令行中使用git时不方便的。我其实没有心情记录那么多的指令。（其实也不多）但是gui又少了一些逼格。那么怎么办呢？又想高效又想直观，又要逼格。于是我们有了magit在这之间的完美权衡。">
 
 
 
@@ -422,7 +422,7 @@
 <li>成功安装了<code>emacs</code>和使用了<code>spacemacs</code>的配置。</li>
 <li>已经了解使用了git</li>
 </ol>
-<h1 id="为什么要使用magit？"><a href="#为什么要使用magit？" class="headerlink" title="为什么要使用magit？"></a>为什么要使用magit？</h1><p>  首先，对于一个用户来说在命令行中使用git时不方便的。我其实没有心情记录那么多的指令。（其实也不多）但是gui又少了一些逼格。那么怎么办呢？又想高效又想直观，又要逼格。于是我们有了magit在这之间的完美权衡。</p>
+<h1 id="为什么要使用magit？"><a href="#为什么要使用magit？" class="headerlink" title="为什么要使用magit？"></a>为什么要使用magit？</h1><p>  首先，对于一个用户来说在命令行中使用git时不方便的。我其实没有心情记录那么多的指令。（其实也不多）但是gui又少了一些逼格。那么怎么办呢？又想高效又想直观，又要逼格。于是我们有了magit在这之间的完美权衡。<br> <a id="more"></a> </p>
 <h1 id="在spacemacs中配置。"><a href="#在spacemacs中配置。" class="headerlink" title="在spacemacs中配置。"></a>在spacemacs中配置。</h1><p>  首先magit已经集成在了spacemacs的一个layer中。这个layer就叫做<code>git</code>。layer是什么呢？这里你可以理解为一个spacemacs的一个可扩展模块。只要我们安装了它就可以使用新的功能。相信layer的安装你早就已经会了。就是在<code>.spacemacs</code>配置文件中的<code>dotspacemacs-configuration-layers</code>中的列表中加上git在重启就可以了。</p>
 <h1 id="magit的使用"><a href="#magit的使用" class="headerlink" title="magit的使用"></a>magit的使用</h1><blockquote>
 <p><em>注意</em> 这时你可以使用 <code>SPC h SPC</code> 然后git回车就可以看到全部的文档介绍了。根本不用看我下面的教程了。你可以把下面的内容理解成简单中文笔记就可以了。或者你是一个新手要一步步的实验，那么let‘s Go！。</p>

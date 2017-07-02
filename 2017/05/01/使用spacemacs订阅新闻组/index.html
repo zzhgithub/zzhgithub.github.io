@@ -93,18 +93,18 @@
 
 
 
-<meta name="description" content="OverView  本教程针对于spacemacs用户书写。看吧，如果你和我都在emacs阵营，真的会推荐给你很多好玩的东西。接下来你将看到如果配置使用spacemacs中的一个插件来获取新闻组。 开始配置  进入spacemacs然后使用快捷键SPC-h-SPC后键入我们要使用的layer的名字，叫做elfeed。如果你英文足够好，现在可以自己完成一切了。  如果你不会不要担心。很简单只需要两部">
+<meta name="description" content="OverView  本教程针对于spacemacs用户书写。看吧，如果你和我都在emacs阵营，真的会推荐给你很多好玩的东西。接下来你将看到如果配置使用spacemacs中的一个插件来获取新闻组。">
 <meta name="keywords" content="spacemacs">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用spacemacs订阅新闻组">
 <meta property="og:url" content="http://yoursite.com/2017/05/01/使用spacemacs订阅新闻组/index.html">
 <meta property="og:site_name" content="黄油香蕉君的主页">
-<meta property="og:description" content="OverView  本教程针对于spacemacs用户书写。看吧，如果你和我都在emacs阵营，真的会推荐给你很多好玩的东西。接下来你将看到如果配置使用spacemacs中的一个插件来获取新闻组。 开始配置  进入spacemacs然后使用快捷键SPC-h-SPC后键入我们要使用的layer的名字，叫做elfeed。如果你英文足够好，现在可以自己完成一切了。  如果你不会不要担心。很简单只需要两部">
+<meta property="og:description" content="OverView  本教程针对于spacemacs用户书写。看吧，如果你和我都在emacs阵营，真的会推荐给你很多好玩的东西。接下来你将看到如果配置使用spacemacs中的一个插件来获取新闻组。">
 <meta property="og:image" content="http://yoursite.com/images/elfeed.png">
-<meta property="og:updated_time" content="2017-06-24T16:24:21.000Z">
+<meta property="og:updated_time" content="2017-07-02T09:10:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用spacemacs订阅新闻组">
-<meta name="twitter:description" content="OverView  本教程针对于spacemacs用户书写。看吧，如果你和我都在emacs阵营，真的会推荐给你很多好玩的东西。接下来你将看到如果配置使用spacemacs中的一个插件来获取新闻组。 开始配置  进入spacemacs然后使用快捷键SPC-h-SPC后键入我们要使用的layer的名字，叫做elfeed。如果你英文足够好，现在可以自己完成一切了。  如果你不会不要担心。很简单只需要两部">
+<meta name="twitter:description" content="OverView  本教程针对于spacemacs用户书写。看吧，如果你和我都在emacs阵营，真的会推荐给你很多好玩的东西。接下来你将看到如果配置使用spacemacs中的一个插件来获取新闻组。">
 <meta name="twitter:image" content="http://yoursite.com/images/elfeed.png">
 
 
@@ -421,6 +421,7 @@
 
       
         <h1 id="OverView"><a href="#OverView" class="headerlink" title="OverView"></a>OverView</h1><p>  本教程针对于spacemacs用户书写。看吧，如果你和我都在emacs阵营，真的会推荐给你很多好玩的东西。接下来你将看到如果配置使用spacemacs中的一个插件来获取新闻组。</p>
+<a id="more"></a>
 <h1 id="开始配置"><a href="#开始配置" class="headerlink" title="开始配置"></a>开始配置</h1><p>  进入<code>spacemacs</code>然后使用快捷键<code>SPC-h-SPC</code>后键入我们要使用的layer的名字，叫做<code>elfeed</code>。如果你英文足够好，现在可以自己完成一切了。<br>  如果你不会不要担心。很简单只需要两部。<br>  1.在你的配置文件的layer中写好配置像是下面这样  </p>
 <figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">(<span class="name">elfeed</span> <span class="symbol">:variables</span></div><div class="line">           elfeed-feeds '((<span class="string">"https://emacs-china.org/latest.rss"</span> emacs)</div><div class="line">                          (<span class="string">"http://zzhcoding.coding.me/atom.xml"</span> zhouzihao)</div><div class="line">                          (<span class="string">"https://www.zhihu.com/rss"</span> 知乎)</div><div class="line">                          (<span class="string">"http://songshuhui.net/feed"</span> 松鼠科学会)</div><div class="line">                          (<span class="string">"http://www.geekpark.net/rss"</span> 极客公园)</div><div class="line">                          (<span class="string">"http://feed.cnblogs.com/blog/u/62514/rss"</span> 个体博客)</div><div class="line">                          ))</div></pre></td></tr></table></figure>
 <p>  2.你可以清楚的看到我都订阅了一些什么。现在重新启动emacs 然后使用快捷键<code>SPC-a-f</code>就可以看到一个什么都没有的界面。使用快捷键<code>gr</code>更新就可以开始的阅读了。<br>  <img src="/images/elfeed.png" alt="结果图"></p>

@@ -93,18 +93,19 @@
 
 
 
-<meta name="description" content="注意 本文为非干货版本。其中有我从开始到最后的几乎全部开发时的思想，和走的一些弯路。如果你和我一样不愿意看这些，请直接看源码。  前言  要提到最初的想法，很疯狂。这要从我使用w3m在命令行里看网页开始。那时我十分喜爱没有css样式的网页。（ps：前端听到会气死的）渐渐我喜欢上了命令行的简单编辑方式。于是我使用emacs。也使用emacs上的eww进行网页浏览。那是本着使用emacs做一切的精神">
+<meta name="description" content="注意 本文为非干货版本。其中有我从开始到最后的几乎全部开发时的思想，和走的一些弯路。如果你和我一样不愿意看这些，请直接看源码。  前言  要提到最初的想法，很疯狂。这要从我使用w3m在命令行里看网页开始。那时我十分喜爱没有css样式的网页。（ps：前端听到会气死的）渐渐我喜欢上了命令行的简单编辑方式。于是我使用emacs。也使用emacs上的eww进行网页浏览。那是本着使用emacs做一切的精">
 <meta name="keywords" content="lisp">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用Common-Lisp写一个png文本转换器">
 <meta property="og:url" content="http://yoursite.com/2017/03/17/使用Common-Lisp写一个png文本转换器/index.html">
 <meta property="og:site_name" content="黄油香蕉君的主页">
-<meta property="og:description" content="注意 本文为非干货版本。其中有我从开始到最后的几乎全部开发时的思想，和走的一些弯路。如果你和我一样不愿意看这些，请直接看源码。  前言  要提到最初的想法，很疯狂。这要从我使用w3m在命令行里看网页开始。那时我十分喜爱没有css样式的网页。（ps：前端听到会气死的）渐渐我喜欢上了命令行的简单编辑方式。于是我使用emacs。也使用emacs上的eww进行网页浏览。那是本着使用emacs做一切的精神">
+<meta property="og:description" content="注意 本文为非干货版本。其中有我从开始到最后的几乎全部开发时的思想，和走的一些弯路。如果你和我一样不愿意看这些，请直接看源码。  前言  要提到最初的想法，很疯狂。这要从我使用w3m在命令行里看网页开始。那时我十分喜爱没有css样式的网页。（ps：前端听到会气死的）渐渐我喜欢上了命令行的简单编辑方式。于是我使用emacs。也使用emacs上的eww进行网页浏览。那是本着使用emacs做一切的精">
 <meta property="og:image" content="http://yoursite.com/images/s41.png">
-<meta property="og:updated_time" content="2017-06-24T16:24:02.000Z">
+<meta property="og:image" content="http://yoursite.com/images/s41.png">
+<meta property="og:updated_time" content="2017-07-02T09:10:15.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Common-Lisp写一个png文本转换器">
-<meta name="twitter:description" content="注意 本文为非干货版本。其中有我从开始到最后的几乎全部开发时的思想，和走的一些弯路。如果你和我一样不愿意看这些，请直接看源码。  前言  要提到最初的想法，很疯狂。这要从我使用w3m在命令行里看网页开始。那时我十分喜爱没有css样式的网页。（ps：前端听到会气死的）渐渐我喜欢上了命令行的简单编辑方式。于是我使用emacs。也使用emacs上的eww进行网页浏览。那是本着使用emacs做一切的精神">
+<meta name="twitter:description" content="注意 本文为非干货版本。其中有我从开始到最后的几乎全部开发时的思想，和走的一些弯路。如果你和我一样不愿意看这些，请直接看源码。  前言  要提到最初的想法，很疯狂。这要从我使用w3m在命令行里看网页开始。那时我十分喜爱没有css样式的网页。（ps：前端听到会气死的）渐渐我喜欢上了命令行的简单编辑方式。于是我使用emacs。也使用emacs上的eww进行网页浏览。那是本着使用emacs做一切的精">
 <meta name="twitter:image" content="http://yoursite.com/images/s41.png">
 
 
@@ -420,10 +421,11 @@
       
 
       
-        <blockquote>
+        <p><img src="/images/s41.png" alt="面码"></p>
+<blockquote>
 <p><em>注意</em> 本文为非干货版本。其中有我从开始到最后的几乎全部开发时的思想，和走的一些弯路。如果你和我一样不愿意看这些，请直接看源码。</p>
 </blockquote>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>  要提到最初的想法，很疯狂。这要从我使用<code>w3m</code>在命令行里看网页开始。那时我十分喜爱没有css样式的网页。（ps：前端听到会气死的）渐渐我喜欢上了命令行的简单编辑方式。于是我使用emacs。也使用emacs上的eww进行网页浏览。那是本着使用emacs做一切的精神，于是思考：可以用emacs看视频吗？这个估计是肯定可以的。但是我不喜欢那种直接使用外部播放器的形式。我想要的是即使使用命令行也可以观看视频的网络服务。<br>  哈哈。估计只有疯子想在如今这个时代做这样的事吧。现在网速也可以了，没有必要把图片压缩成这样的格式，在进行传输。但是仅仅是一个想法，仅仅是好玩。那是我使用的工具是java和c，这两语言当时对我来说一个有太多的细节要去讨论（java）另外一个太底层要做太多的工作。更恐怖的是，我当时对多媒体编码一窍不通，这里不是说我现在就通了，而是我知道了他的可怕，那时纯是出身牛犊不怕虎。<br>  现在我学习Common lisp想着正好做点什么练练手。视频太复杂了。试试把一张图片转化成文本格式吧。</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>  要提到最初的想法，很疯狂。这要从我使用<code>w3m</code>在命令行里看网页开始。那时我十分喜爱没有css样式的网页。（ps：前端听到会气死的）渐渐我喜欢上了命令行的简单编辑方式。于是我使用emacs。也使用emacs上的eww进行网页浏览。那是本着使用emacs做一切的精神，于是思考：可以用emacs看视频吗？这个估计是肯定可以的。但是我不喜欢那种直接使用外部播放器的形式。我想要的是即使使用命令行也可以观看视频的网络服务。<br>  哈哈。估计只有疯子想在如今这个时代做这样的事吧。现在网速也可以了，没有必要把图片压缩成这样的格式，在进行传输。但是仅仅是一个想法，仅仅是好玩。那是我使用的工具是java和c，这两语言当时对我来说一个有太多的细节要去讨论（java）另外一个太底层要做太多的工作。更恐怖的是，我当时对多媒体编码一窍不通，这里不是说我现在就通了，而是我知道了他的可怕，那时纯是出身牛犊不怕虎。<br>  现在我学习Common lisp想着正好做点什么练练手。视频太复杂了。试试把一张图片转化成文本格式吧。<br><a id="more"></a></p>
 <h1 id="我的环境和工具"><a href="#我的环境和工具" class="headerlink" title="我的环境和工具"></a>我的环境和工具</h1><ul>
 <li>MacBook Pro </li>
 <li>emacs 使用的是spacemacs的配置 添加了common lisp的layer</li>

@@ -93,17 +93,17 @@
 
 
 
-<meta name="description" content="前言  我们知道在emacs实现中使用的lisp和c语言。这个设计使得emacs成了一件不折不扣的艺术品。这样的好处是将两种语言的长处发挥到了极致。当然其中还有一些设计哲学要去学习。不过我们先看看在common lisp中调用到c语言的函数。 我的环境 MacOS SLIME （emacs + spacemacs 配置） mac自带的gcc quicklisp   以上这些的教程都可以在我之前的博">
+<meta name="description" content="前言  我们知道在emacs实现中使用的lisp和c语言。这个设计使得emacs成了一件不折不扣的艺术品。这样的好处是将两种语言的长处发挥到了极致。当然其中还有一些设计哲学要去学习。不过我们先看看在common lisp中调用到c语言的函数。">
 <meta name="keywords" content="lisp,cffi">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用Common-Lisp调用C语言函数">
 <meta property="og:url" content="http://yoursite.com/2017/03/24/使用Common-Lisp调用C语言函数/index.html">
 <meta property="og:site_name" content="黄油香蕉君的主页">
-<meta property="og:description" content="前言  我们知道在emacs实现中使用的lisp和c语言。这个设计使得emacs成了一件不折不扣的艺术品。这样的好处是将两种语言的长处发挥到了极致。当然其中还有一些设计哲学要去学习。不过我们先看看在common lisp中调用到c语言的函数。 我的环境 MacOS SLIME （emacs + spacemacs 配置） mac自带的gcc quicklisp   以上这些的教程都可以在我之前的博">
-<meta property="og:updated_time" content="2017-06-24T16:18:38.000Z">
+<meta property="og:description" content="前言  我们知道在emacs实现中使用的lisp和c语言。这个设计使得emacs成了一件不折不扣的艺术品。这样的好处是将两种语言的长处发挥到了极致。当然其中还有一些设计哲学要去学习。不过我们先看看在common lisp中调用到c语言的函数。">
+<meta property="og:updated_time" content="2017-07-02T09:09:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Common-Lisp调用C语言函数">
-<meta name="twitter:description" content="前言  我们知道在emacs实现中使用的lisp和c语言。这个设计使得emacs成了一件不折不扣的艺术品。这样的好处是将两种语言的长处发挥到了极致。当然其中还有一些设计哲学要去学习。不过我们先看看在common lisp中调用到c语言的函数。 我的环境 MacOS SLIME （emacs + spacemacs 配置） mac自带的gcc quicklisp   以上这些的教程都可以在我之前的博">
+<meta name="twitter:description" content="前言  我们知道在emacs实现中使用的lisp和c语言。这个设计使得emacs成了一件不折不扣的艺术品。这样的好处是将两种语言的长处发挥到了极致。当然其中还有一些设计哲学要去学习。不过我们先看看在common lisp中调用到c语言的函数。">
 
 
 
@@ -418,7 +418,7 @@
       
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>  我们知道在emacs实现中使用的lisp和c语言。这个设计使得emacs成了一件不折不扣的艺术品。这样的好处是将两种语言的长处发挥到了极致。当然其中还有一些设计哲学要去学习。不过我们先看看在common lisp中调用到c语言的函数。</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>  我们知道在emacs实现中使用的lisp和c语言。这个设计使得emacs成了一件不折不扣的艺术品。这样的好处是将两种语言的长处发挥到了极致。当然其中还有一些设计哲学要去学习。不过我们先看看在common lisp中调用到c语言的函数。<br><a id="more"></a>  </p>
 <h1 id="我的环境"><a href="#我的环境" class="headerlink" title="我的环境"></a>我的环境</h1><ul>
 <li>MacOS</li>
 <li>SLIME （emacs + spacemacs 配置）</li>

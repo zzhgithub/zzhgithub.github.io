@@ -100,7 +100,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/05/02/node黑魔法使用js打开终端并运行命令/index.html">
 <meta property="og:site_name" content="黄油香蕉君的主页">
 <meta property="og:description" content="OverView  在编程的魔法世界中，有许多的黑魔法，其中最黑的几种肯定有js了。特别是接触到了nodejs和npm后。顿时觉得无所不能，拥有了触及全世界的力量。在这篇文章中，你将看到使用js打开一个终端并且让他运行指定的命令的方法。 预备知识node 运行终端命令  使用一个叫做shelljs的命令就可以了。送上传送门。请翻墙！ OSX 中的open命令  使用这个命令可以打开一个应用。比如打">
-<meta property="og:updated_time" content="2017-06-24T16:25:35.000Z">
+<meta property="og:updated_time" content="2017-07-02T09:19:53.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="node黑魔法使用js打开终端并运行命令">
 <meta name="twitter:description" content="OverView  在编程的魔法世界中，有许多的黑魔法，其中最黑的几种肯定有js了。特别是接触到了nodejs和npm后。顿时觉得无所不能，拥有了触及全世界的力量。在这篇文章中，你将看到使用js打开一个终端并且让他运行指定的命令的方法。 预备知识node 运行终端命令  使用一个叫做shelljs的命令就可以了。送上传送门。请翻墙！ OSX 中的open命令  使用这个命令可以打开一个应用。比如打">
@@ -422,9 +422,9 @@
 <h1 id="预备知识"><a href="#预备知识" class="headerlink" title="预备知识"></a>预备知识</h1><h2 id="node-运行终端命令"><a href="#node-运行终端命令" class="headerlink" title="node 运行终端命令"></a>node 运行终端命令</h2><p>  使用一个叫做<code>shelljs</code>的命令就可以了。送上<a href="https://www.npmjs.com/package/shelljs" target="_blank" rel="external">传送门</a>。请翻墙！</p>
 <h2 id="OSX-中的open命令"><a href="#OSX-中的open命令" class="headerlink" title="OSX 中的open命令"></a>OSX 中的open命令</h2><p>  使用这个命令可以打开一个应用。比如打开一个叫做Abc的应用。（没有这个应用的）使用<code>$ open -a Abc</code>就可以了。</p>
 <blockquote>
-<p>通过这些预备知识几乎就可完成这项任务了。你想到了吗。不看下面。自己试试 :)</p>
-</blockquote>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>  在js中有一些可以运行命令行的方法。但是似乎没有那种可以打开一个终端，然后让打开的终端运行一组命令的方法。我有向别人请教，如何实现。不过反馈中更多是建议我写一个假终端，这个思路也很酷。不过我不相信有js做不到的事。</p>
+<p>通过这些预备知识几乎就可完成这项任务了。你想到了吗。不看下面。自己试试 :)<br><a id="more"></a></p>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1></blockquote>
+<p>  在js中有一些可以运行命令行的方法。但是似乎没有那种可以打开一个终端，然后让打开的终端运行一组命令的方法。我有向别人请教，如何实现。不过反馈中更多是建议我写一个假终端，这个思路也很酷。不过我不相信有js做不到的事。</p>
 <ul>
 <li>使用shelljs运行生成一个shell命令行文件使用 <code>echo &gt;&gt; run.sh \#/bin/sh code</code>就可以。</li>
 <li>同样使用shelljs 运行一个命令 给刚才的文件加上运行权限</li>
