@@ -1,0 +1,1456 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="chrome," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="声明 注意这是一个人向教程，内部全部知识资源来自网络。大部分内容来自前端大全，希望学习前端的同学去关注公众号去获取更多内容。本人仅仅对其中常用内容进行整理增删，所以请不要捐助这篇文章。在这里再次感谢原作者。谢谢。  OverView（总览）本文将介绍chrome浏览器的简单调试模式下的一些常用操作。（火狐下面的这些功能是类似，不过是位置不同。火狐需要插件支持，我将会提供插件的下载安装的教程） 我打">
+<meta name="keywords" content="chrome">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浏览器调试工具教程">
+<meta property="og:url" content="http://yoursite.com/2017/07/04/浏览器调试工具教程/index.html">
+<meta property="og:site_name" content="黄油香蕉君的主页">
+<meta property="og:description" content="声明 注意这是一个人向教程，内部全部知识资源来自网络。大部分内容来自前端大全，希望学习前端的同学去关注公众号去获取更多内容。本人仅仅对其中常用内容进行整理增删，所以请不要捐助这篇文章。在这里再次感谢原作者。谢谢。  OverView（总览）本文将介绍chrome浏览器的简单调试模式下的一些常用操作。（火狐下面的这些功能是类似，不过是位置不同。火狐需要插件支持，我将会提供插件的下载安装的教程） 我打">
+<meta property="og:image" content="http://yoursite.com/images/chrometools.png">
+<meta property="og:image" content="http://yoursite.com/images/dom1.png">
+<meta property="og:image" content="http://yoursite.com/images/dom2.png">
+<meta property="og:image" content="http://yoursite.com/images/dom3.png">
+<meta property="og:image" content="http://yoursite.com/images/dom4.png">
+<meta property="og:image" content="http://yoursite.com/images/dom5.png">
+<meta property="og:image" content="http://yoursite.com/images/dom6.png">
+<meta property="og:image" content="http://yoursite.com/images/dom7.png">
+<meta property="og:image" content="http://yoursite.com/images/dom8.png">
+<meta property="og:image" content="http://yoursite.com/images/dom10.png">
+<meta property="og:image" content="http://yoursite.com/images/dom11.png">
+<meta property="og:image" content="http://yoursite.com/images/dom12.png">
+<meta property="og:image" content="http://yoursite.com/images/dom13.png">
+<meta property="og:image" content="http://yoursite.com/images/dom14.png">
+<meta property="og:image" content="http://yoursite.com/images/dom15.png">
+<meta property="og:image" content="http://yoursite.com/images/dom16.png">
+<meta property="og:updated_time" content="2017-07-04T09:19:15.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="浏览器调试工具教程">
+<meta name="twitter:description" content="声明 注意这是一个人向教程，内部全部知识资源来自网络。大部分内容来自前端大全，希望学习前端的同学去关注公众号去获取更多内容。本人仅仅对其中常用内容进行整理增删，所以请不要捐助这篇文章。在这里再次感谢原作者。谢谢。  OverView（总览）本文将介绍chrome浏览器的简单调试模式下的一些常用操作。（火狐下面的这些功能是类似，不过是位置不同。火狐需要插件支持，我将会提供插件的下载安装的教程） 我打">
+<meta name="twitter:image" content="http://yoursite.com/images/chrometools.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/07/04/浏览器调试工具教程/"/>
+
+
+
+
+
+  <title>浏览器调试工具教程 | 黄油香蕉君的主页</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">黄油香蕉君的主页</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">矫情的程序员</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/04/浏览器调试工具教程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="周子豪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/tx.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黄油香蕉君的主页">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">浏览器调试工具教程</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-04T14:21:57+08:00">
+                2017-07-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/07/04/浏览器调试工具教程/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/07/04/浏览器调试工具教程/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/07/04/浏览器调试工具教程/" class="leancloud_visitors" data-flag-title="浏览器调试工具教程">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="声明"><a href="#声明" class="headerlink" title="声明"></a><em>声明</em></h1><blockquote>
+<p>注意这是一个人向教程，内部全部知识资源来自网络。大部分内容来自<code>前端大全</code>，希望学习前端的同学去关注公众号去获取更多内容。本人仅仅对其中常用内容进行整理增删，所以请不要捐助这篇文章。在这里再次感谢原作者。谢谢。</p>
+</blockquote>
+<h1 id="OverView（总览）"><a href="#OverView（总览）" class="headerlink" title="OverView（总览）"></a>OverView（总览）</h1><p>本文将介绍chrome浏览器的简单调试模式下的一些常用操作。（火狐下面的这些功能是类似，不过是位置不同。火狐需要插件支持，我将会提供插件的下载安装的教程）</p>
+<p>我打开chrome或者火狐后按下F12后。就可以看到下面的画面，这就是chrome开发者工具面板。<br><img src="/images/chrometools.png" alt="chrometools"><br><a id="more"></a><br>这些按钮的功能如下：</p>
+<ul>
+<li><code>Elements</code>:查找网页源代码HTML中的任一元素,手动修改任一元素的属性和样式且能实时在浏览器里面得到反馈。</li>
+<li><code>Console</code>:记录开发者开发过程中的日志信息，且可以作为与JS进行交互的命令行Shell。</li>
+<li><code>Sources</code>:断点调试JS。</li>
+<li><code>Network</code>:从发起网页页面请求Request后分析HTTP请求后得到的各个请求资源信息（包括状态、资源类型、大小、所用时间等），可以根据这个进行网络性能优化。</li>
+<li><code>Timeline</code>/<code>Performance</code>:记录并分析在网站的生命周期内所发生的各类事件，以此可以提高网页的运行时间的性能。</li>
+<li><code>Profiles</code>/<code>Memory</code>:如果你需要Timeline所能提供的更多信息时，可以尝试一下Profiles,比如记录JS CPU执行时间细节、显示JS对象和相关的DOM节点的内存消耗、记录内存的分配细节。</li>
+<li><code>Application</code>:记录网站加载的所有资源信息，包括存储数据（Local Storage、Session Storage、IndexedDB、Web SQL、Cookies）、缓存数据、字体、图片、脚本、样式表等。</li>
+<li><code>Security</code>:判断当前网页是否安全。</li>
+<li><code>Audits</code>:对当前网页进行网络利用情况、网页性能方面的诊断，并给出一些优化建议。比如列出所有没有用到的CSS文件等。</li>
+</ul>
+<blockquote>
+<p>在chrome的不同版本中<code>Timeline</code>/<code>Performance</code>和<code>Profiles</code>/<code>Memory</code>是两组不同的命名，其实功能和内容是一样的。</p>
+</blockquote>
+<h1 id="Elements"><a href="#Elements" class="headerlink" title="Elements"></a>Elements</h1><h2 id="实时编辑DOM节点和CSS样式"><a href="#实时编辑DOM节点和CSS样式" class="headerlink" title="实时编辑DOM节点和CSS样式"></a>实时编辑DOM节点和CSS样式</h2><ol>
+<li>你可以这里修改DOM中html标签的熟悉并且马上生效，比如你可以需改这篇博客中作者的名字。如同所示:<br><img src="/images/dom1.png" alt="dom1"><blockquote>
+<p><code>小窍门</code>： 选中作者名字，可以使用调试工具左上角的小箭头选中，或者在elements中使用<code>Control + f</code>进行搜索</p>
+</blockquote>
+</li>
+<li>同样的道理这里可以修改其中的css来改变当前网页的样式，他们也会马上生效。你可以向下图一样试试修改当前这篇博客的背景颜色。我把它变成很好看的蓝色，你当然也可以把它变成黄色！<br><img src="/images/dom2.png" alt="dom2"></li>
+<li>点击右侧Computed面板，可以编辑左侧选中的盒子模型参数，所有的值都是可以修改的;点击不同的位置(top、bottom、left、right) 就可以修改元素的padding、border、margin属性值。(这个过于前端了不详细介绍了)<blockquote>
+<p>名称解释：DOM。因为全称是：Document Object Model。文件对象模型。这里的DOM常常指的是HTML DOM。HTML DOM 定义了所有 HTML 元素的对象和属性，以及访问它们的方法（接口）。换言之，HTML DOM 是关于如何获取、修改、添加或删除 HTML 元素的标准。这里你可以理解就是html元素在JavaScript中的一种标准表示方式，当你和前端沟通是使用dom这个词是很专业的。它的读音类似“道姆”。</p>
+<h2 id="查看本地css修改历史"><a href="#查看本地css修改历史" class="headerlink" title="查看本地css修改历史"></a>查看本地css修改历史</h2><p>这个如果不是前端开发很少用到了，因为你关闭刚才的网页，你调试好的样式将都不符存在了。那怎么知道你修改的历史呢？现在就可以使用这个功能。</p>
+</blockquote>
+</li>
+<li>点击Styles面板中修改过属性的文件名，会跳转到Source面板<br><img src="/images/dom3.png" alt="dom3"></li>
+<li>在文件位置右击选择Local modifications,可以查看本地的所有修改记录</li>
+<li>点击指定的时间点可以看到粉红背景的删除内容和绿色背景的添加内容<br><img src="/images/dom4.png" alt="dom4"></li>
+</ol>
+<h1 id="Console"><a href="#Console" class="headerlink" title="Console"></a>Console</h1><p>console是chrom的命令行工具，可以打印在客户端js的打印指令。其实在我们使用elements的时候，这个命令行面板就在下方了。常用的打印指令有:</p>
+<ul>
+<li><code>console.log</code> 显示一般的基本日志信息，当要显示的基本日志太多时可以使用<code>console.group</code>将相关的日志进行分组</li>
+<li><code>console.warn</code> 显示带有黄色小图标的警告信息</li>
+<li><code>console.error</code> 显示带有红色小图标的红色的错误信息<br>你可以试验一下，看看打印出来的内容：<br><img src="/images/dom5.png" alt="dom5"><br>这里在正常的测试中很少用到，除非你排查非常依赖前端环境的项目，比如Vuejs，react或者H5的动画或者游戏。这涉及到的调试技巧很复杂，所以我建议的做法是引导前端打印必要的值方便测和联调。</li>
+</ul>
+<h1 id="Sources"><a href="#Sources" class="headerlink" title="Sources"></a>Sources</h1><p>这个可以看到你网站的源代码，更重要的是，你可以打断点调试代码。我们透过一个例子说明一下。这个博客中的图片都是在点击后可以放大的。这就要走一段js代码，你可以先自己试试，看看能不能找到他。</p>
+<p>如果你没有找到可以继续，看下面的教程了。首先你可以看到我们要打开这个网站所有需要加载的文件（其实就是必须下载的文件）。当然如果你特别了解前端的代码的话就可以瞬间找到，你需要调试的地方，但是这样往往是不行的。于是乎我们可以使用事件断点，那什么是事件断点呢？</p>
+<p>在js中为浏览器元素预定义了一些经典的事件，当发生事件的时候浏览器就会进入一种等待状态，这样一个一个断点的打就可以再知道程序走了那个分支。好了，现在先这里打上断点，然后鼠标点击博客里任意的图片。如图：<br><img src="/images/dom6.png" alt="dom6"><br>这个时候你会发现，怎么跑到了一个奇怪的文件里，不但文件只有一行而且，名字也很迷。哈哈，这个时候你就不要担心了，这说明，让图片放大显示是写在很经典的公共组件里面，而这样的组件为了考虑加载的速度进行了压缩，嗯。所以程序跑到了这里，往往错误都不是出现在这里的。现在观察下面的这张图。正常的情况下你可以在正常代码里打断点，然后取消事件断句继续调试。<br><img src="/images/dom7.png" alt="dom7"><br>这里左边的三角会走一步，右边的三角会走到下一个断点。</p>
+<h1 id="NetWork"><a href="#NetWork" class="headerlink" title="NetWork"></a>NetWork</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>Network面板可以记录页面上的网络请求的详情信息，从发起网页页面请求Request后分析HTTP请求后得到的各个请求资源信息（包括状态、资源类型、大小、所用时间、Request和Response等），可以根据这个进行网络性能优化。</p>
+<p>我把Google官方网站上介绍Network面板的图贴到这里，该面板主要包括5大块窗格(Pane)：</p>
+<ul>
+<li>Controls 控制Network的外观和功能。</li>
+<li>Filters 控制Requests Table具体显示哪些内容。</li>
+<li>Overview 显示获取到资源的时间轴信息。</li>
+<li>Requests Table 按资源获取的前后顺序显示所有获取到的资源信息，点击资源名可以查看该资源的详细信息。</li>
+<li>Summary 显示总的请求数、数据传输量、加载时间信息。<br><img src="/images/dom8.png" alt="dom8"></li>
+</ul>
+<h2 id="请求列表各字段意义"><a href="#请求列表各字段意义" class="headerlink" title="请求列表各字段意义"></a>请求列表各字段意义</h2><ul>
+<li>Name 资源名称，点击名称可以查看资源的详情情况，包括Headers、Preview、Response、Cookies、Timing。</li>
+<li>Status HTTP状态码。</li>
+<li>Type 请求的资源MIME类型。</li>
+<li>Initiator 标记请求是由哪个对象或进程发起的（请求源）。</li>
+<li>Parser： 请求由Chrome的HTML解析器时发起的。</li>
+<li>Redirect：请求是由HTTP页面重定向发起的。</li>
+<li>Script：请求是由Script脚本发起的。</li>
+<li>Other：请求是由其他进程发起的，比如用户点击一个链接跳转到另一个页面或者在地址栏输入URL地址。</li>
+<li>Size 从服务器下载的文件和请求的资源大小。如果是从缓存中取得的资源则该列会显示(from cache)</li>
+<li>Time 请求或下载的时间，从发起Request到获取到Response所用的总时间。</li>
+<li>Timeline 显示所有网络请求的可视化瀑布流(时间状态轴)，点击时间轴，可以查看该请求的详细信息，点击列头则可以根据指定的字段可以排序。</li>
+</ul>
+<h2 id="查看DOMContentLoaded和load事件信息"><a href="#查看DOMContentLoaded和load事件信息" class="headerlink" title="查看DOMContentLoaded和load事件信息"></a>查看DOMContentLoaded和load事件信息</h2><p>DOMContentLoaded和load这两个事件会高亮显示。</p>
+<blockquote>
+<p>DOMContentLoaded事件会在页面上DOM完全加载并解析完毕之后触发，不会等待CSS、图片、子框架加载完成。 load事件会在页面上所有DOM、CSS、JS、图片完全加载完毕之后触发。</p>
+</blockquote>
+<p>DOMContentLoaded事件在Overview上用一条蓝色竖线标记，并且在Summary以蓝色文字显示确切的时间。</p>
+<p>load事件同样会在Overview和Requests Table上用一条红色竖线标记，在Summary也会以红色文字显示确切的时间。<br><img src="/images/dom10.png" alt="dom10"></p>
+<h2 id="查看具体资源的详情"><a href="#查看具体资源的详情" class="headerlink" title="查看具体资源的详情"></a>查看具体资源的详情</h2><p>通过点击某个资源的Name可以查看该资源的详细信息，根据选择的资源类型显示的信息也不太一样，可能包括如下Tab信息：</p>
+<ul>
+<li><code>Headers</code> 该资源的HTTP头信息。</li>
+<li><code>Preview</code> 根据你所选择的资源类型（JSON、图片、文本）显示相应的预览。</li>
+<li><code>Response</code> 显示HTTP的Response信息。</li>
+<li><code>Cookies</code> 显示资源HTTP的Request和Response过程中的Cookies信息。</li>
+<li><code>Timing</code> 显示资源在整个请求生命周期过程中各部分花费的时间。<br>针对上面4个Tab进行详细讲解一下各个功能：</li>
+</ul>
+<h3 id="查看资源HTTP头信息"><a href="#查看资源HTTP头信息" class="headerlink" title="查看资源HTTP头信息"></a>查看资源HTTP头信息</h3><p>在Headers标签里面可以看到HTTP Request URL、HTTP Method、Status Code、Remote Address等基本信息和详细的Response Headers 、Request Headers以及Query String Parameters或者Form Data等信息。<br><img src="/images/dom11.png" alt="dom11"></p>
+<blockquote>
+<p>关于请求头部有很多的详细的介绍，请见<a href="http://blog.csdn.net/mm2223/article/details/8089645/" target="_blank" rel="external">传送门</a>。关于这个我可能找一个时间单独写一份文档。（可能吧！）</p>
+</blockquote>
+<h3 id="查看资源预览信息"><a href="#查看资源预览信息" class="headerlink" title="查看资源预览信息"></a>查看资源预览信息</h3><p>在Preview标签里面可根据选择的资源类型（JSON、图片、文本、JS、CSS）显示相应的预览信息。下图显示的是当选择的资源是JSON格式时的预览信息。</p>
+<p><img src="/images/dom12.png" alt="dom12"></p>
+<h3 id="查看资源HTTP的Response信息"><a href="#查看资源HTTP的Response信息" class="headerlink" title="查看资源HTTP的Response信息"></a>查看资源HTTP的Response信息</h3><p>在Response标签里面可根据选择的资源类型（JSON、图片、文本、JS、CSS）显示相应资源的Response响应内容。下图显示的是当选择的资源是CSS格式时的响应内容。<br><img src="/images/dom13.png" alt="dom13"></p>
+<h3 id="查看资源Cookies信息"><a href="#查看资源Cookies信息" class="headerlink" title="查看资源Cookies信息"></a>查看资源Cookies信息</h3><p>如果选择的资源在Request和Response过程中存在Cookies信息，则Cookies标签会自动显示出来，在里面可以查看所有的Cookies信息。</p>
+<p><img src="/images/dom14.png" alt="dom14"></p>
+<h3 id="分析资源在请求的生命周期内各部分时间花费信息"><a href="#分析资源在请求的生命周期内各部分时间花费信息" class="headerlink" title="分析资源在请求的生命周期内各部分时间花费信息"></a>分析资源在请求的生命周期内各部分时间花费信息</h3><p>在Timing标签中可以显示资源在整个请求生命周期过程中各部分时间花费信息，可能会涉及到如下过程的时间花费情况：</p>
+<ul>
+<li>Queuing 排队的时间花费。可能由于该请求被渲染引擎认为是优先级比较低的资源（图片）、服务器不可用、超过浏览器的并发请求的最大连接数（Chrome的最大并发连接数为6）.</li>
+<li>Stalled 从HTTP连接建立到请求能够被发出送出去(真正传输数据)之间的时间花费。包含用于处理代理的时间，如果有已经建立好的连接，这个时间还包括等待已建立连接被复用的时间。</li>
+<li>Proxy Negotiation 与代理服务器连接的时间花费。</li>
+<li>DNS Lookup 执行DNS查询的时间。网页上每一个新的域名都要经过一个DNS查询。第二次访问浏览器有缓存的话，则这个时间为0。</li>
+<li>Initial Connection / Connecting 建立连接的时间花费，包含了TCP握手及重试时间。</li>
+<li>SSL 完成SSL握手的时间花费。</li>
+<li>Request sent 发起请求的时间。</li>
+<li>Waiting (Time to first byte (TTFB)) 是最初的网络请求被发起到从服务器接收到第一个字节这段时间，它包含了TCP连接时间，发送HTTP请求时间和获得响应消息第一个字节的时间。</li>
+<li>Content Download 获取Response响应数据的时间花费。<br><img src="/images/dom15.png" alt="dom15"></li>
+</ul>
+<blockquote>
+<p>TTFB这个部分的时间花费如果超过200ms，则应该考虑对网络进行性能优化了，可以参见网络性能优化方案及里面的相关参考文档。</p>
+</blockquote>
+<h1 id="Timeline-Performance"><a href="#Timeline-Performance" class="headerlink" title="Timeline/Performance"></a>Timeline/Performance</h1><h1 id="Profiles-Memory"><a href="#Profiles-Memory" class="headerlink" title="Profiles/Memory"></a>Profiles/Memory</h1><h1 id="Security"><a href="#Security" class="headerlink" title="Security"></a>Security</h1><h1 id="Audits"><a href="#Audits" class="headerlink" title="Audits"></a>Audits</h1><blockquote>
+<p>以上的四个面板使用的机会很少，这里不做详细的介绍，如果需要可以查看后面的源连接，里面都有详细的说明。</p>
+</blockquote>
+<h1 id="Application"><a href="#Application" class="headerlink" title="Application"></a>Application</h1><h2 id="Application面板简介"><a href="#Application面板简介" class="headerlink" title="Application面板简介"></a>Application面板简介</h2><p>该面板主要是记录网站加载的所有资源信息，包括存储数据（Local Storage、Session Storage、IndexedDB、Web SQL、Cookies）、缓存数据、字体、图片、脚本、样式表等。</p>
+<ul>
+<li>Local Storage 如果你在开发过程中使用了local storage来存储键值对(KVPs)，那么你就可以通过Local Storage窗格来检查、新增、修改、删除这个键值对。</li>
+<li>Application Cache 你可以使用Application Cache窗格去查看通过Application Cache API创建的资源。</li>
+<li>Frames 将页面上的资源按frame类别进行组织显示。<h2 id="Frames窗格"><a href="#Frames窗格" class="headerlink" title="Frames窗格"></a>Frames窗格</h2></li>
+</ul>
+<p>在上图中可以查看到顶级的top是一个主文档，在top下面是主文档的Fonts、Images、Scripts、Stylesheets等资源。最后一个就是主文件自身。</p>
+<p>在资源上右击后在弹出菜单选择Reveal in Network Panel，就会跳转到Network面板并定位到该资源的位置。<br><img src="/images/dom16.png" alt="dom16"></p>
+<h1 id="其他连接"><a href="#其他连接" class="headerlink" title="其他连接"></a>其他连接</h1><h2 id="安装火狐的调试工具"><a href="#安装火狐的调试工具" class="headerlink" title="安装火狐的调试工具"></a>安装火狐的调试工具</h2><p>  <a href="http://jingyan.baidu.com/article/72ee561a636865e16138df3b.html" target="_blank" rel="external">传送门</a></p>
+<h2 id="源链接"><a href="#源链接" class="headerlink" title="源链接"></a>源链接</h2><ul>
+<li><a href="http://url.cn/42XNLL2" target="_blank" rel="external">Chrome开发者工具详解(1)</a></li>
+<li><a href="http://url.cn/42U5HXR" target="_blank" rel="external">Chrome开发者工具详解(2)</a></li>
+<li><a href="http://url.cn/4BIY3cs" target="_blank" rel="external">Chrome开发者工具详解(3)</a></li>
+<li><a href="http://url.cn/4BIY3tM" target="_blank" rel="external">Chrome开发者工具详解(4)</a></li>
+<li><a href="https://mp.weixin.qq.com/s/xVp3BkVyncWS6qOGn0XFOw" target="_blank" rel="external">Chrome开发者工具详解(5)</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>给作者买杯咖啡吧。喵~</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat.png" alt="周子豪 WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/chrome/" rel="tag"># chrome</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/01/从零开始的PCA（主要成分分析）教程/" rel="next" title="从零开始的PCA（主要成分分析）教程">
+                <i class="fa fa-chevron-left"></i> 从零开始的PCA（主要成分分析）教程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/tx.jpg"
+               alt="周子豪" />
+          <p class="site-author-name" itemprop="name">周子豪</p>
+           
+              <p class="site-description motion-element" itemprop="description">我将一直迷惑与无知。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://yuyouyou.github.io/" title="余幼幼" target="_blank">余幼幼</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.slegetank.com/" title="slegetan" target="_blank">slegetan</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://yvv11520.lofter.com/" title="yvv11520" target="_blank">yvv11520</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://tech.kaleo.blog/" title="kaleo" target="_blank">kaleo</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#声明"><span class="nav-number">1.</span> <span class="nav-text">声明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#OverView（总览）"><span class="nav-number">2.</span> <span class="nav-text">OverView（总览）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Elements"><span class="nav-number">3.</span> <span class="nav-text">Elements</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#实时编辑DOM节点和CSS样式"><span class="nav-number">3.1.</span> <span class="nav-text">实时编辑DOM节点和CSS样式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看本地css修改历史"><span class="nav-number">3.2.</span> <span class="nav-text">查看本地css修改历史</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Console"><span class="nav-number">4.</span> <span class="nav-text">Console</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Sources"><span class="nav-number">5.</span> <span class="nav-text">Sources</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NetWork"><span class="nav-number">6.</span> <span class="nav-text">NetWork</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">6.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#请求列表各字段意义"><span class="nav-number">6.2.</span> <span class="nav-text">请求列表各字段意义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看DOMContentLoaded和load事件信息"><span class="nav-number">6.3.</span> <span class="nav-text">查看DOMContentLoaded和load事件信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看具体资源的详情"><span class="nav-number">6.4.</span> <span class="nav-text">查看具体资源的详情</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查看资源HTTP头信息"><span class="nav-number">6.4.1.</span> <span class="nav-text">查看资源HTTP头信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看资源预览信息"><span class="nav-number">6.4.2.</span> <span class="nav-text">查看资源预览信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看资源HTTP的Response信息"><span class="nav-number">6.4.3.</span> <span class="nav-text">查看资源HTTP的Response信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看资源Cookies信息"><span class="nav-number">6.4.4.</span> <span class="nav-text">查看资源Cookies信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分析资源在请求的生命周期内各部分时间花费信息"><span class="nav-number">6.4.5.</span> <span class="nav-text">分析资源在请求的生命周期内各部分时间花费信息</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Timeline-Performance"><span class="nav-number">7.</span> <span class="nav-text">Timeline/Performance</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Profiles-Memory"><span class="nav-number">8.</span> <span class="nav-text">Profiles/Memory</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Security"><span class="nav-number">9.</span> <span class="nav-text">Security</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Audits"><span class="nav-number">10.</span> <span class="nav-text">Audits</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Application"><span class="nav-number">11.</span> <span class="nav-text">Application</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Application面板简介"><span class="nav-number">11.1.</span> <span class="nav-text">Application面板简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Frames窗格"><span class="nav-number">11.2.</span> <span class="nav-text">Frames窗格</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其他连接"><span class="nav-number">12.</span> <span class="nav-text">其他连接</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装火狐的调试工具"><span class="nav-number">12.1.</span> <span class="nav-text">安装火狐的调试工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#源链接"><span class="nav-number">12.2.</span> <span class="nav-text">源链接</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">周子豪</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://zzhgithub-github-io.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2017/07/04/浏览器调试工具教程/';
+          this.page.identifier = '2017/07/04/浏览器调试工具教程/';
+          this.page.title = '浏览器调试工具教程';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://zzhgithub-github-io.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("jP331ld0fkzlamTyzz5PoiA2-gzGzoHsz", "dwRtbRxdP64q6wnJ4KfBjDLU");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
