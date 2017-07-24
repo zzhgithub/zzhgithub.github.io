@@ -100,7 +100,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/07/17/从零开始看懂Java代码系列教程（Java基础篇）/index.html">
 <meta property="og:site_name" content="黄油香蕉君的主页">
 <meta property="og:description" content="我每天都在面向“对象”编程。         ———来自本文作者的冷笑话。  阅读指南 这篇文章为Java最为基础的语言基础。也就是说，你完全可以泛读一遍，让心里有个印象，仅仅接受自己可以接受的知识点就好。我希望做到的是在你心里建立一个词典，知道有这么回事儿就好。然后在下次遇到的时候回到手头的文档，或者工具书（当然我会给你一本的），来查看就好。那个时候在力尽可能的弄清楚。请记住这个学习方法。或许">
-<meta property="og:updated_time" content="2017-07-19T12:46:06.000Z">
+<meta property="og:updated_time" content="2017-07-23T15:16:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从零开始看懂Java代码系列教程（Java基础篇）">
 <meta name="twitter:description" content="我每天都在面向“对象”编程。         ———来自本文作者的冷笑话。  阅读指南 这篇文章为Java最为基础的语言基础。也就是说，你完全可以泛读一遍，让心里有个印象，仅仅接受自己可以接受的知识点就好。我希望做到的是在你心里建立一个词典，知道有这么回事儿就好。然后在下次遇到的时候回到手头的文档，或者工具书（当然我会给你一本的），来查看就好。那个时候在力尽可能的弄清楚。请记住这个学习方法。或许">
@@ -432,7 +432,245 @@
 <li>实例：我们常常说某个对象，是某个类的实例。</li>
 <li>属性、方法： 描述一个类的特征，或者说对象拥有的特性。</li>
 </ul>
-<p>一个列子全解决: </p>
+<p>一个列子全解决:<br>我们从小动物讲起。我们知道动物就是一个类，应为每个动物都有一些抽象出来的相同的属性和能力（这里可以理解为方法）。就属性来说比如毛发的颜色，身高体重之类的。然后动物又有一些统一的方法，比如走、跑、吃、喝。就相当于类下面的方法。但是我们说动物是个类是抽象的。那么我可以说一只兔子就是动物的一个实例。我就也就可以叫这只兔子是对象了。那么它的属性就确定下来，比如毛发是白色，身高一米二之类的。方法也确定下来，毕竟兔子的吃法和老虎的吃法是不一样的。</p>
+<blockquote>
+<p>聪明的你一定发现了，有的时候我们可以认为兔子也是一个类，级别要比动物低一些，然后兔子有很多种类，很好吃的家养兔和不太容易吃到的野生兔子。当然还有很多其他的分类方法。那么Java可以表示这些关系吗？当然是可以的。这就要涉及到继承和多态了。不要急我会在OOP（面向对象编程）中非常详细的介绍的。</p>
+</blockquote>
+<h2 id="Java的命名规范"><a href="#Java的命名规范" class="headerlink" title="Java的命名规范"></a>Java的命名规范</h2><ol>
+<li><code>大小写敏感</code>。</li>
+<li><code>类名</code> 首字母大小。然后如果由多个单词组成单词的首字母大小。比如HappyGirlClass。</li>
+<li><code>方法名</code> 方法名首字母要小写，后面的的单词首字母大写。比如findByPhoneNum。</li>
+<li><code>源文件名</code> 源文件名和类名保持一致。完全的一致，然后以<code>.java</code>结尾就好。</li>
+</ol>
+<h2 id="Java-关键字"><a href="#Java-关键字" class="headerlink" title="Java 关键字"></a>Java 关键字</h2><p>Java的关键字，是不能用做变量名的字符串。也不是很多。下面有一张速查表方便你阅读。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>关键字</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>abstract</td>
+<td>抽象方法，抽象类的修饰符</td>
+</tr>
+<tr>
+<td>assert</td>
+<td>断言条件是否满足</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>布尔数据类型</td>
+</tr>
+<tr>
+<td>break</td>
+<td>跳出循环或者label代码段</td>
+</tr>
+<tr>
+<td>byte</td>
+<td>8-bit    有符号数据类型</td>
+</tr>
+<tr>
+<td>case</td>
+<td>switch    语句的一个条件</td>
+</tr>
+<tr>
+<td>catch</td>
+<td>和try搭配扑捉异常信息</td>
+</tr>
+<tr>
+<td>char</td>
+<td>16-bit    Unicode字符数据类型</td>
+</tr>
+<tr>
+<td>class</td>
+<td>定义类</td>
+</tr>
+<tr>
+<td>const</td>
+<td>未使用</td>
+</tr>
+<tr>
+<td>continue</td>
+<td>不执行循环体剩余部分</td>
+</tr>
+<tr>
+<td>default</td>
+<td>switch语句中的默认分支</td>
+</tr>
+<tr>
+<td>do</td>
+<td>循环语句，循环体至少会执行一次</td>
+</tr>
+<tr>
+<td>double</td>
+<td>64-bit双精度浮点数</td>
+</tr>
+<tr>
+<td>else if</td>
+<td>条件不成立时执行的分支</td>
+</tr>
+<tr>
+<td>enum</td>
+<td>枚举类型</td>
+</tr>
+<tr>
+<td>extends</td>
+<td>表示一个类是另一个类的子类</td>
+</tr>
+<tr>
+<td>final</td>
+<td>表示一个值在初始化之后就不能再改变了表示方法不能被重写，或者一个类不能有子类</td>
+</tr>
+<tr>
+<td>finally</td>
+<td>为了完成执行的代码而设计的，主要是为了程序的健壮性和完整性，无论有没有异常发生都执行代码。</td>
+</tr>
+<tr>
+<td>float</td>
+<td>32-bit单精度浮点数</td>
+</tr>
+<tr>
+<td>for</td>
+<td>for循环语句</td>
+</tr>
+<tr>
+<td>goto</td>
+<td>未使用</td>
+</tr>
+<tr>
+<td>if</td>
+<td>条件语句</td>
+</tr>
+<tr>
+<td>implements</td>
+<td>表示一个类实现了接口</td>
+</tr>
+<tr>
+<td>import</td>
+<td>导入类</td>
+</tr>
+<tr>
+<td>instanceof</td>
+<td>测试一个对象是否是某个类的实例</td>
+</tr>
+<tr>
+<td>int</td>
+<td>32位整型数</td>
+</tr>
+<tr>
+<td>interface</td>
+<td>接口，一种抽象的类型，仅有方法和常量的定义</td>
+</tr>
+<tr>
+<td>long</td>
+<td>64位整型数</td>
+</tr>
+<tr>
+<td>native</td>
+<td>表示方法用非java代码实现</td>
+</tr>
+<tr>
+<td>new</td>
+<td>分配新的类实例</td>
+</tr>
+<tr>
+<td>package</td>
+<td>一系列相关类组成一个包</td>
+</tr>
+<tr>
+<td>private</td>
+<td>表示私有字段，或者方法等，只能从类内部访问</td>
+</tr>
+<tr>
+<td>protected</td>
+<td>表示字段只能通过类或者其子类访问子类或者在同一个包内的其他类</td>
+</tr>
+<tr>
+<td>public</td>
+<td>表示共有属性或者方法</td>
+</tr>
+<tr>
+<td>return</td>
+<td>方法返回值</td>
+</tr>
+<tr>
+<td>short</td>
+<td>16位数字</td>
+</tr>
+<tr>
+<td>static</td>
+<td>表示在类级别定义，所有实例共享的</td>
+</tr>
+<tr>
+<td>strictfp</td>
+<td>浮点数比较使用严格的规则</td>
+</tr>
+<tr>
+<td>super</td>
+<td>表示基类</td>
+</tr>
+<tr>
+<td>switch</td>
+<td>选择语句</td>
+</tr>
+<tr>
+<td>synchronized</td>
+<td>表示同一时间只能由一个线程访问的代码块</td>
+</tr>
+<tr>
+<td>this</td>
+<td>表示调用当前实例或者调用另一个构造函数</td>
+</tr>
+<tr>
+<td>throw</td>
+<td>抛出异常</td>
+</tr>
+<tr>
+<td>throws</td>
+<td>定义方法可能抛出的异常</td>
+</tr>
+<tr>
+<td>transient</td>
+<td>修饰不要序列化的字段</td>
+</tr>
+<tr>
+<td>try</td>
+<td>表示代码块要做异常处理或者和finally配合表示是否抛出异常都执行finally中的代码</td>
+</tr>
+<tr>
+<td>void</td>
+<td>标记方法不返回任何值</td>
+</tr>
+<tr>
+<td>volatile</td>
+<td>标记字段可能会被多个线程同时访问，而不做同步</td>
+</tr>
+<tr>
+<td>while</td>
+<td>while循环</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h2><p>我说过在Java中除了基础数据类型以外都是对象。那么我们先来看一下基础的数据类型。</p>
+<h3 id="字节型（byte）"><a href="#字节型（byte）" class="headerlink" title="字节型（byte）"></a>字节型（byte）</h3><p>字节型是一种 8 位有正负的二进制整数<br>最小值是 -128(-2^7)<br>最大值是 127(2^7-1)<br>默认值为 0<br>字节型数据类型主要是为了在大型数组内节省空间，主要是替代整数由于字节型比整数小 4 倍。<br>例如：byte a = 100 , byte b = -50</p>
+<h3 id="短整数（short）"><a href="#短整数（short）" class="headerlink" title="短整数（short）"></a>短整数（short）</h3><p>短整数是一种 16 位有正负的二进制整数<br>最小值是 -32768(-2^15)<br>最大值是 32767(2^15-1)<br>短整数类型的数据也可以像字节型一样用于节省空间。短整数比整数小两倍<br>默认值为 0<br>例如：short s = 10000, short r = -20000</p>
+<h3 id="整数型（int）"><a href="#整数型（int）" class="headerlink" title="整数型（int）"></a>整数型（int）</h3><p>整数型是一种 32 位有正负的二进制整数<br>最小值是 - 2,147,483,648(-2^31)<br>最大值是 2,147,483,647(2^31 -1)<br>整数型一般默认被应用于整数值除非担心内存不够用。<br>默认值为 0<br>例如：int a = 100000, int b = -200000</p>
+<h3 id="长整型（long）"><a href="#长整型（long）" class="headerlink" title="长整型（long）"></a>长整型（long）</h3><p>长整型是一种 64 位有正负的二进制整数<br>最小值是 -9,223,372,036,854,775,808(-2^63)<br>最大值是 9,223,372,036,854,775,807 (2^63 -1)<br>这种数据类型一般是在需要比整数型范围更大时应用。<br>默认值为 0L<br>例如：long a = 100000L, int b = -200000L</p>
+<h3 id="浮点型（float）"><a href="#浮点型（float）" class="headerlink" title="浮点型（float）"></a>浮点型（float）</h3><p>浮点型数据是一种单精度的 32 位 IEEE 754 标准下的浮点数据。<br>浮点型数据主要是为了在大型浮点数字数组中节约内存。<br>默认值是 0.0f。<br>浮点型数据不能用于如货币这样的精确数据。<br>例如：float f1 = 234.5f</p>
+<h3 id="双精度型（double）"><a href="#双精度型（double）" class="headerlink" title="双精度型（double）"></a>双精度型（double）</h3><p>双精度型数据是一种双精度的 64 位 IEEE 754 标准下的浮点数据。<br>这种数据类型主要是默认被用于表示小数的值，一般是默认的选择。<br>双精度型数据不能用于如货币这样的精确数据。<br>默认值是 0.0d<br>例如：double d1 = 123.4</p>
+<h3 id="布尔型（boolean）"><a href="#布尔型（boolean）" class="headerlink" title="布尔型（boolean）"></a>布尔型（boolean）</h3><p>布尔型数据代表一个信息比特。<br>它只有两个可能的值：真（true）和假（false）<br>这种数据类型用于真假条件下的简单标记。<br>默认值是假（false）<br>例如：boolean one = true</p>
+<h3 id="字符型（char）"><a href="#字符型（char）" class="headerlink" title="字符型（char）"></a>字符型（char）</h3><p>字符型数据是简单的 16 位 Unicode 标准下的字符。<br>最小值是： ‘\u0000’ (或 0)。<br>最大值是： ‘\uffff’ (或 65,535 )。<br>字符型数据可以用来储存任意字母。<br>例如： char letter A（字符型的字母A） =’A’</p>
+<h3 id="引用数据类型"><a href="#引用数据类型" class="headerlink" title="引用数据类型"></a>引用数据类型</h3><p>引用数据类型是由类的编辑器定义的。他们是用于访问对象的。这些变量被定义为不可更改的特定类型。例如：Employee， Puppy 等等。<br>类对象和数组变量就是这种引用数据类型。<br>任何引用数据类型的默认值都为空。<br>一个引用数据类型可以被用于任何声明类型和兼容类型的对象。<br>例如：Animal animal = new Animal(“giraffe”)；</p>
+<blockquote>
+<p>也就是在你定义一个变量的时候必须知道他的类型，这也是为什么Java也是强类型的原因</p>
+</blockquote>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><p>去一个例子，直接来看看这些变量的使用和这些变量的修饰符。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">* 我们建立一个兔子类</div><div class="line">*/</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Rabbit</span></span>&#123;</div><div class="line">    <span class="comment">//兔子眼睛颜色是一个可以被外部访问的public变量</span></div><div class="line">    <span class="keyword">public</span> String eyeColor;</div><div class="line">    <span class="comment">//兔子有一个私有的名字只能被内部访问</span></div><div class="line">    <span class="keyword">private</span> String myName;</div><div class="line">    </div><div class="line">    <span class="comment">// 这里兔子都有一个共通的属性就是可以吃不 我这里设置成可以:)</span></div><div class="line">    <span class="comment">// 这里的值还是可以改变的只不过改变了一个 其他所有的实例都改变了</span></div><div class="line">    <span class="comment">// 比如那天通过了一条法律兔子不能吃了 这个值设置成false了</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Boolean canBeEat = <span class="keyword">true</span>;</div><div class="line">    <span class="comment">// 那么我们现在为了品尝到人间的美味就要设置成fianl 这样就不能改变了</span></div><div class="line">    <span class="comment">// 这个值就成了一个真正意义上的常量。你可以烹饪兔子吗？当然可以</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String CANBECOOKED = <span class="string">"Yes,You can."</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h2><p>这里就是每个语言都要有的流程控制了。很简单看看就好。</p>
 
       
     </div>
@@ -690,7 +928,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#阅读指南"><span class="nav-number">1.</span> <span class="nav-text">阅读指南</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java语法基础"><span class="nav-number">2.</span> <span class="nav-text">Java语法基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基础概念"><span class="nav-number">2.1.</span> <span class="nav-text">基础概念</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#阅读指南"><span class="nav-number">1.</span> <span class="nav-text">阅读指南</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java语法基础"><span class="nav-number">2.</span> <span class="nav-text">Java语法基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基础概念"><span class="nav-number">2.1.</span> <span class="nav-text">基础概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java的命名规范"><span class="nav-number">2.2.</span> <span class="nav-text">Java的命名规范</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-关键字"><span class="nav-number">2.3.</span> <span class="nav-text">Java 关键字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本数据类型"><span class="nav-number">2.4.</span> <span class="nav-text">基本数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#字节型（byte）"><span class="nav-number">2.4.1.</span> <span class="nav-text">字节型（byte）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#短整数（short）"><span class="nav-number">2.4.2.</span> <span class="nav-text">短整数（short）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#整数型（int）"><span class="nav-number">2.4.3.</span> <span class="nav-text">整数型（int）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#长整型（long）"><span class="nav-number">2.4.4.</span> <span class="nav-text">长整型（long）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浮点型（float）"><span class="nav-number">2.4.5.</span> <span class="nav-text">浮点型（float）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双精度型（double）"><span class="nav-number">2.4.6.</span> <span class="nav-text">双精度型（double）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#布尔型（boolean）"><span class="nav-number">2.4.7.</span> <span class="nav-text">布尔型（boolean）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符型（char）"><span class="nav-number">2.4.8.</span> <span class="nav-text">字符型（char）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#引用数据类型"><span class="nav-number">2.4.9.</span> <span class="nav-text">引用数据类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量"><span class="nav-number">2.5.</span> <span class="nav-text">变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#流程控制"><span class="nav-number">2.6.</span> <span class="nav-text">流程控制</span></a></li></ol></li></ol></div>
             
 
           </div>
