@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[小小恋歌中文填词]]></title>
+    <url>%2F2017%2F08%2F02%2F%E5%B0%8F%E5%B0%8F%E6%81%8B%E6%AD%8C%E4%B8%AD%E6%96%87%E5%A1%AB%E8%AF%8D%2F</url>
+    <content type="text"><![CDATA[小小恋歌中文填词前言 不知道什么时候听到了这首歌曲，仅仅被那温柔的旋律所打动。看到翻译后的歌词更是喜欢的不行。早就有了想要填词的愿望，可是由于种种原因没有进行。今天尝试一下，如果不好，也是没有办法的事啊。 中文歌词]]></content>
+      <categories>
+        <category>人文</category>
+      </categories>
+      <tags>
+        <tag>歌词</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[使用js对汉字和单词混合进行统计]]></title>
     <url>%2F2017%2F08%2F01%2F%E4%BD%BF%E7%94%A8js%E5%AF%B9%E6%B1%89%E5%AD%97%E5%92%8C%E5%8D%95%E8%AF%8D%E6%B7%B7%E5%90%88%E8%BF%9B%E8%A1%8C%E7%BB%9F%E8%AE%A1%2F</url>
     <content type="text"><![CDATA[使用js对汉字和单词混合进行统计规则 每个汉字标点做为一个长度。每个单词作为一个长度。（虽然这样的应用场景很少，但是用到的时候没有查询到直接可以用的代码，于是改造了网上的资料，作为比较记录下来） 代码12345678910111213141516171819202122232425262728function characterWordStatic(input)&#123; //计算规则 汉字算一个长度 单词算一个长度 if(input)&#123; var clength = 0; // 计算汉字个数 var str = input; //console.log(str.match(/[\u4E00-\u9FA5]/g)); if(str.match(/[\u4E00-\u9FA5]/g) != null)&#123; clength = str.match(/[\u4E00-\u9FA5]/g).length || 0; &#125; //替换汉字 str = str.replace(/[\u4e00-\u9fa5]+/g, " "); // 将换行符，前后空格不计算为单词数 str = str.replace(/\n|\r|^\s+|\s+$/gi,""); // 多个空格替换成一个空格 str = str.replace(/\s+/gi," "); var length = 0; var match = str.match(/\s/g); if (match) &#123; length = match.length + 1; &#125; else if (str) &#123; length = 1; &#125; return length+clength; &#125;else&#123; return 0; &#125;&#125; 我将一直迷惑和无知，我是黄油香蕉君，再见。]]></content>
