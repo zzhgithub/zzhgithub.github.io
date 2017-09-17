@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="node,js,shell," />
 
 
 
@@ -93,15 +93,17 @@
 
 
 
-<meta name="description" content="我将一直迷惑与无知。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="黄油香蕉君的主页">
-<meta property="og:url" content="http://zzhgithub.github.io/archives/index.html">
+<meta name="description" content="前言  之前向朋友们介绍过使用shelljs这个包来对命令行进行操作。其实在nodejs中提供了更加优雅的方法来帮助我们对命令行进行操作。现在就可以使用child_process作为关键字进行查询。他是nodejs原生支持的一个模块，作用是开始一个子进程。使用这个模块中的exec方法就可以运行某些指令了。但是呢要注意，这里是异步的，如果你要封装一个调用的函数，不一定可以直接运行出值。这的处理办法是">
+<meta name="keywords" content="node,js,shell">
+<meta property="og:type" content="article">
+<meta property="og:title" content="node黑魔法js操作命令行的方法续">
+<meta property="og:url" content="http://zzhgithub.github.io/2017/09/17/node黑魔法js操作命令行的方法续/index.html">
 <meta property="og:site_name" content="黄油香蕉君的主页">
-<meta property="og:description" content="我将一直迷惑与无知。">
+<meta property="og:description" content="前言  之前向朋友们介绍过使用shelljs这个包来对命令行进行操作。其实在nodejs中提供了更加优雅的方法来帮助我们对命令行进行操作。现在就可以使用child_process作为关键字进行查询。他是nodejs原生支持的一个模块，作用是开始一个子进程。使用这个模块中的exec方法就可以运行某些指令了。但是呢要注意，这里是异步的，如果你要封装一个调用的函数，不一定可以直接运行出值。这的处理办法是">
+<meta property="og:updated_time" content="2017-09-17T13:34:35.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="黄油香蕉君的主页">
-<meta name="twitter:description" content="我将一直迷惑与无知。">
+<meta name="twitter:title" content="node黑魔法js操作命令行的方法续">
+<meta name="twitter:description" content="前言  之前向朋友们介绍过使用shelljs这个包来对命令行进行操作。其实在nodejs中提供了更加优雅的方法来帮助我们对命令行进行操作。现在就可以使用child_process作为关键字进行查询。他是nodejs原生支持的一个模块，作用是开始一个子进程。使用这个模块中的exec方法就可以运行某些指令了。但是呢要注意，这里是异步的，如果你要封装一个调用的函数，不一定可以直接运行出值。这的处理办法是">
 
 
 
@@ -129,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="http://zzhgithub.github.io/archives/"/>
+  <link rel="canonical" href="http://zzhgithub.github.io/2017/09/17/node黑魔法js操作命令行的方法续/"/>
 
 
 
 
 
-  <title>归档 | 黄油香蕉君的主页</title>
+  <title>node黑魔法js操作命令行的方法续 | 黄油香蕉君的主页</title>
   
 
 
@@ -160,7 +162,7 @@
     
   
 
-  <div class="container sidebar-position-left  page-archive  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -298,402 +300,248 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-    <span class="archive-page-counter">
-      
-      
-       
-      
-      OK! 目前共计 47 篇日志。 继续努力。
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://zzhgithub.github.io/2017/09/17/node黑魔法js操作命令行的方法续/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="周子豪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/tx.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黄油香蕉君的主页">
     </span>
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">node黑魔法js操作命令行的方法续</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-17T20:59:01+08:00">
+                2017-09-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/09/17/node黑魔法js操作命令行的方法续/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/09/17/node黑魔法js操作命令行的方法续/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/09/17/node黑魔法js操作命令行的方法续/" class="leancloud_visitors" data-flag-title="node黑魔法js操作命令行的方法续">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
 
       
       
-      
 
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>  之前向朋友们介绍过使用shelljs这个包来对命令行进行操作。其实在nodejs中提供了更加优雅的方法来帮助我们对命令行进行操作。现在就可以使用<code>child_process</code>作为关键字进行查询。他是nodejs原生支持的一个模块，作用是开始一个子进程。使用这个模块中的exec方法就可以运行某些指令了。但是呢要注意，这里是异步的，如果你要封装一个调用的函数，不一定可以直接运行出值。这的处理办法是：使用回调函数或者使用Promise。</p>
+<a id="more"></a>
+<h1 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h1><p>   这里直接上一个封装了Promise的代码。</p>
+   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//使用SE 的写法封装一个git的命令</span></div><div class="line"><span class="keyword">var</span> cp = <span class="built_in">require</span>(<span class="string">"child_process"</span>)</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">gitStatus</span>(<span class="params">directory</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> comd = <span class="string">"git status"</span></div><div class="line">    <span class="comment">//返回了一个Promise对象</span></div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve,reject</span>)</span>&#123;</div><div class="line">       cp.exec(comd,&#123;<span class="attr">cwd</span>:directory&#125;,<span class="function"><span class="keyword">function</span>(<span class="params">error,stdout,stderr</span>)</span>&#123;</div><div class="line">           <span class="keyword">if</span>(error)&#123;</div><div class="line">            <span class="comment">//返回报错信息</span></div><div class="line">            reject(stderr)</div><div class="line">         &#125;<span class="keyword">else</span>&#123;</div><div class="line">             <span class="comment">//返回命令行输出</span></div><div class="line">             resolve(stdout)</div><div class="line">         &#125;</div><div class="line">     &#125;);</div><div class="line"> &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>   简单的解释一下代码里的内容。其中exec()是运行一个函数的意思。其中的第二个参数cwd是命令运行的文件夹。然后这返回了一个Promise对象。这样就优雅的解决的调用时异步的问题。也就是说在使用的时候使用.then()的写法就可以了。</p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>   当然如果你是一个js的新手或许没有理解我说的。这里主要涉及了三个知识点。现在分别献上传送门。  </p>
+<ul>
+<li>ES6 <a href="http://es6.ruanyifeng.com/" target="_blank" rel="external">中文文档</a></li>
+<li>Promise <a href="http://liubin.org/promises-book/" target="_blank" rel="external">Promise迷你书</a></li>
+<li>child_process <a href="http://nodejs.cn/api/child_process.html" target="_blank" rel="external">nodejs文档</a><br>相信你看了这些就明白了，也不需要我多说了。</li>
+</ul>
+<blockquote>
+<p>我将一直的迷惑与无知，我是黄油香蕉君，再见。</p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
       
         
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2017">2017</h2>
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>给作者买杯咖啡吧。喵~</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat.png" alt="周子豪 WeChat Pay"/>
+          <p>微信打赏</p>
         </div>
       
       
+    </div>
+  </div>
+
 
       
+    </div>
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
+    <div>
+      
         
-            <a class="post-title-link" href="/2017/09/17/node黑魔法js操作命令行的方法续/" itemprop="url">
-              
-                <span itemprop="name">node黑魔法js操作命令行的方法续</span>
-              
-            </a>
-        
-      </h2>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-09-17T20:59:01+08:00"
-              content="2017-09-17" >
-          09-17
-        </time>
-      </div>
+      
+    </div>
 
-    </header>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/node/" rel="tag"># node</a>
+          
+            <a href="/tags/js/" rel="tag"># js</a>
+          
+            <a href="/tags/shell/" rel="tag"># shell</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/10/Common-Lisp常用函数速查速记笔记/" rel="next" title="Common-Lisp常用函数速查速记笔记">
+                <i class="fa fa-chevron-left"></i> Common-Lisp常用函数速查速记笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
 
-    
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
       
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/08/10/Common-Lisp常用函数速查速记笔记/" itemprop="url">
-              
-                <span itemprop="name">Common-Lisp常用函数速查速记笔记</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-08-10T22:47:02+08:00"
-              content="2017-08-10" >
-          08-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/08/07/概念自然语言的思考/" itemprop="url">
-              
-                <span itemprop="name">概念自然语言的思考</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-08-07T17:35:23+08:00"
-              content="2017-08-07" >
-          08-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/08/05/从零开始看懂Java代码系列教程（OOP）/" itemprop="url">
-              
-                <span itemprop="name">从零开始看懂Java代码系列教程（OOP）</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-08-05T22:00:32+08:00"
-              content="2017-08-05" >
-          08-05
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/08/05/拾遗录15最后的拾遗/" itemprop="url">
-              
-                <span itemprop="name">拾遗录15最后的拾遗</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-08-05T02:28:20+08:00"
-              content="2017-08-05" >
-          08-05
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/08/02/小小恋歌中文填词/" itemprop="url">
-              
-                <span itemprop="name">小小恋歌中文填词</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-08-02T12:29:25+08:00"
-              content="2017-08-02" >
-          08-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/08/01/使用js对汉字和单词混合进行统计/" itemprop="url">
-              
-                <span itemprop="name">使用js对汉字和单词混合进行统计</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-08-01T16:41:13+08:00"
-              content="2017-08-01" >
-          08-01
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/07/17/从零开始看懂Java代码系列教程（Java基础篇）/" itemprop="url">
-              
-                <span itemprop="name">从零开始看懂Java代码系列教程（Java基础篇）</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-07-17T10:51:02+08:00"
-              content="2017-07-17" >
-          07-17
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/07/13/从零开始看懂Java代码系列教程（综述篇）/" itemprop="url">
-              
-                <span itemprop="name">从零开始看懂Java代码系列教程（综述篇）</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-07-13T10:58:26+08:00"
-              content="2017-07-13" >
-          07-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/07/10/新诗几首/" itemprop="url">
-              
-                <span itemprop="name">新诗几首</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-07-10T00:03:20+08:00"
-              content="2017-07-10" >
-          07-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-  </section>
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/5/">5</a><a class="extend next" rel="next" href="/archives/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
-
+    </div>
+  </div>
 
 
           </div>
@@ -701,6 +549,17 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -720,8 +579,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/tx.jpg"
@@ -813,6 +681,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码示例"><span class="nav-number">2.</span> <span class="nav-text">代码示例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#后记"><span class="nav-number">3.</span> <span class="nav-text">后记</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -926,11 +810,9 @@
   
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
 
 
   
@@ -949,6 +831,18 @@
       <script id="dsq-count-scr" src="https://zzhgithub-github-io.disqus.com/count.js" async></script>
     
 
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://zzhgithub.github.io/2017/09/17/node黑魔法js操作命令行的方法续/';
+          this.page.identifier = '2017/09/17/node黑魔法js操作命令行的方法续/';
+          this.page.title = 'node黑魔法js操作命令行的方法续';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://zzhgithub-github-io.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
     
 
   
