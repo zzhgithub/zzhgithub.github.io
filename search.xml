@@ -467,8 +467,8 @@
         <category>技术</category>
       </categories>
       <tags>
-        <tag>emacs</tag>
         <tag>vim</tag>
+        <tag>emacs</tag>
       </tags>
   </entry>
   <entry>
@@ -480,8 +480,8 @@
       </categories>
       <tags>
         <tag>emacs</tag>
-        <tag>git</tag>
         <tag>spacemacs</tag>
+        <tag>git</tag>
       </tags>
   </entry>
   <entry>
