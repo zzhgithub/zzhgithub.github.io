@@ -184,7 +184,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">矫情的程序员</p>
+        <p class="site-subtitle">优秀个人技术博客blog，机器学习，前端后端技术。Common Lisp爱好者。零基础教程向博客。个人诗集，技术和文艺双馨。重庆邮电大学学长。</p>
       
   </div>
 
@@ -462,13 +462,13 @@
 <h1 id="实践篇"><a href="#实践篇" class="headerlink" title="实践篇"></a>实践篇</h1><h2 id="安装Redis"><a href="#安装Redis" class="headerlink" title="安装Redis"></a>安装Redis</h2><h3 id="windows-5"><a href="#windows-5" class="headerlink" title="windows[5]"></a>windows[5]</h3><p>  <a href="https://github.com/MSOpenTech/redis/releases" target="_blank" rel="external">下载地址</a><br>  Redis 支持 32 位和 64 位。这个需要根据你系统平台的实际情况选择。  </p>
 <p>  <em>注意</em>  操作系统位数可以在我的电脑中的右键属性中看到。如果不知道就试试64位。Redis版本要最好和公司生产环境使用的发行版本一直，保证bug与问题可以重现。  </p>
 <p>  压缩包到 C 盘，解压后，将文件夹重新命名为 redis。(当然不安装到c盘也是允许的)<br>  打开一个 cmd 窗口 使用cd命令切换目录到 C:\redis 运行 redis-server.exe redis.windows.conf 。  </p>
-  <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> cd c:/redis</div><div class="line"><span class="meta">$</span> redis-server.exe redis.windows.conf</div><div class="line"><span class="meta">#</span># 这里的 redis.windows.conf 是Redis启动的配置文件 当这里不输入时 默认使用这个配置打开Redis服务。</div></pre></td></tr></table></figure>
+  <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> c:/redis</span></div><div class="line"><span class="meta">$</span><span class="bash"> redis-server.exe redis.windows.conf</span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 这里的 redis.windows.conf 是Redis启动的配置文件 当这里不输入时 默认使用这个配置打开Redis服务。</span></span></div></pre></td></tr></table></figure>
 <p>  如果想方便的话，可以把 redis 的路径加到系统的环境变量里，这样就省得再输路径了，后面的那个 redis.windows.conf 可以省略，如果省略，会启用默认的配置。<br>  如果运行成功了。会出现和下面大致相似的返回。  </p>
 <p>  <img src="https://coding.net/u/zzhcoding/p/RedisCnGuide/git/raw/master/img/runstart.png" alt="成功图片"><br>  简单解释一下Port是端口。PID是进程号。<br> <em>注意</em> 服务启动后命令行不能关闭。</p>
 <blockquote>
 <p>扩展：<br>即使在windows下任然有比较好的终端解决方案。可以下载git使用git 的bash。或者直接使用docker。在docker中启动Redis或许是最优雅的解决方案。不过我个人建议开发的话换成macOS。</p>
 </blockquote>
-<h3 id="MacOS"><a href="#MacOS" class="headerlink" title="MacOS"></a>MacOS</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> brew install redis</div></pre></td></tr></table></figure>
+<h3 id="MacOS"><a href="#MacOS" class="headerlink" title="MacOS"></a>MacOS</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> brew install redis</span></div></pre></td></tr></table></figure>
 <p>搞定了！</p>
 <h2 id="命令行"><a href="#命令行" class="headerlink" title="命令行"></a>命令行</h2><p><em>注意</em> 在类unix系统中，redis-cli是作为一个命令存在的。它的作用是启动一个与Redis的交互的命令行模式。Windows用户要双击redis-cli.exe 可执行文件进入，这里是下面命令执行的前提。</p>
 <h3 id="创建键（key）"><a href="#创建键（key）" class="headerlink" title="创建键（key）"></a>创建键（key）</h3><p>使用<code>set key value</code>的方法就可以建立一组键值对了。比如:</p>
@@ -815,7 +815,7 @@ include /path/to/local.conf
                alt="周子豪" />
           <p class="site-author-name" itemprop="name">周子豪</p>
            
-              <p class="site-description motion-element" itemprop="description">我将一直迷惑与无知。</p>
+              <p class="site-description motion-element" itemprop="description">优秀个人技术博客blog，机器学习，前端后端技术。Common Lisp爱好者。零基础教程向博客。个人诗集，技术和文艺双馨。重庆邮电大学学长。。</p>
           
         </div>
         <nav class="site-state motion-element">
