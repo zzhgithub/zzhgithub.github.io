@@ -102,7 +102,7 @@
 <meta property="og:description" content="前言  终于到了十一国庆，有时间更新一些东西了。  先从回忆开始。我是重邮的学生，记得上通信软件基础的时候，(@罗文丰)老师给我们留的作业是，写一个简单的聊天室。技术不限制。当时我想写一个web端聊天室。这条技术路线给我当时填了很多的麻烦。也就是说我要实现的是，web端的即时通信。web端我们可以用的协议是http。http是一个无状态的协议，怎么完成即使通信呢？当时自己脑壳都想废了。答案无非两">
 <meta property="og:image" content="https://raw.githubusercontent.com/zzhgithub/chat-demo/master/img/haha.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/zzhgithub/chat-demo/master/img/haha.png">
-<meta property="og:updated_time" content="2017-10-01T15:25:19.000Z">
+<meta property="og:updated_time" content="2017-10-01T15:40:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学生党福利使用websocket实现简单的聊天室">
 <meta name="twitter:description" content="前言  终于到了十一国庆，有时间更新一些东西了。  先从回忆开始。我是重邮的学生，记得上通信软件基础的时候，(@罗文丰)老师给我们留的作业是，写一个简单的聊天室。技术不限制。当时我想写一个web端聊天室。这条技术路线给我当时填了很多的麻烦。也就是说我要实现的是，web端的即时通信。web端我们可以用的协议是http。http是一个无状态的协议，怎么完成即使通信呢？当时自己脑壳都想废了。答案无非两">
@@ -425,10 +425,9 @@
 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>  终于到了十一国庆，有时间更新一些东西了。<br>  先从回忆开始。我是重邮的学生，记得上通信软件基础的时候，(@罗文丰)老师给我们留的作业是，写一个简单的聊天室。技术不限制。当时我想写一个web端聊天室。这条技术路线给我当时填了很多的麻烦。也就是说我要实现的是，web端的即时通信。web端我们可以用的协议是http。http是一个无状态的协议，怎么完成即使通信呢？当时自己脑壳都想废了。答案无非两种。<br>  <a id="more"></a></p>
 <ol>
 <li>使用轮询。就是使用ajax过一段时间查询一次。</li>
-<li><p>或者长连接。就是我发一个请求了，等有消息了在回复，然后处理了再发长连接。  </p>
-<p>可是那时我骄傲的认为都不好。都垃圾！怎么这就是现在业内的主流方案。不优雅！老子弄个更加牛逼的。结果搞出来了一个更加垃圾的。ajax+xml的方法。功能都没有实现是请求的时候获取更新的。（我当时固执的认为，网络效率要高，现在想想一个课程设计高个锤子！）<br>所以，我为学生党的你奉献出这个富有创造力的解决方案。</p>
-</li>
+<li>或者长连接。就是我发一个请求了，等有消息了在回复，然后处理了再发长连接。  </li>
 </ol>
+<p>  可是那时我骄傲的认为都不好。都垃圾！怎么这就是现在业内的主流方案。不优雅！老子弄个更加牛逼的。结果搞出来了一个更加垃圾的。ajax+xml的方法。功能都没有实现是请求的时候获取更新的。（我当时固执的认为，网络效率要高，现在想想一个课程设计高个锤子！）<br>  所以，我为学生党的你奉献出这个富有创造力的解决方案。</p>
 <h1 id="技术方案"><a href="#技术方案" class="headerlink" title="技术方案"></a>技术方案</h1><p>  websocket协议<a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSocket" target="_blank" rel="external">API传送门</a> + js<br>  后端服务提供 websocketd <a href="http://websocketd.com/" target="_blank" rel="external">传送门</a><br>  前端服务提供 http-server <a href="https://www.npmjs.com/package/http-server" target="_blank" rel="external">传送门</a></p>
 <blockquote>
 <p><em>注意</em> 如果你以为这篇文章是给伸手党准备的，你就错了。你要在电脑上运行起这段代码。你至少要你学会一下这些技能。<br>git 安装运行linux虚拟机（windows用户） JavaScript只是了解dom 简单的计算机网络知识 翻墙技术（非必须）简单的shell脚本知识  但是不要紧张我保证这些知识花一周就可以掌握。而且遇到了困难了还可以问学长。欢迎评论和邮箱:)</p>
