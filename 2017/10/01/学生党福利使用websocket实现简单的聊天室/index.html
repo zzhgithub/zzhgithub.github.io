@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="js,websocket," />
 
 
 
@@ -93,15 +93,20 @@
 
 
 
-<meta name="description" content="优秀个人技术博客blog，机器学习，前端后端技术。Common Lisp爱好者。零基础教程向博客。个人诗集，技术和文艺双馨。重庆邮电大学学长。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="黄油香蕉君的主页">
-<meta property="og:url" content="http://zzhgithub.github.io/categories/技术/page/3/index.html">
+<meta name="description" content="前言  终于到了十一国庆，有时间更新一些东西了。  先从回忆开始。我是重邮的学生，记得上通信软件基础的时候，(@罗文丰)老师给我们留的作业是，写一个简单的聊天室。技术不限制。当时我想写一个web端聊天室。这条技术路线给我当时填了很多的麻烦。也就是说我要实现的是，web端的即时通信。web端我们可以用的协议是http。http是一个无状态的协议，怎么完成即使通信呢？当时自己脑壳都想废了。答案无非两">
+<meta name="keywords" content="js,websocket">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学生党福利使用websocket实现简单的聊天室">
+<meta property="og:url" content="http://zzhgithub.github.io/2017/10/01/学生党福利使用websocket实现简单的聊天室/index.html">
 <meta property="og:site_name" content="黄油香蕉君的主页">
-<meta property="og:description" content="优秀个人技术博客blog，机器学习，前端后端技术。Common Lisp爱好者。零基础教程向博客。个人诗集，技术和文艺双馨。重庆邮电大学学长。">
+<meta property="og:description" content="前言  终于到了十一国庆，有时间更新一些东西了。  先从回忆开始。我是重邮的学生，记得上通信软件基础的时候，(@罗文丰)老师给我们留的作业是，写一个简单的聊天室。技术不限制。当时我想写一个web端聊天室。这条技术路线给我当时填了很多的麻烦。也就是说我要实现的是，web端的即时通信。web端我们可以用的协议是http。http是一个无状态的协议，怎么完成即使通信呢？当时自己脑壳都想废了。答案无非两">
+<meta property="og:image" content="https://raw.githubusercontent.com/zzhgithub/chat-demo/master/img/haha.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/zzhgithub/chat-demo/master/img/haha.png">
+<meta property="og:updated_time" content="2017-10-01T15:21:27.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="黄油香蕉君的主页">
-<meta name="twitter:description" content="优秀个人技术博客blog，机器学习，前端后端技术。Common Lisp爱好者。零基础教程向博客。个人诗集，技术和文艺双馨。重庆邮电大学学长。">
+<meta name="twitter:title" content="学生党福利使用websocket实现简单的聊天室">
+<meta name="twitter:description" content="前言  终于到了十一国庆，有时间更新一些东西了。  先从回忆开始。我是重邮的学生，记得上通信软件基础的时候，(@罗文丰)老师给我们留的作业是，写一个简单的聊天室。技术不限制。当时我想写一个web端聊天室。这条技术路线给我当时填了很多的麻烦。也就是说我要实现的是，web端的即时通信。web端我们可以用的协议是http。http是一个无状态的协议，怎么完成即使通信呢？当时自己脑壳都想废了。答案无非两">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zzhgithub/chat-demo/master/img/haha.png">
 
 
 
@@ -129,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://zzhgithub.github.io/categories/技术/page/3/"/>
+  <link rel="canonical" href="http://zzhgithub.github.io/2017/10/01/学生党福利使用websocket实现简单的聊天室/"/>
 
 
 
 
 
-  <title>分类: 技术 | 黄油香蕉君的主页</title>
+  <title>学生党福利使用websocket实现简单的聊天室 | 黄油香蕉君的主页</title>
   
 
 
@@ -160,7 +165,7 @@
     
   
 
-  <div class="container sidebar-position-left  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -298,189 +303,251 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h1>技术<small>分类</small>
-      </h1>
-    </div>
-
+  <div id="posts" class="posts-expand">
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/02/在emacs中进行文件管理/" itemprop="url">
-              
-                <span itemprop="name">在emacs中进行文件管理</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-02T16:38:48+08:00"
-              content="2017-03-02" >
-          03-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/02/《高数》书里的鬼故事/" itemprop="url">
-              
-                <span itemprop="name">《高数》书里的鬼故事</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-02T16:16:48+08:00"
-              content="2017-03-02" >
-          03-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/02/Vim操作小结/" itemprop="url">
-              
-                <span itemprop="name">Vim操作小结</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-02T15:12:48+08:00"
-              content="2017-03-02" >
-          03-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/02/spacemacs下的magit指南/" itemprop="url">
-              
-                <span itemprop="name">spacemacs下的magit指南</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-02T14:12:48+08:00"
-              content="2017-03-02" >
-          03-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/02/28/Common-Lisp教程（1）/" itemprop="url">
-              
-                <span itemprop="name">Common-Lisp教程（1）</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-02-28T21:10:48+08:00"
-              content="2017-02-28" >
-          02-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/02/28/中阶黑魔法emacs教程/" itemprop="url">
-              
-                <span itemprop="name">中阶黑魔法emacs教程</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-02-28T09:12:48+08:00"
-              content="2017-02-28" >
-          02-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-  </section>
 
   
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/categories/技术/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/categories/技术/">1</a><a class="page-number" href="/categories/技术/page/2/">2</a><span class="page-number current">3</span>
-  </nav>
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://zzhgithub.github.io/2017/10/01/学生党福利使用websocket实现简单的聊天室/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="周子豪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/tx.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黄油香蕉君的主页">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">学生党福利使用websocket实现简单的聊天室</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-01T22:27:46+08:00">
+                2017-10-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/10/01/学生党福利使用websocket实现简单的聊天室/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/10/01/学生党福利使用websocket实现简单的聊天室/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/10/01/学生党福利使用websocket实现简单的聊天室/" class="leancloud_visitors" data-flag-title="学生党福利使用websocket实现简单的聊天室">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://raw.githubusercontent.com/zzhgithub/chat-demo/master/img/haha.png" alt="封面图片"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>  终于到了十一国庆，有时间更新一些东西了。<br>  先从回忆开始。我是重邮的学生，记得上通信软件基础的时候，(@罗文丰)老师给我们留的作业是，写一个简单的聊天室。技术不限制。当时我想写一个web端聊天室。这条技术路线给我当时填了很多的麻烦。也就是说我要实现的是，web端的即时通信。web端我们可以用的协议是http。http是一个无状态的协议，怎么完成即使通信呢？当时自己脑壳都想废了。答案无非两种。<br>  <a id="more"></a></p>
+<ol>
+<li>使用轮询。就是使用ajax过一段时间查询一次。</li>
+<li><p>或者长连接。就是我发一个请求了，等有消息了在回复，然后处理了再发长连接。  </p>
+<p>可是那时我骄傲的认为都不好。都垃圾！怎么这就是现在业内的主流方案。不优雅！老子弄个更加牛逼的。结果搞出来了一个更加垃圾的。ajax+xml的方法。功能都没有实现是请求的时候获取更新的。（我当时固执的认为，网络效率要高，现在想想一个课程设计高个锤子！）<br>所以，我为学生党的你奉献出这个富有创造力的解决方案。</p>
+</li>
+</ol>
+<h1 id="技术方案"><a href="#技术方案" class="headerlink" title="技术方案"></a>技术方案</h1><p>  websocket协议<a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSocket" target="_blank" rel="external">API传送门</a> + js<br>  后端服务提供 websocketd <a href="http://websocketd.com/" target="_blank" rel="external">传送门</a><br>  前端服务提供 http-server <a href="https://www.npmjs.com/package/http-server" target="_blank" rel="external">传送门</a></p>
+<blockquote>
+<p><em>注意</em> 如果你以为这篇文章是给伸手党准备的，你就错了。你要在电脑上运行起这段代码。你至少要你学会一下这些技能。<br>git 安装运行linux虚拟机（windows用户） JavaScript只是了解dom 简单的计算机网络知识 翻墙技术（非必须）简单的shell脚本知识  但是不要紧张我保证这些知识花一周就可以掌握。而且遇到了困难了还可以问学长。欢迎评论和邮箱:)</p>
+</blockquote>
+<h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><p>  先简单的说一下这个websocket的协议（这个阮一峰的教程说的很好可以先传送一下看一下<a href="http://www.ruanyifeng.com/blog/2017/05/websocket.html" target="_blank" rel="external">传送门</a>）。他保证了一个到web的有状态连接。保证两边都是可以发送消息。这个对web开发即时场景来说简直太好了。<br>  所以原来很简单。就是每个页面连接到一个ws（websocket）服务。然后把数据存到一个文件中，在读取这个文件中的信息返回给每个连接的用户。这里使用websocketd（注意多了一个d，这是一个提供websocket服务的服务器）。它很强大，它不分语言，只有在命令行里打包可以运行的命令他都可以进行提供服务。你甚至可以用c++写一个游戏服务器，给前端提供服务。如果各位感兴趣我可以在日后为大家完成demo。<br>  所以，你可以看到这个原理是如此的简单，这都得益于优雅的websocket协议，富有创造力的websocketd服务器。</p>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><p>代码很少。只有两个一个页面，和一个服务器脚本。这个没什么好说的，直接看代码吧；<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">CTYPE</span> <span class="attr">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>简单的聊天室<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"content"</span> &gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">span</span>&gt;</span>等待输出在开始通信<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">br</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"input"</span> /&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">id</span>=<span class="string">"submit"</span>&gt;</span>发送<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="xml"></span></div><div class="line">        //注意这里的地址 需要你进行修改！</div><div class="line">        var ws= new WebSocket('ws://zhouzihaodeMacBook-Pro.local:8080/');</div><div class="line">        var btn = document.getElementById("submit");</div><div class="line">        var text = document.getElementById("input");</div><div class="line">        var content = document.getElementById("content");</div><div class="line"></div><div class="line">        ws.addEventListener('message', function (event) &#123;</div><div class="line">           console.log('Message from server ', event.data);</div><div class="line">           content.innerHTML += event.data+"<span class="tag">&lt;<span class="name">br</span>&gt;</span>";</div><div class="line">        &#125;);</div><div class="line">        ws.onclose = function(event)&#123;</div><div class="line">            console.log('closed');</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        //给按钮添加监听事件然后发送消息</div><div class="line">        btn.onclick = function()&#123;</div><div class="line">        //如果内容为空就不发送出来</div><div class="line">        if(text.value == '')&#123;</div><div class="line">            //donothing</div><div class="line">        &#125;else&#123;</div><div class="line">            ws.send(text.value);</div><div class="line">            //吧刚刚发的消息 回显出来</div><div class="line">            console.log('send'+text.value);</div><div class="line">            text.value = '';</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div><div class="line"></div><div class="line">```  </div><div class="line"></div><div class="line">  然后是服务端的脚本。(ノへ￣、)捂脸。这个都是我照着官方的demo抄的改的。看一下吧。</div><div class="line"></div><div class="line">```shell</div><div class="line">#!/bin/bash</div><div class="line"></div><div class="line"># 代码源自websocketd官方项目的demo我做了一些小的修改！每次发消息的时候也会显示回来~</div><div class="line"># 注意这是不需要的！我为了方便在这么做的。但是这加大了网络的io。正常做法是用js直接现在在页面里。</div><div class="line"># 这段代码只能跑在 可以使用这些命令的机器上 的服务器上。如果你使用的是windows请检查这个文件是否可以使用。</div><div class="line"># 或者我将在别的时间内。补充windows可用的版本</div><div class="line"></div><div class="line">echo "Please enter your name:"; read USER</div><div class="line">echo "[$(date)] $&#123;USER&#125; joined the chat" &gt;&gt; chat.log</div><div class="line">echo "[$(date)] Welcome to the chat $&#123;USER&#125;!"</div><div class="line"># 注意这里 这里如果没有生效要改成自己的地址</div><div class="line">MYDIR=`pwd -L`</div><div class="line">tail -n 0 -f "$&#123;MYDIR&#125;/chat.log" &amp;</div><div class="line">while read MSG; do echo "[$(date)] $&#123;USER&#125;&gt; $&#123;MSG&#125;" &gt;&gt; chat.log; done</div></pre></td></tr></table></figure></p>
+<p>最后是我的git代码<a href="https://github.com/zzhgithub/chat-demo" target="_blank" rel="external">传送门</a></p>
+<h1 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h1><p>首先启动文件夹下的chat为websocket服务。<br><code>websocket --port=8080 $project-dir$/chat</code><br>这里的project_dir是项目文件夹的绝对路径。<br>然后在把index.html发布成web就可以了。<br><code>http-server</code><br>之后按照提示访问就好。为了看效果要开两个tab来看。<br><img src="https://raw.githubusercontent.com/zzhgithub/chat-demo/master/img/haha.png" alt="结果"></p>
+<blockquote>
+<p>我将一直迷惑和无知，我是黄油香蕉君，再见。</p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>给作者买杯咖啡吧。喵~</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat.png" alt="周子豪 WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+    </div>
+  </div>
 
 
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/js/" rel="tag"># js</a>
+          
+            <a href="/tags/websocket/" rel="tag"># websocket</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/17/node黑魔法js操作命令行的方法续/" rel="next" title="node黑魔法js操作命令行的方法续">
+                <i class="fa fa-chevron-left"></i> node黑魔法js操作命令行的方法续
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
 
 
           </div>
@@ -488,6 +555,17 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -507,8 +585,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/tx.jpg"
@@ -600,6 +687,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#技术方案"><span class="nav-number">2.</span> <span class="nav-text">技术方案</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#原理"><span class="nav-number">3.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码"><span class="nav-number">4.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结果"><span class="nav-number">5.</span> <span class="nav-text">结果</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -713,10 +816,10 @@
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
 
-  
+
 
   
 
@@ -734,6 +837,18 @@
       <script id="dsq-count-scr" src="https://zzhgithub-github-io.disqus.com/count.js" async></script>
     
 
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://zzhgithub.github.io/2017/10/01/学生党福利使用websocket实现简单的聊天室/';
+          this.page.identifier = '2017/10/01/学生党福利使用websocket实现简单的聊天室/';
+          this.page.title = '学生党福利使用websocket实现简单的聊天室';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://zzhgithub-github-io.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
     
 
   

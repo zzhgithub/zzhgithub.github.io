@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[学生党福利使用websocket实现简单的聊天室]]></title>
+    <url>%2F2017%2F10%2F01%2F%E5%AD%A6%E7%94%9F%E5%85%9A%E7%A6%8F%E5%88%A9%E4%BD%BF%E7%94%A8websocket%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84%E8%81%8A%E5%A4%A9%E5%AE%A4%2F</url>
+    <content type="text"><![CDATA[前言 终于到了十一国庆，有时间更新一些东西了。 先从回忆开始。我是重邮的学生，记得上通信软件基础的时候，(@罗文丰)老师给我们留的作业是，写一个简单的聊天室。技术不限制。当时我想写一个web端聊天室。这条技术路线给我当时填了很多的麻烦。也就是说我要实现的是，web端的即时通信。web端我们可以用的协议是http。http是一个无状态的协议，怎么完成即使通信呢？当时自己脑壳都想废了。答案无非两种。 使用轮询。就是使用ajax过一段时间查询一次。 或者长连接。就是我发一个请求了，等有消息了在回复，然后处理了再发长连接。 可是那时我骄傲的认为都不好。都垃圾！怎么这就是现在业内的主流方案。不优雅！老子弄个更加牛逼的。结果搞出来了一个更加垃圾的。ajax+xml的方法。功能都没有实现是请求的时候获取更新的。（我当时固执的认为，网络效率要高，现在想想一个课程设计高个锤子！）所以，我为学生党的你奉献出这个富有创造力的解决方案。 技术方案 websocket协议API传送门 + js 后端服务提供 websocketd 传送门 前端服务提供 http-server 传送门 注意 如果你以为这篇文章是给伸手党准备的，你就错了。你要在电脑上运行起这段代码。你至少要你学会一下这些技能。git 安装运行linux虚拟机（windows用户） JavaScript只是了解dom 简单的计算机网络知识 翻墙技术（非必须）简单的shell脚本知识 但是不要紧张我保证这些知识花一周就可以掌握。而且遇到了困难了还可以问学长。欢迎评论和邮箱:) 原理 先简单的说一下这个websocket的协议（这个阮一峰的教程说的很好可以先传送一下看一下传送门）。他保证了一个到web的有状态连接。保证两边都是可以发送消息。这个对web开发即时场景来说简直太好了。 所以原来很简单。就是每个页面连接到一个ws（websocket）服务。然后把数据存到一个文件中，在读取这个文件中的信息返回给每个连接的用户。这里使用websocketd（注意多了一个d，这是一个提供websocket服务的服务器）。它很强大，它不分语言，只有在命令行里打包可以运行的命令他都可以进行提供服务。你甚至可以用c++写一个游戏服务器，给前端提供服务。如果各位感兴趣我可以在日后为大家完成demo。 所以，你可以看到这个原理是如此的简单，这都得益于优雅的websocket协议，富有创造力的websocketd服务器。 代码代码很少。只有两个一个页面，和一个服务器脚本。这个没什么好说的，直接看代码吧；12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364&lt;CTYPE html&gt;&lt;html&gt;&lt;head&gt; &lt;meta charset="utf-8"&gt; &lt;meta name="viewport" content="width=device-width"&gt; &lt;title&gt;简单的聊天室&lt;/title&gt;&lt;/head&gt;&lt;body&gt; &lt;div id="content" &gt; &lt;span&gt;等待输出在开始通信&lt;/span&gt; &lt;br&gt; &lt;/div&gt; &lt;input type="text" id="input" /&gt; &lt;button type="submit" id="submit"&gt;发送&lt;/button&gt; &lt;script&gt; //注意这里的地址 需要你进行修改！ var ws= new WebSocket('ws://zhouzihaodeMacBook-Pro.local:8080/'); var btn = document.getElementById("submit"); var text = document.getElementById("input"); var content = document.getElementById("content"); ws.addEventListener('message', function (event) &#123; console.log('Message from server ', event.data); content.innerHTML += event.data+"&lt;br&gt;"; &#125;); ws.onclose = function(event)&#123; console.log('closed'); &#125; //给按钮添加监听事件然后发送消息 btn.onclick = function()&#123; //如果内容为空就不发送出来 if(text.value == '')&#123; //donothing &#125;else&#123; ws.send(text.value); //吧刚刚发的消息 回显出来 console.log('send'+text.value); text.value = ''; &#125; &#125;&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;``` 然后是服务端的脚本。(ノへ￣、)捂脸。这个都是我照着官方的demo抄的改的。看一下吧。```shell#!/bin/bash# 代码源自websocketd官方项目的demo我做了一些小的修改！每次发消息的时候也会显示回来~# 注意这是不需要的！我为了方便在这么做的。但是这加大了网络的io。正常做法是用js直接现在在页面里。# 这段代码只能跑在 可以使用这些命令的机器上 的服务器上。如果你使用的是windows请检查这个文件是否可以使用。# 或者我将在别的时间内。补充windows可用的版本echo "Please enter your name:"; read USERecho "[$(date)] $&#123;USER&#125; joined the chat" &gt;&gt; chat.logecho "[$(date)] Welcome to the chat $&#123;USER&#125;!"# 注意这里 这里如果没有生效要改成自己的地址MYDIR=`pwd -L`tail -n 0 -f "$&#123;MYDIR&#125;/chat.log" &amp;while read MSG; do echo "[$(date)] $&#123;USER&#125;&gt; $&#123;MSG&#125;" &gt;&gt; chat.log; done 最后是我的git代码传送门 结果首先启动文件夹下的chat为websocket服务。websocket --port=8080 $project-dir$/chat这里的project_dir是项目文件夹的绝对路径。然后在把index.html发布成web就可以了。http-server之后按照提示访问就好。为了看效果要开两个tab来看。 我将一直迷惑和无知，我是黄油香蕉君，再见。]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>js</tag>
+        <tag>websocket</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[node黑魔法js操作命令行的方法续]]></title>
     <url>%2F2017%2F09%2F17%2Fnode%E9%BB%91%E9%AD%94%E6%B3%95js%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%9A%84%E6%96%B9%E6%B3%95%E7%BB%AD%2F</url>
     <content type="text"><![CDATA[前言 之前向朋友们介绍过使用shelljs这个包来对命令行进行操作。其实在nodejs中提供了更加优雅的方法来帮助我们对命令行进行操作。现在就可以使用child_process作为关键字进行查询。他是nodejs原生支持的一个模块，作用是开始一个子进程。使用这个模块中的exec方法就可以运行某些指令了。但是呢要注意，这里是异步的，如果你要封装一个调用的函数，不一定可以直接运行出值。这的处理办法是：使用回调函数或者使用Promise。 代码示例 这里直接上一个封装了Promise的代码。 123456789101112131415161718//使用SE 的写法封装一个git的命令var cp = require("child_process")export function gitStatus(directory)&#123; var comd = "git status" //返回了一个Promise对象 return new Promise(function(resolve,reject)&#123; cp.exec(comd,&#123;cwd:directory&#125;,function(error,stdout,stderr)&#123; if(error)&#123; //返回报错信息 reject(stderr) &#125;else&#123; //返回命令行输出 resolve(stdout) &#125; &#125;); &#125;)&#125; 简单的解释一下代码里的内容。其中exec()是运行一个函数的意思。其中的第二个参数cwd是命令运行的文件夹。然后这返回了一个Promise对象。这样就优雅的解决的调用时异步的问题。也就是说在使用的时候使用.then()的写法就可以了。 后记 当然如果你是一个js的新手或许没有理解我说的。这里主要涉及了三个知识点。现在分别献上传送门。 ES6 中文文档 Promise Promise迷你书 child_process nodejs文档相信你看了这些就明白了，也不需要我多说了。 我将一直的迷惑与无知，我是黄油香蕉君，再见。]]></content>
@@ -8,8 +20,8 @@
         <category>技术</category>
       </categories>
       <tags>
-        <tag>node</tag>
         <tag>js</tag>
+        <tag>node</tag>
         <tag>shell</tag>
       </tags>
   </entry>
@@ -253,8 +265,8 @@
         <category>技术</category>
       </categories>
       <tags>
-        <tag>node</tag>
         <tag>js</tag>
+        <tag>node</tag>
         <tag>shell</tag>
       </tags>
   </entry>
@@ -480,8 +492,8 @@
       </categories>
       <tags>
         <tag>emacs</tag>
-        <tag>spacemacs</tag>
         <tag>git</tag>
+        <tag>spacemacs</tag>
       </tags>
   </entry>
   <entry>
