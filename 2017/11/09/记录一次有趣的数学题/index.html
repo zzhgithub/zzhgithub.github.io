@@ -100,7 +100,7 @@
 <meta property="og:url" content="http://zzhgithub.github.io/2017/11/09/记录一次有趣的数学题/index.html">
 <meta property="og:site_name" content="黄油香蕉君的主页">
 <meta property="og:description" content="记录一次有趣的数学题">
-<meta property="og:updated_time" content="2017-11-10T06:37:02.000Z">
+<meta property="og:updated_time" content="2017-11-10T09:24:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记录一次有趣的数学题">
 <meta name="twitter:description" content="记录一次有趣的数学题">
@@ -428,7 +428,21 @@
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">//这里认为react是一个根据自然数n生成升序列的函数 比如  </div><div class="line">// react(5) =&gt; [1,2,3,4,5] n也表元素的个数</div><div class="line">// 现在用react(5)-[2]表示 除去2这个元素 react(5)-[2] =&gt; [1,3,4,5] 显然它的元素个数是n-1</div><div class="line">function a(react(n)&#123;</div><div class="line">   for(react(n) as index=&gt;value)&#123;//表示索引加上值</div><div class="line">      则需要的排列</div><div class="line">      value + a( react(n) - value);//注意这个也是一组排列</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>  可以看出来开始的时候有n个循环调用了n次函数a。然后每个调用又要循环n-1次。那么第二层的调用就有多少呢？n(n-1)。第三次就是n(n-1)(n-2).于是要求这些数的和。最后一个是多少呢？好好想想！，最后的结束条件是列表长度变为1。那么表示最后每个前一级调用了一次。于是n(n-1)(n-2)…(n-(n-1))也就是n！。哈哈那么这个公式是不就清晰了呢？  </p>
 <script type="math/tex; mode=display">{\lim_{n \to +\infty}} \frac{n+n(n-1)+n(n-1)(n-2)+ ... +n!}{n!}</script><p>  开始算吧少年。  </p>
-<h3 id="TODO-数学问题"><a href="#TODO-数学问题" class="headerlink" title="TODO 数学问题"></a>TODO 数学问题</h3>
+<h3 id="数学问题"><a href="#数学问题" class="headerlink" title="数学问题"></a>数学问题</h3><p>  这其实已经很简单了。为了方便我们把公式抄一遍：  </p>
+<script type="math/tex; mode=display">{\lim_{n \to +\infty}} \frac{n+n(n-1)+n(n-1)(n-2)+ ... +n!}{n!}</script><p>  现在看看分数符号上方的部分。</p>
+<script type="math/tex; mode=display">n+n(n-1) + n(n-1)(n-2) + ... + n!</script><p>  我们看看n怎么表示呢。$ n = \frac{n!}{(n-1)!} $ 使用这个公式来替换就会有一个有趣的现象发生了。</p>
+<script type="math/tex; mode=display">\frac{n!}{(n-1)!} + \frac{n!}{(n-2)!} + ... + \frac{n!}{1}</script><p>  注意这里下面还除以了一个n!呢！现在正好可以和分母的n!消掉。ok看看下面的公式  </p>
+<script type="math/tex; mode=display">\frac{1}{(n-1)!} + \frac{1}{(n-2)!} + ... + \frac{1}{1}</script><p>  这个是啥呢？？ 你还没有看出来吗？？好吧同学我换一个顺序。</p>
+<script type="math/tex; mode=display">1 + \frac{1}{1x2} + \frac{1}{1x2x3} + ... + \frac{1}{n!}</script><p>  也就是</p>
+<script type="math/tex; mode=display">\lim_{a \to +\infty} \sum_{n=0}^a (\frac{1}{n!})</script><p>  哦是不是似曾相识的感觉，这个数是什么？ 是自然常数 <code>e</code>。</p>
+<blockquote>
+<p>我开始得到这里的时候就方了。还在想这个数是多少呢！看这个格式还以为是泰勒公式的逆运算。结果查了好久，算了好久，才发现这个数是e。哎~~老了。</p>
+</blockquote>
+<h2 id="传送门"><a href="#传送门" class="headerlink" title="传送门"></a>传送门</h2><p><a href="https://baike.baidu.com/item/%E8%87%AA%E7%84%B6%E5%B8%B8%E6%95%B0/1298918?fr=aladdin" target="_blank" rel="external">自然常数</a></p>
+<blockquote>
+<p>我将一直迷惑和无知，我是黄油香蕉君，再见。</p>
+</blockquote>
+
       
     </div>
 
@@ -685,7 +699,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#记录一次有趣的数学题"><span class="nav-number">1.</span> <span class="nav-text">记录一次有趣的数学题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题描述"><span class="nav-number">1.2.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解"><span class="nav-number">1.3.</span> <span class="nav-text">解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#编程问题"><span class="nav-number">1.3.1.</span> <span class="nav-text">编程问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TODO-数学问题"><span class="nav-number">1.3.2.</span> <span class="nav-text">TODO 数学问题</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#记录一次有趣的数学题"><span class="nav-number">1.</span> <span class="nav-text">记录一次有趣的数学题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题描述"><span class="nav-number">1.2.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解"><span class="nav-number">1.3.</span> <span class="nav-text">解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#编程问题"><span class="nav-number">1.3.1.</span> <span class="nav-text">编程问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数学问题"><span class="nav-number">1.3.2.</span> <span class="nav-text">数学问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#传送门"><span class="nav-number">1.4.</span> <span class="nav-text">传送门</span></a></li></ol></li></ol></div>
             
 
           </div>
