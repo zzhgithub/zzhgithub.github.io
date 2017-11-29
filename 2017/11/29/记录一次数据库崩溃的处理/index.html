@@ -100,7 +100,7 @@
 <meta property="og:url" content="http://zzhgithub.github.io/2017/11/29/记录一次数据库崩溃的处理/index.html">
 <meta property="og:site_name" content="黄油香蕉君的主页">
 <meta property="og:description" content="现象描述  本人使用mac电脑。在docker上搭建php+mysql+ubuntu开发环境。使用phpmyadmin去管理数据库。在容器关闭之后再次启动进入之后发现了phpmyadmin不能使用了。如果按照报错查询资料是要求修改phpmyadmin的配置文件这个是错的。其实使用service mysql status会发现mysql已经启动不了了。这个才是问题关键。">
-<meta property="og:updated_time" content="2017-11-29T04:08:24.000Z">
+<meta property="og:updated_time" content="2017-11-29T06:13:53.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记录一次数据库崩溃的处理">
 <meta name="twitter:description" content="现象描述  本人使用mac电脑。在docker上搭建php+mysql+ubuntu开发环境。使用phpmyadmin去管理数据库。在容器关闭之后再次启动进入之后发现了phpmyadmin不能使用了。如果按照报错查询资料是要求修改phpmyadmin的配置文件这个是错的。其实使用service mysql status会发现mysql已经启动不了了。这个才是问题关键。">
@@ -426,6 +426,10 @@
 <li>跳过启动在修复<br><code>service mysql start –skip-grant-tables</code><br><code>mysqlcheck -r mysql user</code>  </li>
 <li>喝杯咖啡🎉一下。</li>
 </ol>
+<h1 id="传送门"><a href="#传送门" class="headerlink" title="传送门"></a>传送门</h1><ul>
+<li><a href="http://m.blog.csdn.net/fenglibing/article/details/6260021" target="_blank" rel="external">传送门1</a></li>
+<li><a href="https://linuxtechme.wordpress.com/2013/08/24/table-mysqluser-is-marked-as-crashed-and-should-be-repaired/" target="_blank" rel="external">传送门2</a></li>
+</ul>
 <blockquote>
 <p>我将一直的迷惑和无知，我是黄油香蕉君，再见。</p>
 </blockquote>
@@ -686,7 +690,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#现象描述"><span class="nav-number">1.</span> <span class="nav-text">现象描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#排查过程"><span class="nav-number">2.</span> <span class="nav-text">排查过程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#流程记录"><span class="nav-number">3.</span> <span class="nav-text">流程记录</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#现象描述"><span class="nav-number">1.</span> <span class="nav-text">现象描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#排查过程"><span class="nav-number">2.</span> <span class="nav-text">排查过程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#流程记录"><span class="nav-number">3.</span> <span class="nav-text">流程记录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#传送门"><span class="nav-number">4.</span> <span class="nav-text">传送门</span></a></li></ol></div>
             
 
           </div>
