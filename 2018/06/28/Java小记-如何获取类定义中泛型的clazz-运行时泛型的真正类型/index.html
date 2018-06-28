@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="emacs,spacemacs," />
+  <meta name="keywords" content="java,泛型," />
 
 
 
@@ -93,19 +93,17 @@
 
 
 
-<meta name="description" content="这个世界上有太多的分歧，人们很难达成共识。比如吃饺子应该蘸酱油还是蘸醋，豆腐脑吃甜还是吃咸等等。但是这些问题在我眼里一点意义都没有。真正重要的是编辑器之争。什么才是世界上最好的编辑器。我会回答你当然是emacs了。为什么？因为我就是emacs党哈哈。  你可能是小白,还没有选择你信仰，少年！我将世界上最好的编辑器，传福音给你。记住我们的敌人是vim，而不是使用vim的人。少年啊！爱我们的敌人">
-<meta name="keywords" content="emacs,spacemacs">
+<meta name="description" content="Java小记-如何获取类定义中泛型的clazz-运行时泛型的真正类型知识点很偏。型如： 123456public abstract class TestA&amp;lt;T&amp;gt;&amp;#123;        public void test()&amp;#123;        //这里要获取到泛型T的具体类型    &amp;#125;&amp;#125; 这个时候怎么办呢？">
+<meta name="keywords" content="java,泛型">
 <meta property="og:type" content="article">
-<meta property="og:title" content="中阶黑魔法emacs教程">
-<meta property="og:url" content="http://zzhgithub.github.io/2017/02/28/中阶黑魔法emacs教程/index.html">
+<meta property="og:title" content="Java小记-如何获取类定义中泛型的clazz-运行时泛型的真正类型">
+<meta property="og:url" content="http://zzhgithub.github.io/2018/06/28/Java小记-如何获取类定义中泛型的clazz-运行时泛型的真正类型/index.html">
 <meta property="og:site_name" content="黄油香蕉君的主页">
-<meta property="og:description" content="这个世界上有太多的分歧，人们很难达成共识。比如吃饺子应该蘸酱油还是蘸醋，豆腐脑吃甜还是吃咸等等。但是这些问题在我眼里一点意义都没有。真正重要的是编辑器之争。什么才是世界上最好的编辑器。我会回答你当然是emacs了。为什么？因为我就是emacs党哈哈。  你可能是小白,还没有选择你信仰，少年！我将世界上最好的编辑器，传福音给你。记住我们的敌人是vim，而不是使用vim的人。少年啊！爱我们的敌人">
-<meta property="og:image" content="http://zzhgithub.github.io/images/emacs.png">
-<meta property="og:updated_time" content="2018-06-21T10:52:14.000Z">
+<meta property="og:description" content="Java小记-如何获取类定义中泛型的clazz-运行时泛型的真正类型知识点很偏。型如： 123456public abstract class TestA&amp;lt;T&amp;gt;&amp;#123;        public void test()&amp;#123;        //这里要获取到泛型T的具体类型    &amp;#125;&amp;#125; 这个时候怎么办呢？">
+<meta property="og:updated_time" content="2018-06-28T02:18:57.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="中阶黑魔法emacs教程">
-<meta name="twitter:description" content="这个世界上有太多的分歧，人们很难达成共识。比如吃饺子应该蘸酱油还是蘸醋，豆腐脑吃甜还是吃咸等等。但是这些问题在我眼里一点意义都没有。真正重要的是编辑器之争。什么才是世界上最好的编辑器。我会回答你当然是emacs了。为什么？因为我就是emacs党哈哈。  你可能是小白,还没有选择你信仰，少年！我将世界上最好的编辑器，传福音给你。记住我们的敌人是vim，而不是使用vim的人。少年啊！爱我们的敌人">
-<meta name="twitter:image" content="http://zzhgithub.github.io/images/emacs.png">
+<meta name="twitter:title" content="Java小记-如何获取类定义中泛型的clazz-运行时泛型的真正类型">
+<meta name="twitter:description" content="Java小记-如何获取类定义中泛型的clazz-运行时泛型的真正类型知识点很偏。型如： 123456public abstract class TestA&amp;lt;T&amp;gt;&amp;#123;        public void test()&amp;#123;        //这里要获取到泛型T的具体类型    &amp;#125;&amp;#125; 这个时候怎么办呢？">
 
 
 
@@ -133,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="http://zzhgithub.github.io/2017/02/28/中阶黑魔法emacs教程/"/>
+  <link rel="canonical" href="http://zzhgithub.github.io/2018/06/28/Java小记-如何获取类定义中泛型的clazz-运行时泛型的真正类型/"/>
 
 
 
 
 
-  <title>中阶黑魔法emacs教程 | 黄油香蕉君的主页</title>
+  <title>Java小记-如何获取类定义中泛型的clazz-运行时泛型的真正类型 | 黄油香蕉君的主页</title>
   
 
 
@@ -312,7 +310,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://zzhgithub.github.io/2017/02/28/中阶黑魔法emacs教程/">
+    <link itemprop="mainEntityOfPage" href="http://zzhgithub.github.io/2018/06/28/Java小记-如何获取类定义中泛型的clazz-运行时泛型的真正类型/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="周子豪">
@@ -329,7 +327,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">中阶黑魔法emacs教程</h1>
+          <h1 class="post-title" itemprop="name headline">Java小记-如何获取类定义中泛型的clazz-运行时泛型的真正类型</h1>
         
 
         <div class="post-meta">
@@ -341,8 +339,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-28T09:12:48+08:00">
-                2017-02-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-28T10:06:58+08:00">
+                2018-06-28
               </time>
             
 
@@ -382,9 +380,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/02/28/中阶黑魔法emacs教程/#comments" itemprop="discussionUrl">
+                <a href="/2018/06/28/Java小记-如何获取类定义中泛型的clazz-运行时泛型的真正类型/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/02/28/中阶黑魔法emacs教程/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/06/28/Java小记-如何获取类定义中泛型的clazz-运行时泛型的真正类型/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -392,7 +390,7 @@
 
           
           
-             <span id="/2017/02/28/中阶黑魔法emacs教程/" class="leancloud_visitors" data-flag-title="中阶黑魔法emacs教程">
+             <span id="/2018/06/28/Java小记-如何获取类定义中泛型的clazz-运行时泛型的真正类型/" class="leancloud_visitors" data-flag-title="Java小记-如何获取类定义中泛型的clazz-运行时泛型的真正类型">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -420,27 +418,16 @@
       
 
       
-        <h1 id=""><a href="#" class="headerlink" title=" "></a> </h1><p>  这个世界上有太多的分歧，人们很难达成共识。比如吃饺子应该蘸酱油还是蘸醋，豆腐脑吃甜还是吃咸等等。但是这些问题在我眼里一点意义都没有。真正重要的是编辑器之争。什么才是世界上最好的编辑器。我会回答你当然是emacs了。为什么？因为我就是emacs党哈哈。<br>  你可能是小白,还没有选择你信仰，少年！我将世界上最好的编辑器，传福音给你。记住我们的敌人是vim，而不是使用vim的人。少年啊！爱我们的敌人吧。他们有许多的有点可以学习。而使用vim的往往也是有品味的人。至少他没有说sublime，IDE什么的是最好的编辑器，从这个角度讲我们是一样的。vim的使用者往往也是终端指令的高手，他们的组合技往往是：OH—MY—ZSH + vim + 插件。他们关闭打开，关闭打开。并对欣赏这速度乐此不疲。在文本中，他们的上下左右移动只需要一个键，许多快捷操作方便到哭。这就是和我们另外一个阵营的朋友们，他们一样很优雅。<br>  可是我的朋友。请记住在这个世界上<code>没有什么是emacs不能的</code>。教内有人声称emacs不是编辑器是一个操作系统。还差一点，我们离登基那一部还差一点。<a href="https://zhuanlan.zhihu.com/p/21462172" target="_blank" rel="external">传送门</a>我们和老朋友vim打了许多年<a href="https://zh.wikipedia.org/wiki/%E7%BC%96%E8%BE%91%E5%99%A8%E4%B9%8B%E6%88%98" target="_blank" rel="external">传送门</a>现在可以握手言和了，因为我选择了<code>emacs + spacemacs(vim-mode) +插件</code>。<br>  Come on！和我一起进入今天的黑魔法课程。<br> <a id="more"></a> </p>
-<h1 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h1><h2 id="安装emacs"><a href="#安装emacs" class="headerlink" title="安装emacs"></a>安装emacs</h2><p>  这个过程一开始可能很轻松也可能很痛苦。这要取决于你使用的是什么平台的电脑。这里有英文的<a href="https://www.gnu.org/software/emacs/download.html" target="_blank" rel="external">传送门</a>各位小伙伴可以视情况而定，因为我下面还会写一些  </p>
-<p>  <em>Windows 平台</em>  </p>
-<p>  这个我是不太建议在windows下直接使用emacs的，知道用个ubuntu虚拟机或者docker。但是我还是会献上<a href="http://www.programgo.com/article/93575035584/" target="_blank" rel="external">传送门</a>。不是说windows下不能使用，而是说windows下的一切都不好玩。这个我也没有安装过，对不起。但是欢迎你马上投入到linux和mac的阵营中。  </p>
-<p>  <em>linux 平台</em>  </p>
-<p>  这个要简单许多了。以Ubuntu为例，来个<a href="https://emacsist.github.io/2015/07/03/Ubuntu-14.04-LTS-%E4%B8%8B%E5%AE%89%E8%A3%85Emacs-24.5/" target="_blank" rel="external">传送门</a>。我最开始就是在ubuntu的虚拟机上使用的  </p>
-<p>  <em>Mac 平台</em>  </p>
-<p>  因为这是我现在使用的平台我会详细介绍一下。<br>  首先安装homebrew。安装过的可以跳过。<br>  之后安装emacs-for-mac。用brew安装emacs-plus哈哈！恭喜你遇坑了！我就是这样安装的。结果出现了下方状态栏出现色差的问题。在一位群内好友的帮助下我成功的解决了这个问题;完美的解决方案在这里<a href="https://github.com/railwaycat/homebrew-emacsmacport/blob/master/README.md" target="_blank" rel="external">传送门</a>这个版本的emacs在mac上比较稳定速度也很快。</p>
-<h2 id="开始自学吧"><a href="#开始自学吧" class="headerlink" title="开始自学吧"></a>开始自学吧</h2><p> 对你没有看错。现在你可以自学了。emacs有许多神奇的地方，为了坚持下去你可以选择一项技能先自学起来。比如使用Org模式，这是一个神奇的东西。可以很优雅的管理你的日程。而且我也问过很多哥们都是从这里才开始接触emacs的。当然还有一部分是通过latex接触emacs的。无论是那种都有的折腾一番了。  </p>
-<h2 id="学完之后"><a href="#学完之后" class="headerlink" title="学完之后"></a>学完之后</h2><p>  可能你会觉得很缥缈，读到现在了还不知道emacs可以做什么，弄完之后是什么样子。额。好吧，我来简单的介绍一下。  </p>
-<p>  首先这个是炫酷的界面。快乐的分屏和一些操作<br>  <img src="/images/emacs.png" alt="炫酷的界面">  </p>
-<h2 id="这么多-怎么学"><a href="#这么多-怎么学" class="headerlink" title="这么多 怎么学"></a>这么多 怎么学</h2><ol>
-<li>使用spacemacs的配置一部搞定。安装<a href="https://github.com/syl20bnr/spacemacs" target="_blank" rel="external">传送门</a></li>
-<li>用的时候看说明文档</li>
-</ol>
+        <h1 id="Java小记-如何获取类定义中泛型的clazz-运行时泛型的真正类型"><a href="#Java小记-如何获取类定义中泛型的clazz-运行时泛型的真正类型" class="headerlink" title="Java小记-如何获取类定义中泛型的clazz-运行时泛型的真正类型"></a>Java小记-如何获取类定义中泛型的clazz-运行时泛型的真正类型</h1><p>知识点很偏。型如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">TestA</span>&lt;<span class="title">T</span>&gt;</span>&#123;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="comment">//这里要获取到泛型T的具体类型</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这个时候怎么办呢？</p>
+<a id="more"></a>
+<p>方法很简单代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">TestA</span>&lt;<span class="title">T</span>&gt;</span>&#123;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="comment">//这里要获取到泛型T的具体类型</span></div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> Class&lt;T&gt; <span class="title">getClazz</span><span class="params">()</span></span>&#123;</div><div class="line">         <span class="keyword">return</span> (Class &lt;T&gt;)((ParameterizedType)getClass().getGenericSuperclass()).getActualTypeArguments()[<span class="number">0</span>];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>注意这里的方法是获取到当前类的泛型的参数列表，然后获取其中第一个参数。因为我们这里只定义了一个泛型嘛，如果要使用两个，或者更多只需要更改数组索引和返回类型就可以了。  </p>
+<p>相信你可以写出更加骚气的代码。</p>
 <blockquote>
-<p>建议多去看文档，如果我的教程就是把它们抄过来一遍也没有啥意义。</p>
-</blockquote>
-<h1 id="我们的朋友在哪里"><a href="#我们的朋友在哪里" class="headerlink" title="我们的朋友在哪里"></a>我们的朋友在哪里</h1><p> 在国内有许多的emacs的大法师，比如子龙山人。在优酷中有他全套的教学视频，最重要的是中文的，而且讲解的很详细。<a href="https://zilongshanren.com/" target="_blank" rel="external">子龙山人主页</a>,他有一个《21天学会emacs》的视频很适合去学习。不光如此他还建立了elpa的镜像，（当然这里还有其他人的努力）让不能翻墙的小伙伴获得了福音。<br> 这里不得不说到emacs的国内论坛。<a href="https://emacs-china.org/" target="_blank" rel="external">emacs-bbs</a>很多大神就活跃在上面，你的提问几乎都有人来回答。相信有了这些信息你将会开始一段快乐的emacs之旅。:)</p>
-<blockquote>
-<p>我将一直的迷惑与无知，我是黄油香蕉君，再见。</p>
+<p>我将一直的无知与迷惑，我是黄油香蕉君，再见。</p>
 </blockquote>
 
       
@@ -487,9 +474,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/emacs/" rel="tag"># emacs</a>
+            <a href="/tags/java/" rel="tag"># java</a>
           
-            <a href="/tags/spacemacs/" rel="tag"># spacemacs</a>
+            <a href="/tags/泛型/" rel="tag"># 泛型</a>
           
         </div>
       
@@ -502,8 +489,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/27/《暗时间》一本没有读应该马上读的书/" rel="next" title="《暗时间》一本没有读应该马上读的书">
-                <i class="fa fa-chevron-left"></i> 《暗时间》一本没有读应该马上读的书
+              <a href="/2018/06/24/读书笔记《告别百年激进》（温铁军演讲录）/" rel="next" title="读书笔记《告别百年激进》（温铁军演讲录）">
+                <i class="fa fa-chevron-left"></i> 读书笔记《告别百年激进》（温铁军演讲录）
               </a>
             
           </div>
@@ -511,10 +498,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/02/28/Common-Lisp教程（1）/" rel="prev" title="Common-Lisp教程（1）">
-                Common-Lisp教程（1） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -703,7 +686,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text"> </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#准备"><span class="nav-number">2.</span> <span class="nav-text">准备</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装emacs"><span class="nav-number">2.1.</span> <span class="nav-text">安装emacs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始自学吧"><span class="nav-number">2.2.</span> <span class="nav-text">开始自学吧</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#学完之后"><span class="nav-number">2.3.</span> <span class="nav-text">学完之后</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#这么多-怎么学"><span class="nav-number">2.4.</span> <span class="nav-text">这么多 怎么学</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#我们的朋友在哪里"><span class="nav-number">3.</span> <span class="nav-text">我们的朋友在哪里</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java小记-如何获取类定义中泛型的clazz-运行时泛型的真正类型"><span class="nav-number">1.</span> <span class="nav-text">Java小记-如何获取类定义中泛型的clazz-运行时泛型的真正类型</span></a></li></ol></div>
             
 
           </div>
@@ -855,9 +838,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://zzhgithub.github.io/2017/02/28/中阶黑魔法emacs教程/';
-          this.page.identifier = '2017/02/28/中阶黑魔法emacs教程/';
-          this.page.title = '中阶黑魔法emacs教程';
+          this.page.url = 'http://zzhgithub.github.io/2018/06/28/Java小记-如何获取类定义中泛型的clazz-运行时泛型的真正类型/';
+          this.page.identifier = '2018/06/28/Java小记-如何获取类定义中泛型的clazz-运行时泛型的真正类型/';
+          this.page.title = 'Java小记-如何获取类定义中泛型的clazz-运行时泛型的真正类型';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://zzhgithub-github-io.disqus.com/embed.js';
