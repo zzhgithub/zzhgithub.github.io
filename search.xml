@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[从0-1分布到二项目分布到泊松分布]]></title>
+    <url>%2F2018%2F07%2F11%2F%E4%BB%8E0-1%E5%88%86%E5%B8%83%E5%88%B0%E4%BA%8C%E9%A1%B9%E7%9B%AE%E5%88%86%E5%B8%83%E5%88%B0%E6%B3%8A%E6%9D%BE%E5%88%86%E5%B8%83%2F</url>
+    <content type="text"><![CDATA[从0-1分布到二项目分布到泊松分布前言爱因斯坦有一句名言：“如果你不能给六岁的小孩讲明白，其实你也没有真正明白”。这也是我检查写博客原因，就是为了定期的检验我学到的知识点。我们目标不是去讲复杂的知识，而是希望与把知识线一样的串联在一起，之后以简单的形式让人理解。 0-1分布0-1分布可以视为最简单的概率分布。一个随机事件只有两种可能A个非A,于是我们两个离散的点0，1表示。其中比如A发生的概率是p那么非A发生的概率就是(1-p)。他的分布律如下 P(X=k) = p^k .(1-p)^{1-k} ;其中k=0,1在数学上使用$ X ~ B(x,p) $来表示。 这个很好理解就拿我们抛一次硬币举例，要么证明正面朝上，要么反面朝上。 二项分布好了现在我们要通过0-1分布过度到二项分布中来。现在依旧以抛硬币这个事件来说。我现在不是抛一次了。我现在要实验n次（也就是人们说的n次独立伯努利试验），现在我要研究什么呢？不在是出现正面的概率了（次数抛了多次讨论哪个也没有什么意义），而我现在想知道这n次实验之后出现正面次数k的概率。 为了方便研究我们先计算一个简单的情况，我们规定实验3次，而我们研究出现一次的概率。我们发现这里抛了三次但是出现了一次正面，那么在那次出现的正面呢？这出现的可能情况的个数显然是个组合数。$ C{3}^{1} $这里表示在3个里面选择一个。然后这一次发生的概率是$ p^{1} $而不发生的情况有两种就是$ (1-p)^{3-1} $他们相乘才是一种只出现一次的可能，现在我们要算总共出现1证明的概率，于是还要累加组合数个，于是得出概率是$ C{3}^{1} p^{1} (1-p)^{3-1} $ ; 现在可以推广一下把上面的实验次从3数变成n，把出现的次数从1变成k我们就得到了二项分布的概率分布： P(X=k)=C^{k}_{n}p^k(1-p)^{n-k};现在我们用python的代码来仿真一下看看是什么样的。 组合式计算公式：$ C_m^n = \frac{n!}{m!(n-m)!} $ 123456789101112from pylab import *def plot_binomial(n,p): '''绘制二项分布的概率质量函数''' sample = np.random.binomial(n,p,size=10000) # 产生10000个符合二项分布的随机数 bins = np.arange(n+2) plt.hist(sample, bins=bins, align='left', rwidth=0.1) # 绘制直方图 #设置标题和坐标 plt.title('Binomial PMF with n=&#123;&#125;, p=&#123;&#125;'.format(n,p)) plt.xlabel('number of successes') plt.ylabel('probability')plot_binomial(10, 0.5) 当然这里主要归功于np.random.binomial这个函数，生成了二项分布的数据。当然这段代码也不是我写的。如果要看源文章请以后看最后的传送门啦。 泊松分布我们抛啊抛啊，抛了好久，但是却无法知道我们抛了一分钟的情况下出现正面的情况大约是多少。现在泊松分布就要来解决这个问题了。我们要计算在单位时间内出现某个事件的概率来了。比如我们要计算出10分钟内某个医院中新生儿的个数。可是我们怎么计算呢？我们不能让每个母亲都去做实验看看她是生还是不生。我们有的数据仅仅是昨天一天来本医院的新生儿个数怎么办呢？ 我们看看我们的数据是一种什么数据，是一种频率数据，就是在固定时间内的一种数学期望成过。如果我们假设一分钟前出生的个数对下一分钟没有什么必然的影响，他们在时间上相互独立的，也就是说我们得到的这个频率在统计上应该是稳定的。那么我们可否使用这个值进行估计呢？答案是可以的。怎么做呢？这里要用到极限的思想了。 首先我们承认在一段时间内发生的频率相对稳定我们叫它$\lambda $ 。注意这个一个合理的基本的假设。 好了现在我们把一段时间分成n等份。然后在每份时间里有做一次实验。思考一下原来一段时间内发生的个数是$\lambda$现在分成了n份，也就是说在每一份中发生的概率为$p=\frac{\lambda}{n}$ 于是不发生的概率为$1-p=1-\frac{\lambda}{n}$ 。好了现在我们就有了n次n次独立伯努利试验了。他的概率分布直接上一个单元中的公式就可以了。 C^{k}_{n}p^k(1-p)^{n-k};可是注意观察这里的n不是什么正经玩应！我们要的是和$\lambda$的关系啊。而且有些是就像生孩子一样我们可以近似为每时每刻都在实验中。相当于在一段时间内做了无数次的实验。好吧我们对n取极限吧！ \lim_{n \to \infty,p \to 0} C^{k}_{n}p^k(1-p)^{n-k}; \lim \frac{n(n-1)...(n-k+1)}{k!}p^k(1-p)^{n-k}在分母提取一个$n^k$。于是： \lim \frac{n^k[ 1(1-\frac{1}{n})...(1-\frac{k+1}{n})]}{k!}p^k(1-p)^{n-k}因为$n \to \infty$ 所以中括号里面的部分都变成了1。于是乎原式为： \lim \frac{n^kp^k}{k!}(1-p)^{n-k}现在看左边，由于我们知道$np = \lambda$;这里就可以变为$\frac{\lambda^k}{k!}$;好了我们现在单单看看右侧的部分，先抄写一遍。 \lim (1-p)^{n-k}先展开。后面那项的极限为1.不信你看。 \lim(1-p)^n \lim (1-p)^k先我们知道了$n=\frac{\lambda}{p}$代入到上面得到了。 lim(1-p)^{\frac{\lambda}{p}} PS :还记得吗？e的公式$ e = \lim_{n \to \infty } (1+\frac{1}{n})^n $ 于是乎得到的是$[ \lim(1+(-p)^{\frac{1}{-p}} ]^{-\lambda} = e^{-\lambda}$ 。现在我们的就得到了单位时间内发生次数的概率分布。 P(X=k) = \frac{\lambda^k}{k!} e^{-\lambda}发现了没有只和单位时间发生的频率有关。 好了现在我们看一下python仿真： 123456789from pylab import *lamb = 6sample = np.random.poisson(lamb, size=10000) # 生成10000个符合泊松分布的随机数bins = np.arange(20)plt.hist(sample, bins=bins, align='left', rwidth=0.1) # 绘制直方图# 设置标题和坐标轴plt.title('Poisson PMF (lambda=6)')plt.xlabel('number of arrivals')plt.ylabel('probability')plt.show() 后记好了现在送上传送门。这里是没有模仿实验的过程，而是直接生产符合概率分布的数据。所以要仿真的话，似乎可以不去关心生产的过程。 我将一直的迷惑和无知，我是黄油香蕉句，再见。]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>数学</tag>
+        <tag>泊松分布</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Java小记-如何获取类定义中泛型的clazz-运行时泛型的真正类型]]></title>
     <url>%2F2018%2F06%2F28%2FJava%E5%B0%8F%E8%AE%B0-%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96%E7%B1%BB%E5%AE%9A%E4%B9%89%E4%B8%AD%E6%B3%9B%E5%9E%8B%E7%9A%84clazz-%E8%BF%90%E8%A1%8C%E6%97%B6%E6%B3%9B%E5%9E%8B%E7%9A%84%E7%9C%9F%E6%AD%A3%E7%B1%BB%E5%9E%8B%2F</url>
     <content type="text"><![CDATA[Java小记-如何获取类定义中泛型的clazz-运行时泛型的真正类型知识点很偏。型如： 123456public abstract class TestA&lt;T&gt;&#123; public void test()&#123; //这里要获取到泛型T的具体类型 &#125;&#125; 这个时候怎么办呢？ 方法很简单代码如下： 12345678910public abstract class TestA&lt;T&gt;&#123; public void test()&#123; //这里要获取到泛型T的具体类型 &#125; public Class&lt;T&gt; getClazz()&#123; return (Class &lt;T&gt;)((ParameterizedType)getClass().getGenericSuperclass()).getActualTypeArguments()[0]; &#125;&#125; 注意这里的方法是获取到当前类的泛型的参数列表，然后获取其中第一个参数。因为我们这里只定义了一个泛型嘛，如果要使用两个，或者更多只需要更改数组索引和返回类型就可以了。 相信你可以写出更加骚气的代码。 我将一直的无知与迷惑，我是黄油香蕉君，再见。]]></content>
@@ -582,8 +594,8 @@
         <category>技术</category>
       </categories>
       <tags>
-        <tag>vim</tag>
         <tag>emacs</tag>
+        <tag>vim</tag>
       </tags>
   </entry>
   <entry>
