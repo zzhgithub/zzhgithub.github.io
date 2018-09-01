@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[分析中的问题和命题-序]]></title>
     <url>%2F2018%2F09%2F01%2F%E5%88%86%E6%9E%90%E4%B8%AD%E7%9A%84%E9%97%AE%E9%A2%98%E5%92%8C%E5%91%BD%E9%A2%98-%E5%BA%8F%2F</url>
-    <content type="text"><![CDATA[分析中的问题和命题译者前言：《Problem an propositions in analysis》是有Gabrial Klambauer所写的数学著作。本人由于特殊机缘巧合了解到这本书。于是开始了翻译计划。当然没次翻译都是在我理解了之后才能进行所以速度会很慢，当然你可以可以通过捐助的方式来催我。哈哈。那是不可能的。 原版前言 Solving problems is an essential activity in the study of mathematics. Instructors pose problems to define scope and content of knowledge expected of their students;mathematical competitions and written qualifying examinations are designed to test the participant&#39;s ability and ingenuity in solving unusual problems. Moreover, it is a familiar fact of mathematical instruction that a single good problem can awaken a dormant mind more readily than highly polished lectures do. This book contains problems with solutions and the reader is invited to produce additional solutions.To ensure a wide appeal I have concentrated on basic matters of real analysis and have consulted problem sections in various mathematical journals and the collected works of some great mathematicians. Dr. John Abramowith aroused my interest to write this book amd Dr. Edward L.Cohen has encouraged me throughout the project;I am grateful to both these personal friends. I am pleased to express my gratitude to Mrs ,Wendy M.Coutts, my technical typist,for her fine work and to the administration of University of Ottawa for the generous support that I have enjoyed in connection with this and two other book writing projects.My warmest thanks are due to my family. ​ Gabriel Klambauer. 译文​ 解决问题是数学研究中的基本活动。导师通过给出问题来定义他的学生接下来要研究知识的范围和内容。数学竞赛和一些资质测验被设计出来检验参与者在某些特定问题的下能力和创造性。而且，在数学教学中好的问题比填鸭式的讲座更能激发学生潜在的热情，这已经是大家熟悉的事实了。 ​ 这本书包含了问题和解题过程，并且邀请读者创作额外的解题方法。为了确保这本书满足广大群众的要求，本人集中了实分析中的一些基本问题，还有各种数学期刊上的问题，和一些收集到的伟大数学家的杰作。 ​ John Abramowith博士使我产生了写这本书的兴趣，并且 Edward L.Cohen 博士在全部过程中给了我很大的鼓励。我非常感谢我这两位私人好友。并且我很乐意把我感激给Wendy M.Coutts夫人，我的技术排版员，感谢你优秀的工作。还有渥太华大学的管理者，感激你们的慷慨自助，使我可顺利完成本书以及另外两本书的写作工作。最后,我最热烈的那声“谢谢”则要给与我的家人。 ​ Gabriel Klambauer. 我将一直迷惑和无知，我是黄油香蕉君，再见！]]></content>
+    <content type="text"><![CDATA[分析中的问题和命题译者前言：《Problem an propositions in analysis》是有Gabrial Klambauer所写的数学著作。本人由于特殊机缘巧合了解到这本书。于是开始了翻译计划。当然没次翻译都是在我理解了之后才能进行所以速度会很慢，当然你可以可以通过捐助的方式来催我。哈哈。那是不可能的。 原版前言 Solving problems is an essential activity in the study of mathematics. Instructors pose problems to define scope and content of knowledge expected of their students;mathematical competitions and written qualifying examinations are designed to test the participant’s ability and ingenuity in solving unusual problems. Moreover, it is a familiar fact of mathematical instruction that a single good problem can awaken a dormant mind more readily than highly polished lectures do. This book contains problems with solutions and the reader is invited to produce additional solutions.To ensure a wide appeal I have concentrated on basic matters of real analysis and have consulted problem sections in various mathematical journals and the collected works of some great mathematicians. Dr. John Abramowith aroused my interest to write this book amd Dr. Edward L.Cohen has encouraged me throughout the project;I am grateful to both these personal friends. I am pleased to express my gratitude to Mrs ,Wendy M.Coutts, my technical typist,for her fine work and to the administration of University of Ottawa for the generous support that I have enjoyed in connection with this and two other book writing projects.My warmest thanks are due to my family. Gabriel Klambauer. 译文 解决问题是数学研究中的基本活动。导师通过给出问题来定义他的学生接下来要研究知识的范围和内容。数学竞赛和一些资质测验被设计出来检验参与者在某些特定问题的下能力和创造性。而且，在数学教学中好的问题比填鸭式的讲座更能激发学生潜在的热情，这已经是大家熟悉的事实了。 这本书包含了问题和解题过程，并且邀请读者创作额外的解题方法。为了确保这本书满足广大群众的要求，本 人集中了实分析中的一些基本问题，还有各种数学期刊上的问题，和一些收集到的伟大数学家的杰作。 John Abramowith博士使我产生了写这本书的兴趣，并且 Edward L.Cohen 博士在全部过程中给了我很大的鼓励。我非常感谢我这两位私人好友。并且我很乐意把我感激给Wendy M.Coutts夫人，我的技术排版员，感谢你优秀的工作。还有渥太华大学的管理者，感激你们的慷慨自助，使我可顺利完成本书以及另外两本书的写作工作。最后,我最热烈的那声“谢谢”则要给与我的家人。 Gabriel Klambauer 我将一直迷惑和无知，我是黄油香蕉君，再见！]]></content>
       <categories>
         <category>技术</category>
       </categories>
@@ -147,8 +147,8 @@
         <category>技术</category>
       </categories>
       <tags>
-        <tag>node</tag>
         <tag>js</tag>
+        <tag>node</tag>
         <tag>shell</tag>
       </tags>
   </entry>
@@ -392,8 +392,8 @@
         <category>技术</category>
       </categories>
       <tags>
-        <tag>node</tag>
         <tag>js</tag>
+        <tag>node</tag>
         <tag>shell</tag>
       </tags>
   </entry>
