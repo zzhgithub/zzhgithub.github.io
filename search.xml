@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[使用python调用c源码（官方文档翻译向）]]></title>
+    <url>%2F2018%2F12%2F01%2F%E4%BD%BF%E7%94%A8python%E8%B0%83%E7%94%A8c%E6%BA%90%E7%A0%81%EF%BC%88%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E7%BF%BB%E8%AF%91%E5%90%91%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[使用python调用c源码（官方文档翻译向）前言教大家一个巧妙的提高自己喜欢语言的方法。比如你喜欢使用python，而在别人谈论其他语言的时候，你便可以嘲讽他说：“python可以调用它吗？”哈哈，皮一下真开心。 好了闲话少叙。先送上官方文档。 python调用c源码当天你想调用已经编译好的lib，强大的cffi也是可以的。具体可以看上方文档中的其他部分。而如果你有了现成的源码其实也是很简单的。只有遵循以下步骤就可以了。 步骤1：创建c源码和c的头文件pi.c: 12345678910111213141516171819/* filename: pi.c*/# include &lt;stdlib.h&gt;# include &lt;math.h&gt;/* Returns a very crude approximation of Pi given a int: a number of iteration */float pi_approx(int n)&#123; double i,x,y,sum=0; for(i=0;i&lt;n;i++)&#123; x=rand(); y=rand(); if (sqrt(x*x+y*y) &lt; sqrt((double)RAND_MAX*RAND_MAX)) sum++; &#125; return 4*(float)sum/(float)n; &#125; pi.h 12/* filename: pi.h*/float pi_approx(int n); 步骤2：编写py脚本生成c扩展pi_extension_build.py 1234567891011121314from cffi import FFIffibuilder = FFI()ffibuilder.cdef("float pi_approx(int n);")ffibuilder.set_source("_pi", # name of the output C extension""" #include "pi.h"',""", sources=['pi.c'], # includes pi.c as additional sources libraries=['m']) # on Unix, link with the math library 这里要写c试用的lib的名称这是linux下的所以是mif __name__ == "__main__": ffibuilder.compile(verbose=True) 好了现在命令行下运行python pi_extension_build.py 如果没有问题的情况下你的文件夹下会出现一些东西。放心这是正常的。 步骤3：直接调用你刚才生成的模块现在你就可调用到这个刚刚写好的函数了。比如像下面的代码： 1234567from _pi.lib import pi_approxapprox = pi_approx(10)assert str(pi_approximation).startswith("3.")approx = pi_approx(10000)assert str(approx).startswith("3.1") 就是这么简单是不是so easy! 我将一直的无知与迷惑，我是黄油香蕉君，再见。]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>cffi</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[近期诗理]]></title>
     <url>%2F2018%2F10%2F08%2F%E8%BF%91%E6%9C%9F%E8%AF%97%E7%90%86%2F</url>
     <content type="text"><![CDATA[近期诗理前言各位同学大家晚上好。十一长假的最后一天了，明天大家就要恢复到上班的状态中去了，不知道还有没有时间来看我的博客。哈哈哈，当然没有。 看到我博客中许久未落笔了，于是想要写写点东西。可是窗外小雨却无心于文字，那么便来整理一下最近写下的东西，算个纪念。 第一首 红豆1234红豆生红豆，一枝又一枝。细雨绵绵下，一丝追一丝。夏虫残翼薄，春死无人知。秋花不肯落，冬雪笑花痴。 第二首 恩将仇报12一队黑云压境，一盏孤光等雨。佛欲普度众生，我却只愿害你。 第三首 登古道至老君洞12345678黄桷古道通仙山，一路瓦墟苔上斑。青墙绿园鹅鸭住，黑狗将军忙照看。山腰老叟尚玄虚，且坐荫下饮冰皮。遥看山木风未谋，笑怪黄花落甜潭。 第四首1一夜风雨花知命，不信，不信。强恼英秋秋不应。临江夜伴水波清，雾里，酒里。欣然迎月月难明。久居渐忘身是客，一语梦中人惊醒。有情，无情。可叹几庄无聊事，谁来受罪无意听?]]></content>
